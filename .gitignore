@@ -1,0 +1,7 @@
+node_modules/
+*.log
+.DS_Store
+.grunt
+app/bower_components
+bower_components
+build

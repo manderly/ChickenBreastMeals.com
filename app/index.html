@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- this html file is a container for templates -->
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChickenBreastMeals</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <div data-ng-app="cbmApp">
+  <nav>
+    <h1 class="top-bar">
+    <a href="#/">Chicken Breast Meals</a></h1>
+    <div class="nav-admin"><a href="#/admin">Admin</a></div>
+  </nav>
+    <!--container for app -->
+    <div data-ng-view></div>
+
+  </div><!-- closes cbmApp-->
+  <script src="bundle.js"></script>
+</body>
+</html>
