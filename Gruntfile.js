@@ -2,11 +2,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-mocha');
-  grunt.loadNpmTasks('grunt-simple-mocha');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-express-server');
+	grunt.loadNpmTasks('grunt-mocha');
+	grunt.loadNpmTasks('grunt-simple-mocha');
+	grunt.loadNpmTasks('grunt-karma');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-express-server');
 
 	grunt.initConfig({
 		clean: {
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 			dev: {
 				expand:true,
 				cwd: 'app/',
-				src: ['*.html','css/*.css','views/**/*.html','images/*.jpg'],
+				src: ['*.html','css/*.css','views/**/*.html','images/*/*.*'],
 				dest: 'build/',
 				filter: 'isFile'
 			}
@@ -80,6 +80,6 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('build',['clean:dev','browserify:dev', 'copy:dev']);
 	grunt.registerTask('test', ['browserify:angulartest','karma:unit']);
-	grunt.registerTask('serve', ['express:dev','watch:express']); //removed 'watch:express' because it no work
+	grunt.registerTask('serve', ['express:dev','watch:express']);
 	grunt.registerTask('default',['build','serve']); //'test'
 };

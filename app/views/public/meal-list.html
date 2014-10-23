@@ -1,0 +1,96 @@
+<div ng-controller="mealListController">
+    <div class="userSortSettings">
+        <input data-ng-model="query" class="searchInput" placeholder="Search by ingredient or recipe name"/>
+        <div class="filters">
+            <ul class="filterNav">
+                Show only:
+                <li data-ng-click="filterByOption.glutenfree = !filterByOption.glutenfree">Gluten Free</li>
+                <!--toggle between true and null -->
+                <li>Low Carb</li>
+                <li>Low Fat</li>
+                <li>Paleo</li>
+                <li>Quick</li>
+            </ul>
+        </div>
+    </div><!--closes userSortSettings-->
+
+    <div class="wrapper">
+        <aside class="mealsSnippetContainer">
+            <!--
+            <div class="scrollListLabels">
+                <p class="mealsTitle">MEALS</p>
+                <p class="prepTimeTitle">PREP TIME</p>
+            </div><!-- closes scrollListLabels-->
+
+            <div class="mealsScrollList">
+                <ul class="mealGrid">
+                    <li
+                        data-ng-click="viewMealDetail(meal); selectThisMeal(meal)"
+                        data-ng-repeat="meal in meals | filter: query"
+                        data-ng-class="{selectedMeal:meal.selected}"
+                        class="mealPreviewButton"
+                        >
+                            <img ng-src="{{meal.images[0]}}">
+
+                            <div class="mealGridTextArea">
+                                <h3><a href="" class="mealTitle">{{meal.title}}</a></h3>
+                                <p class="snippet">{{meal.snippet}}</p>
+                            </div>
+
+                            <span class="prepData">
+                                <span class="cookTime">{{meal.cooktime}}</span>
+                                <span class="mins">mins</span>
+                            </span>
+
+                    </li>
+            </div><!-- closes mealsScrollList"-->
+        </aside><!--closes mealsSnippetContainer-->
+
+        <!-- details pane on the right -->
+        <div class="mealDetailsContainer">
+
+            <div class="mealDetailsEmpty" data-ng-hide="mealDetail">
+                « Select a recipe from the list at left.
+                <img src="./images/site/cbm_logo_large.png">
+            </div><!-- closes mealDetailsEmpty-->
+
+            <div class="mealDetailsContents" data-ng-show="mealDetail">
+                <img data-ng-src="{{mealDetail.images[0]}}" class="meal-hero-img">
+                <h1>{{mealDetail.title}}</h1>
+
+                <p class="prepTimeData">
+                <span id="minsData"> READY IN: <span id="prepDataHighlight"><b>{{mealDetail.preptime + mealDetail.cooktime}} mins</b></span>
+                    <br>
+                    PREP: {{mealDetail.preptime}} mins<br>
+                    COOK: {{mealDetail.cooktime}} mins
+                </p>
+
+                <p class="mealDescription">{{mealDetail.description}}</p>
+
+            <h2>Tags</h2>
+            <span class="tagNames">
+                <li class="tag" data-ng-repeat="tag in mealDetail.tags">{{tag.name}}</li>
+            </span>
+
+            <h2>{{mealDetail.ingredients.length}} Ingredients</h2>
+                <ul class="mealIngredientsList">
+                    <li data-ng-repeat="ingredient in mealDetail.ingredients" class="mealIngredient">
+                        <input type="checkbox"/> {{ingredient.name}}
+                    </li>
+                </ul>
+
+            <h2>Step by Step Instructions</h2>
+                <ol class="mealInstructionsList">
+                    <li data-ng-repeat="instruction in mealDetail.instructions">
+                        {{instruction.name}}
+                    </li>
+                </ol>
+                <h2>Tasty Pics</h2>
+              <span data-ng-repeat="image in mealDetail.images">
+                <img data-ng-src="{{image}}" id="mealAdditionalImg">
+              </span>
+            </div><!--closes mealDetailsContents-->
+        </div><!-- closes mealDetailsContainer-->
+    </div><!--closes wrapper-->
+</div>
+</div>

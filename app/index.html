@@ -6,18 +6,34 @@
   <meta charset="UTF-8">
   <title>ChickenBreastMeals</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+
 </head>
 <body>
+
   <div data-ng-app="cbmApp">
-  <nav>
-    <h1 class="top-bar">
-    <a href="#/">Chicken Breast Meals</a></h1>
-    <div class="nav-admin"><a href="#/admin">Admin</a></div>
-  </nav>
-    <!--container for app -->
-    <div data-ng-view></div>
+
+    <!-- nav bar across top -->
+    <nav>
+      <a href="#/index" class="siteTitle"><img src="images/site/cbm_thin_banner.png"></a>
+      <ul class="navMenu">
+        <li><a href="#/index">Main</a></li>
+        <li><a href="#/about">About</a></li>
+        <li><a href="#/tools">Tools</a></li>
+        <li><a href="#/contact">Contact</a></li>
+        <li><a href="#/cms">ADMIN</a></li>
+      </ul>
+    </nav>
+
+  
+    <!--container for app views -->
+    <div data-ng-view>content here</div>
 
   </div><!-- closes cbmApp-->
+
+  <footer>
+      <p>&copy;2014 Chicken Breast Meals | <a href="#/about">About</a> | <a href="#/privacy-disclosures">Privacy Policy and Disclosures</a> | <a href="#/contact">Contact</a> | Total meals: {{meals.length}}</p>
+  </footer>
+
   <script src="bundle.js"></script>
 </body>
 </html>

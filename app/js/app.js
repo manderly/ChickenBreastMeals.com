@@ -2,16 +2,15 @@
 
 require('angular/angular');
 require('angular-route');
-require('angular-base64');
-require('angular-cookies');
 
-var cbmApp = angular.module('cbmApp',['ngRoute','ngCookies','base64']);
+var cbmApp = angular.module('cbmApp',['ngRoute']);
 
 //filters
 
 
 //controllers
 require('./controllers/cbm-main-controller')(cbmApp);
+require('./controllers/meal-list-controller')(cbmApp);
 
 //services
 
@@ -20,3 +19,4 @@ require('./controllers/cbm-main-controller')(cbmApp);
 
 
 //routes
+require('./routes/cbm-routes')(cbmApp);
