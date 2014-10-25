@@ -14,7 +14,7 @@ require('./controllers/meal-list-controller')(cbmApp);
 require('./controllers/cbm-admin-controller')(cbmApp);
 
 //services
-
+require('./services/meals-server')(cbmApp);
 
 //directives
 

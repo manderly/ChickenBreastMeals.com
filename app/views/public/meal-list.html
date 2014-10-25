@@ -34,7 +34,7 @@
                             <img ng-src="{{meal.images[0]}}">
 
                             <div class="mealGridTextArea">
-                                <h3><a href="" class="mealTitle">{{meal.title}}</a></h3>
+                                <h3><a href="" class="mealTitle">{{meal.name}}</a></h3>
                                 <p class="snippet">{{meal.snippet}}</p>
                             </div>
 
@@ -57,7 +57,7 @@
 
             <div class="mealDetailsContents" data-ng-show="mealDetail">
                 <img data-ng-src="{{mealDetail.images[0]}}" class="meal-hero-img">
-                <h1>{{mealDetail.title}}</h1>
+                <h1>{{mealDetail.name}}</h1>
 
                 <p class="prepTimeData">
                 <span id="minsData"> READY IN: <span id="prepDataHighlight"><b>{{mealDetail.preptime + mealDetail.cooktime}} mins</b></span>
