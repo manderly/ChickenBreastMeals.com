@@ -10,8 +10,23 @@ module.exports = function(app) {
 			controller: 'cbmMainController'
 		})
 
+		.when('/about', {
+			templateUrl: '/views/public/about.html',
+			controller: 'cbmMainController'
+		})
+
+		.when('/tools', {
+			templateUrl: '/views/public/tools.html',
+			controller: 'cbmMainController'
+		})
+
 		.when('/contact', {
 			templateUrl: '/views/public/contact.html',
+			controller: 'cbmMainController'
+		})
+
+		.when('/admin', {
+			templateUrl: '/views/admin/admin.html',
 			controller: 'cbmMainController'
 		})
 

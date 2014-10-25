@@ -3,7 +3,7 @@
 module.exports = function(app) {
 	app.controller('cbmMainController', function($scope, $http) {
 		$scope.getMeals = function() {
-		$http.get('/api/db').success(function(data) {
+		$http.get('/db').success(function(data) {
 			$scope.meals = data;
 		})
 		.error(function(data) {
@@ -12,7 +12,7 @@ module.exports = function(app) {
 	};
 
 	$scope.createNewMeal = function(newMeal) {
-		$http.post('/api/db',newMeal)
+		$http.post('/db',newMeal)
 		.success(function(data) {
 			$scope.meals = data;
 			console.log("post success: " + data.title);
@@ -23,7 +23,7 @@ module.exports = function(app) {
 	};
 
 	$scope.editMeal = function(existingMeal) {
-		$http.put('/api/db/' + existingMeal._id, existingMeal)
+		$http.put('/db/' + existingMeal._id, existingMeal)
 			.success(function(data) {
 				$scope.meals = data;
 				console.log("Edited meal: " + data.title);
@@ -34,7 +34,7 @@ module.exports = function(app) {
 		};
 
 	$scope.deleteExistingMeal = function(id) {
-		$http.delete('/api/db/'+ id)
+		$http.delete('/db/'+ id)
 			.success(function(data) {
 				$scope.meals = data;
 				console.log("Successfully deleted a meal. " + data);
