@@ -18,17 +18,27 @@ module.exports = function(app) {
 		//saves a new meal along with all its components
 		$scope.saveNewMeal = function(form) {
 			mealsServer.saveNewMeal($scope.formMeal)
-				.success(function(data) {
-					$scope.meals.push(data);
-					$scope.formMeal.name = '';
-					$scope.formMeal.snippet = '';
-					//todo: add more form lines
-					$scope.editMealForm.$setPristine();
-				});
+			.success(function(data) {
+				$scope.meals.push(data);
+				$scope.formMeal.name = '';
+				$scope.formMeal.snippet = '';
+				$scope.creatingNewMeal = false;
+				$scope.editMealForm.$setPristine();
+			});
+		};
+
+		$scope.createNewMeal = function() {
+			$scope.formMeal = {}; //set the form to empty
+			$scope.creatingNewMeal = true;
+			console.log("Creating a new meal cbm-admin-controller.js");
 		};
 
 		$scope.editMeal = function(meal) {
-			meal.editing = true;
+			console.log("editing this meal: " + meal);
+			//meal.editing = true; //not sure what this does, removal candidate
+			$scope.mealSelected = true;
+			//set mealEdit to meal so we can access its parameters
+			$scope.formMeal = meal;
 		};
 
 		$scope.saveMeal = function(meal) {

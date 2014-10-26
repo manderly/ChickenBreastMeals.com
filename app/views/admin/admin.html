@@ -11,10 +11,10 @@
                 <li
                     data-ng-repeat="meal in meals | filter: query | orderBy: alphabetical"
                     data-ng-class="{selectedMeal:meals[$index].selected}">
-                        <a href="" data-ng-click="viewMealDetail(meal); selectThisMeal(meal)">{{meal.name}}</a>
+                        <a href="" data-ng-click="editMeal(meal)">{{meal.name}}</a>
                         <a href="" data-ng-click="deleteMeal(meal)">&nbsp&nbsp[Delete]</a>
                 </li>
-                <a href="" data-ng-click="selectCreateNewMeal()">[Create new meal]</a>
+                <a href="" data-ng-click="createNewMeal()">[Create new meal]</a>
             </ul>
         </div><!-- closes cms-recipeTitleList"-->
 

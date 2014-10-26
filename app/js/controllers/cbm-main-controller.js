@@ -24,11 +24,16 @@ module.exports = function(app) {
 
 	$scope.selectMealViewDetails = function(meal) {
 		console.log("Selecting this meal in meal-list-controller.js: " + meal);
-		$scope.mealDetail = $scope.meals[$scope.meals.indexOf(meal)];
+		$scope.mealSelected = true;
+		//set mealDetail to meal so we can access its parameters in the view
+		$scope.mealDetail = meal;
+
+		//de-select the other meals and highlight the clicked meal
 		$scope.meals.forEach(function(mealIndex) {
 			mealIndex.selected = false;
 		});
 		$scope.meals[$scope.meals.indexOf(meal)].selected=true;
+
 	};
 
 	//get, create, edit, delete
