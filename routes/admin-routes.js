@@ -37,7 +37,7 @@ module.exports = function(app) {
 		delete meal._id;
 		Meal.findOneAndUpdate({'_id': req.params.id}, meal, function(err, resMeal) {
 			if(err) return res.status(500).json(err);
-			return res.json(meal)
+			return res.json(resMeal)
 		});
 	});
 

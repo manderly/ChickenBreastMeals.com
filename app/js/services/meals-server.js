@@ -31,15 +31,17 @@ module.exports = function(app) {
 			},
 
 			deleteMeal: function(meal) {
+				console.log("deleting meal in meals-server.js " + meal.name);
+				console.log("meal._id is: " + meal._id);
 				var promise = $http.delete('/db/' + meal._id)
 				.error(function(data,status){
 					errFunc(data,status);
 				});
 				return promise;
-			}
-	};
+			},
+		};
 
-	return meal;
+		return meal;
 
 	});
 };

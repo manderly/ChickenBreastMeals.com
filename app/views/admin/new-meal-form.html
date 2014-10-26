@@ -17,28 +17,28 @@
 
     <b>Snippet</b>
         <br>
-        <input type="text" data-ng-model="meal.snippet"/>
-        <a href="" data-ng-click="formMeal.name = ''">Clear</a>
+        <input type="text" data-ng-model="formMeal.snippet"/>
+        <a href="" data-ng-click="formMeal.snippet = ''">Clear</a>
         <br>
 
     <b>Description</b>
         <br>
-        <input type="text" data-ng-model="meal.description"/>
-        <a href="" data-ng-click="formMeal.name = ''">Clear</a>
+        <input type="text" data-ng-model="formMeal.description"/>
+        <a href="" data-ng-click="formMeal.description = ''">Clear</a>
         <br>
 
     <b>Tags</b>
         <div class="shortInput">
             <ol>
-                <li data-ng-repeat="tag in meal.tags">
-                    <input data-ng-model="meal.tags[$index].name">
-                    <a href="" data-ng-click="meal.tags.pop($index)"><img src="/assets/delete.png"/></a>
+                <li data-ng-repeat="tag in formMeal.tags">
+                    <input data-ng-model="formMeal.tags[$index].name">
+                    <a href="" data-ng-click="formMeal.tags.pop($index)"><img src="/assets/delete.png"/></a>
                 </li>
             </ol>
 
             <li>
                 <input data-ng-model="newTag.name">
-                <a href="" data-ng-click="meal.tags.push(newTag); newTag={name:''}">ADD TAG</a>
+                <a href="" data-ng-click="formMeal.tags.push(newTag); newTag={name:''}">ADD TAG</a>
             </li>
 
         </div>
@@ -56,15 +56,15 @@
 
     <div class="shortInput">
         <b>Prep time:</b>
-        <input data-ng-model="meal.preptime">minutes
+        <input data-ng-model="formMeal.preptime">minutes
         <br>
 
         <b>Cook time:</b>
-        <input data-ng-model="meal.cooktime">minutes
+        <input data-ng-model="formMeal.cooktime">minutes
         <br>
 
         <b>Oven temp:</b>
-        <input data-ng-model="meal.oventemp">degrees
+        <input data-ng-model="formMeal.oventemp">degrees
         <br>
     </div>
 
@@ -72,7 +72,7 @@
     <br>
     <b>Ingredients</b>
         <ol>
-            <li data-ng-repeat="ingredient in meal.ingredients">
+            <li data-ng-repeat="ingredient in formMeal.ingredients">
                 <input data-ng-model="meal.ingredients[$index].name">
                 <a href="" data-ng-click="meal.ingredients.pop($index)"><img src="/assets/delete.png"/></a>
             </li>
@@ -85,21 +85,21 @@
 
     <b>Recipe Steps</b>
         <ol class="cms-recipeInstructionSteps">
-            <li ng-repeat="instruction in meal.instructions">
+            <li ng-repeat="instruction in formMeal.instructions">
                 <textarea ng-model="meal.instructions[$index].name"></textarea>
                 <a href="" ng-click="meal.instructions.pop($index)"><img src="/assets/bin.png"/></a>
             </li>
 
             <li>
                 <textarea ng-model="newInstruction.name"></textarea>
-                <a href="" ng-click="meal.instructions.push(newInstruction); newInstruction={name:''}">ADD STEP</a>
+                <a href="" ng-click="formMeal.instructions.push(newInstruction); newInstruction={name:''}">ADD STEP</a>
             </li>
         </ol>
 
     <h2>Photos</h2>
         <ol>
             <!--display the existing images-->
-            <li ng-repeat="image in meal.images">
+            <li ng-repeat="image in formMeal.images">
                 <br>
                 <b>Image {{$index + 1}}:</b>
                 <img ng-src="{{image}}" id="mealAdditionalImg">

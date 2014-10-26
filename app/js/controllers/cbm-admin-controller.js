@@ -41,7 +41,7 @@ module.exports = function(app) {
 		$scope.deleteMeal = function(meal) {
 			mealsServer.deleteMeal(meal)
 				.success(function(data) {
-					$scope.getAllmeals();
+					$scope.getAllMeals();
 				})
 		};
 		
