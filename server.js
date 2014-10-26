@@ -10,6 +10,7 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/meals-developm
 app.use(express.static(__dirname + '/build'));
 
 app.use(bodyparser.json());
+
 require('./routes/admin-routes')(app);
 
 var server = http.createServer(app);

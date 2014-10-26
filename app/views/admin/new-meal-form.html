@@ -1,24 +1,30 @@
 <!--meal details on right-->
 <div class="cms-recipeEdit">
-    <h2>EDIT MODE: {{meal.name}}</h2><button ng-click="saveNewMeal(meal)">SAVE TO DATABASE</button>
-    <br>
+    <h2>EDIT MODE: {{meal.name}}</h2>
 
+    <form name="editMealForm">
+
+    <button data-ng-disabled="newMealForm.$invalid" 
+            data-ng-click="saveNewMeal(editMealForm)">SAVE TO DATABASE
+    </button>
+
+    <br>
     <b>Meal Name:</b>
         <br>
-        <input data-ng-model="meal.name"/>
-        <a href="" data-ng-click="meal.name = ''">Clear</a>
+        <input type="text" required data-ng-model="formMeal.name">
+        <a href="" data-ng-click="formMeal.name = ''">Clear</a>
         <br>
 
     <b>Snippet</b>
         <br>
-        <input data-ng-model="meal.snippet"/>
-        <a href="" data-ng-click="meal.snippet = ''">Clear</a>
+        <input type="text" data-ng-model="meal.snippet"/>
+        <a href="" data-ng-click="formMeal.name = ''">Clear</a>
         <br>
 
     <b>Description</b>
         <br>
-        <input data-ng-model="meal.description"/>
-        <a href="" data-ng-click="meal.description = ''">Clear</a>
+        <input type="text" data-ng-model="meal.description"/>
+        <a href="" data-ng-click="formMeal.name = ''">Clear</a>
         <br>
 
     <b>Tags</b>
@@ -111,6 +117,7 @@
                 <br>
             </li>
         </ol>
-    <br><br><br><br><br><br><br><br>
-</div>
+        <br><br><br><br><br><br><br><br>
+    </div>
+</form>
 </div>

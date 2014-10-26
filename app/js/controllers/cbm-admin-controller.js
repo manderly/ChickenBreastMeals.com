@@ -16,12 +16,14 @@ module.exports = function(app) {
 		$scope.getAllMeals();
 
 		//saves a new meal along with all its components
-		$scope.saveNewMeal = function(mealDetail) {
-			mealsServer.saveNewMeal($scope.newMeal)
+		$scope.saveNewMeal = function(form) {
+			mealsServer.saveNewMeal($scope.formMeal)
 				.success(function(data) {
 					$scope.meals.push(data);
-					$scope.newMeal.name = '';
-					$scope.newMealForm.$setPristine();
+					$scope.formMeal.name = '';
+					$scope.formMeal.snippet = '';
+					//todo: add more form lines
+					$scope.editMealForm.$setPristine();
 				});
 		};
 

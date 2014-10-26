@@ -9,21 +9,6 @@ module.exports = function(app) {
 			console.log(status);
 		};
 
-		var parseMeal = function(meal) {
-			return {
-				mealName: meal.name,
-				mealSnippet: meal.snippet,
-				mealDescription: meal.description,
-				mealTags: meal.tags,
-				mealPrepTime: meal.prepTime,
-				mealCookTime: meal.cookTime,
-				mealOvenTemp: meal.ovenTemp,
-				mealIngredients: meal.ingredients,
-				mealSteps: meal.steps,
-				mealPhotos: meal.photos
-			}
-		};
-
 		var meal = {
 			index: function() {
 				var promise = $http({
@@ -37,7 +22,8 @@ module.exports = function(app) {
 			},
 
 			saveNewMeal: function(meal) {
-				var promise = $http.post('/db',parseMeal(meal))
+				console.log("meal name in meals-server.js is " + meal.name);
+				var promise = $http.post('/db', meal)
 					.error(function(data,status){
 						errFunc(data,status);
 				});
@@ -45,12 +31,12 @@ module.exports = function(app) {
 			},
 
 			deleteMeal: function(meal) {
-				var promise = $http.delete('/db' + meal._id)
+				var promise = $http.delete('/db/' + meal._id)
 				.error(function(data,status){
 					errFunc(data,status);
 				});
 				return promise;
-			},
+			}
 	};
 
 	return meal;
