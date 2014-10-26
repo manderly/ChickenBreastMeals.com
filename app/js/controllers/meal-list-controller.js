@@ -21,13 +21,12 @@ module.exports = function(app) {
     $scope.getMeals();
 
 		$scope.viewMealDetail = function(meal) {
-			console.log("Viewing meal detail");
 			$scope.mealDetail = $scope.meals[$scope.meals.indexOf(meal)];
 		};
 
 		$scope.selectThisMeal = function(meal) {
 			$scope.meals.forEach(function(mealIndex) {
-			mealIndex.selected=false;
+			mealIndex.selected = false;
 		});
 
 		$scope.meals[$scope.meals.indexOf(meal)].selected=true;

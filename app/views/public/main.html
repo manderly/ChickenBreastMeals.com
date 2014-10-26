@@ -1,0 +1,26 @@
+<div ng-controller="mealListController">
+    <div class="userSortSettings">
+        <input data-ng-model="query" class="searchInput" placeholder="Search by ingredient or recipe name"/>
+        <div class="filters">
+            <ul class="filterNav">
+                Show only:
+                <li data-ng-click="filterByOption.glutenfree = !filterByOption.glutenfree">Gluten Free</li>
+                <!--toggle between true and null -->
+                <li>Low Carb</li>
+                <li>Low Fat</li>
+                <li>Paleo</li>
+                <li>Quick</li>
+            </ul>
+        </div>
+    </div><!--closes userSortSettings-->
+
+    <div class="wrapper">
+        <!-- grid or list on left -->
+        <div class="mealsSnippetContainer" data-main-meal-list></div>
+        <!-- details pane on the right -->
+        <div class="mealDetailsContainer" data-main-meal-details></div>
+
+    </div>
+    
+</div>
+</div>

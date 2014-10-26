@@ -1,0 +1,44 @@
+<!-- when no details are being viewed, show the site logo -->
+<div class="mealDetailsEmpty" data-ng-hide="mealDetail">
+    « Select a recipe from the list at left.
+    <img src="./images/site/cbm_logo_large.png">
+</div>
+
+<!-- when viewing meal details, show details -->
+<div class="mealDetailsContents" data-ng-show="mealDetail">
+    <img data-ng-src="{{meal.images[0]}}" class="meal-hero-img">
+    <h1>{{meal.name}}</h1>
+        <p class="prepTimeData">
+        <span id="minsData"> READY IN: <span id="prepDataHighlight"><b>{{meal.preptime + meal.cooktime}} mins</b></span>
+        <br>
+        PREP: {{meal.preptime}} mins<br>
+        COOK: {{meal.cooktime}} mins
+        </p>
+
+    <p class="mealDescription">{{meal.description}}</p>
+
+    <h2>Tags</h2>
+        <span class="tagNames">
+        <li class="tag" data-ng-repeat="tag in meal.tags">{{tag.name}}</li>
+        </span>
+
+    <h2>{{meal.ingredients.length}} Ingredients</h2>
+        <ul class="mealIngredientsList">
+        <li data-ng-repeat="ingredient in meal.ingredients" class="mealIngredient">
+        <input type="checkbox"/> {{ingredient.name}}
+        </li>
+        </ul>
+
+    <h2>Step by Step Instructions</h2>
+        <ol class="mealInstructionsList">
+        <li data-ng-repeat="instruction in meal.instructions">
+        {{instruction.name}}
+        </li>
+        </ol>
+
+    <h2>Tasty Pics</h2>
+        <span data-ng-repeat="image in meal.images">
+        <img data-ng-src="{{image}}" id="mealAdditionalImg">
+        </span>
+        
+</div><!--closes mealDetailsContents-->

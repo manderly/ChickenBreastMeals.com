@@ -6,7 +6,7 @@ module.exports = function(app) {
 
 		//default page
 		.when('/', {
-			templateUrl: '/views/public/meal-list.html',
+			templateUrl: '/views/public/main.html',
 			controller: 'cbmMainController'
 		})
 
