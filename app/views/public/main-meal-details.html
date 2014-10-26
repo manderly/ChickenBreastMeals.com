@@ -9,7 +9,8 @@
     <img data-ng-src="{{meal.images[0]}}" class="meal-hero-img">
     <h1>{{meal.name}}</h1>
         <p class="prepTimeData">
-        <span id="minsData"> READY IN: <span id="prepDataHighlight"><b>{{meal.preptime + meal.cooktime}} mins</b></span>
+        <span id="minsData"> READY IN: </span>
+        <span id="prepDataHighlight"><b>{{meal.preptime + meal.cooktime}} mins</b></span>
         <br>
         PREP: {{meal.preptime}} mins<br>
         COOK: {{meal.cooktime}} mins
@@ -40,5 +41,5 @@
         <span data-ng-repeat="image in meal.images">
         <img data-ng-src="{{image}}" id="mealAdditionalImg">
         </span>
-        
+
 </div><!--closes mealDetailsContents-->

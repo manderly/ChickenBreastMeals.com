@@ -1,7 +1,7 @@
 <div class="mealsScrollList">
     <ul class="mealGrid">
         <li
-            data-ng-click="viewMealDetail(meal); selectThisMeal(meal)"
+            data-ng-click="selectMealViewDetails(meal)"
             data-ng-repeat="meal in meals | filter: query"
             data-ng-class="{selectedMeal:meal.selected}"
             class="mealPreviewButton"

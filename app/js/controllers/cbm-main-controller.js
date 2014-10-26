@@ -2,7 +2,37 @@
 
 module.exports = function(app) {
 	app.controller('cbmMainController', function($scope, $http) {
-		$scope.getMeals = function() {
+
+	$scope.siteName = "Chicken Breast Meals.com";
+	$scope.orderProp = 'cooktime';
+
+	//viewing and filtering meals
+	$scope.filterMeals = function(query, filterByOption) {
+	    console.log("Showing meals that meet this criteria: " + query + "or" + filterByOption);
+	    return function(meal) {
+		    if (meal.title.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+		      return true;
+		    } else if (!filterByOption.glutenfree) {
+		      return true;
+		    } else if (filterByOption.glutenfree && meal.mealOptions.glutenfree) {
+		      return true;
+		    } else {
+		      return false;
+		    }
+		};
+	};
+
+	$scope.selectMealViewDetails = function(meal) {
+		console.log("Selecting this meal in meal-list-controller.js: " + meal);
+		$scope.mealDetail = $scope.meals[$scope.meals.indexOf(meal)];
+		$scope.meals.forEach(function(mealIndex) {
+			mealIndex.selected = false;
+		});
+		$scope.meals[$scope.meals.indexOf(meal)].selected=true;
+	};
+
+	//get, create, edit, delete
+	$scope.getMeals = function() {
 		$http.get('/db').success(function(data) {
 			$scope.meals = data;
 		})
@@ -24,24 +54,27 @@ module.exports = function(app) {
 
 	$scope.editMeal = function(existingMeal) {
 		$http.put('/db/' + existingMeal._id, existingMeal)
-			.success(function(data) {
-				$scope.meals = data;
-				console.log("Edited meal: " + data.title);
-			})
-			.error(function(data) {
-				console.log("error:" + data);
-			});
-		};
+		.success(function(data) {
+			$scope.meals = data;
+			console.log("Edited meal: " + data.title);
+		})
+		.error(function(data) {
+			console.log("error:" + data);
+		});
+	};
 
 	$scope.deleteExistingMeal = function(id) {
 		$http.delete('/db/'+ id)
-			.success(function(data) {
-				$scope.meals = data;
-				console.log("Successfully deleted a meal. " + data);
-			})
-			.error(function(data) {
-				console.log("error: " + data);
-			});
-		};
-	})
-}
+		.success(function(data) {
+			$scope.meals = data;
+			console.log("Successfully deleted a meal. " + data);
+		})
+		.error(function(data) {
+			console.log("error: " + data);
+		});
+	};
+
+	$scope.getMeals();
+});
+
+};
