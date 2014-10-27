@@ -52,7 +52,7 @@
                 <li data-ng-repeat="tag in formMeal.tags">
                     <input  data-ng-model="formMeal.tags[$index].name"
                             class="admin-input-short">
-                    <a href="" data-ng-click="formMeal.tags.pop($index)"><img src="/assets/delete.png"/></a>
+                    <a href="" data-ng-click="formMeal.tags.splice($index,2)"><img src="/assets/delete.png"/></a>
                 </li>
             </ol>
 
