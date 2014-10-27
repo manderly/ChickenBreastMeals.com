@@ -7,7 +7,6 @@
                 required data-ng-model="formMeal.name" 
                 placeholder="Give your meal a unique name."
                 class="admin-input-oneline">
-        <a href="" data-ng-click="formMeal.name = ''">Clear</a>
 
     <h2>Add Photo</h2>
         <div class="admin-add-image">
@@ -32,14 +31,12 @@
                 required data-ng-model="formMeal.snippet" 
                 placeholder="A brief recipe description."
                 class="admin-input-oneline">
-        <a href="" data-ng-click="formMeal.snippet = ''">Clear</a>
 
     <h2>Description</h2>
         <input  type="text" 
                 required data-ng-model="formMeal.description" 
                 placeholder="Tell us about this recipe, where it came from, why it's special. Be creative!"
                 class="admin-input-paragraph"/>
-        <a href="" data-ng-click="formMeal.description = ''">Clear</a>
 
     <h2>Tags</h2>
         <div class="shortInput">
@@ -98,25 +95,7 @@
                     Quick<br>
 
         </div>
-    </br>
 
-    <h2>Preparation Times and Temps</h2>
-    <div class="shortInput">
-        <b>Prep time:</b>
-        <input data-ng-model="formMeal.prepTime">minutes
-        <br>
-
-        <b>Cook time:</b>
-        <input data-ng-model="formMeal.cookTime">minutes
-        <br>
-
-        <b>Oven temp:</b>
-        <input data-ng-model="formMeal.ovenTemp">degrees
-        <br>
-    </div>
-
-
-    <br>
     <h2>Ingredients</h2>
         <ol class="ingredients-list">
             <!-- loop through and display existing ingredients -->
@@ -140,7 +119,20 @@
             </li>
         </ol>
 
+
     <h2>Recipe Steps</h2>
+    <div class="cms-input-time">
+        <ul>
+            <li><b>PREP TIME</b>
+                <input data-ng-model="formMeal.prepTime">
+            </li>
+
+            <li><b>COOK TIME</b>
+                <input data-ng-model="formMeal.cookTime">
+            </li>
+        </ul>
+    </div>
+
         <ol class="cms-recipeSteps">
             <!-- loop through and display existing step -->
             <li data-ng-repeat="step in formMeal.steps">
