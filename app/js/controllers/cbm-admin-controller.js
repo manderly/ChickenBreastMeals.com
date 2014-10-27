@@ -14,8 +14,6 @@ module.exports = function(app) {
 			});
 		};
 
-		$scope.getAllMeals();
-
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
 			if ($scope.creatingNewMeal === false) {
@@ -32,12 +30,7 @@ module.exports = function(app) {
 		};
 
 		$scope.adminSelectMealViewDetails = function(meal) {
-			console.log("Selecting this meal in cbm-admin-controller.js: " + meal.name);
 			$scope.adminMealSelected = true;
-			//set mealDetail to meal so we can access its parameters in the view
-			//$scope.mealDetail = meal;
-
-			//de-select the other meals and highlight the clicked meal
 			$scope.meals.forEach(function(mealIndex) {
 				mealIndex.selected = false;
 			});
@@ -53,6 +46,7 @@ module.exports = function(app) {
 		};
 
 		$scope.createNewMeal = function() {
+			console.log("in create new meal mode");
 			$scope.formMeal = {}; //set the form to empty
 			$scope.creatingNewMeal = true;
 
@@ -108,5 +102,8 @@ module.exports = function(app) {
 
 		$scope.siteName = "Chicken Breast Meals.com";
 		$scope.orderProp = 'cooktime';
+
+		$scope.getAllMeals();
+		$scope.createNewMeal();
 	});
 };
