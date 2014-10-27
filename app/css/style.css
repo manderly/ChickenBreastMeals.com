@@ -430,7 +430,13 @@ About
 /***********
 CMS
 ************/
-
+#new-meal-button {
+    font-size:18px;
+    font-weight:bold;
+    text-align:center;
+    display:block;
+    margin:0 auto;
+}
 
 #admin-bar-left {
     display:block;

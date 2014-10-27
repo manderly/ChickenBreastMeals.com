@@ -22,7 +22,7 @@
             {{formMeal.imageUrl}}<!-- print the image's filepath-->
             
             <!-- if user has chosen an image, offer trash can icon -->
-            <a href="" ng-click="meal.images.pop($index)"><img src="/assets/bin.png"/></a>
+            <a href="" ng-click="meal.images.splice($index,2)"><img src="/assets/bin.png"/></a>
 
         </div>
 
