@@ -54,7 +54,7 @@ module.exports = function(app) {
 	                quick:false
 				};
 			$scope.formMeal.ingredients = [];
-			$scope.formMeal.instructions = ["Add a preparation step (e.g. Combine together the salt, sugar, and...","Add a preparation step","Add another preparation step"];
+			$scope.formMeal.steps = [];
 		};
 
 
@@ -92,7 +92,7 @@ module.exports = function(app) {
 		    	console.log("error uploading image");
 		    })
 		};
-		
+
 		$scope.siteName = "Chicken Breast Meals.com";
 		$scope.orderProp = 'cooktime';
 	});

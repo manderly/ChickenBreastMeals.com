@@ -127,7 +127,7 @@
             <li data-ng-repeat="ingredient in formMeal.ingredients">
                 <input data-ng-model="formMeal.ingredients[$index].name">
                 
-                <a href="" data-ng-click="formMeal.ingredients.pop($index)"><img src="/assets/delete.png"/></a>
+                <a href="" data-ng-click="formMeal.ingredients.splice($index,2)"><img src="/assets/delete.png"/></a>
             </li>
 
             <!-- entry box for adding new ingredient -->
@@ -138,17 +138,17 @@
         </ol>
 
     <h2>Recipe Steps</h2>
-        <ol class="cms-recipeInstructionSteps">
-            <!-- loop through and display existing instructions -->
-            <li ng-repeat="instruction in formMeal.instructions">
-                <textarea ng-model="meal.instructions[$index].name"></textarea>
-                <a href="" ng-click="meal.instructions.pop($index)"><img src="/assets/bin.png"/></a>
+        <ol class="cms-recipeSteps">
+            <!-- loop through and display existing step -->
+            <li data-ng-repeat="step in formMeal.steps">
+                <textarea data-ng-model="formMeal.steps[$index].name"></textarea>
+                <a href="" data-ng-click="formMeal.steps.splice($index,2)"><img src="/assets/bin.png"/></a>
             </li>
 
-            <!-- entry box for adding new instruction -->
+            <!-- entry box for adding new step -->
             <li>
-                <textarea ng-model="newInstruction.name"></textarea>
-                <a href="" ng-click="formMeal.instructions.push(newInstruction); newInstruction={name:''}">ADD STEP</a>
+                <textarea data-ng-model="newStep.name"></textarea>
+                <a href="" data-ng-click="formMeal.steps.push(newStep); newStep={name:''}">ADD STEP</a>
             </li>
         </ol>
         <br><br><br><br><br><br><br><br>

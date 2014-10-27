@@ -475,7 +475,7 @@ CMS
   width:30px;
 }
 
-.cms-recipeInstructionSteps textarea {
+.cms-recipeSteps textarea {
   width:600px;
   height:100px;
   margin:5px;
