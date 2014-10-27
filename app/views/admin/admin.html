@@ -1,7 +1,17 @@
 <div data-ng-controller="cbmAdminController">
     <header>
-        <h1>Edit Chicken Breast Meals Recipe Data</h1>
-        <p>Total meals in data: {{meals.length}}</p>
+        <div id="admin-bar-left">
+            <h1>Edit Meal Recipe Data</h1>
+            <p>Total meals in data: {{meals.length}}</p>
+        </div>
+    
+        <div id="admin-bar-right">
+            <button data-ng-disabled="newMealForm.$invalid" 
+                    data-ng-click="saveFormContents(formMeal)"
+                    class="save-button">
+                    SAVE TO DATABASE
+            </button>
+        </div>
     </header>
 
     <!-- meal navigator on left -->

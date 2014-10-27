@@ -431,12 +431,42 @@ About
 CMS
 ************/
 
-.cms-wrapper {
-  display: flex; 
-  justify-content: space-around; 
+
+#admin-bar-left {
+    display:block;
+    width:28%;
+    float:left;
+    margin-left:20px;
 }
 
-.cms-recipeEdit input { 
+#admin-bar-right {
+    width:65%;
+    display:block;
+    float:right;
+    text-align:center;
+}
+
+.save-button {
+    height:50px;
+    width:245px;
+    font-size:16px;
+    font-weight:bold;
+    background-color:#368983;
+    color:#fff;
+    cursor:pointer;
+    padding:8px 10px;
+    border-radius:3px;
+    border:none;
+    margin:10px auto;
+}
+
+.cms-wrapper {
+  display: flex; 
+  justify-content: space-around;
+  clear:both;
+}
+
+.cms-recipeEdit input, .cms-recipeEdit textarea { 
     background-color:#f5f5f5;
     font-size:14px;
     line-height:20px;
@@ -473,13 +503,6 @@ CMS
 
 .cms-checkboxes input { 
   width:30px;
-}
-
-.cms-recipeSteps textarea {
-  width:600px;
-  height:100px;
-  margin:5px;
-  padding:1px;
 }
 
 .cms-heroImgPreview {

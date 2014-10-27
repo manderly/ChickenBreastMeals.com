@@ -2,11 +2,6 @@
 <div class="cms-recipeEdit">
     <form name="editMealForm">
 
-    <button data-ng-disabled="newMealForm.$invalid" 
-            data-ng-click="saveFormContents(formMeal)">SAVE TO DATABASE
-    </button>
-
-
     <h2>Recipe Name</h2>
         <input  type="text" 
                 required data-ng-model="formMeal.name" 
@@ -103,8 +98,9 @@
                     Quick<br>
 
         </div>
+    </br>
 
-
+    <h2>Preparation Times and Temps</h2>
     <div class="shortInput">
         <b>Prep time:</b>
         <input data-ng-model="formMeal.prepTime">minutes
@@ -141,13 +137,13 @@
         <ol class="cms-recipeSteps">
             <!-- loop through and display existing step -->
             <li data-ng-repeat="step in formMeal.steps">
-                <textarea data-ng-model="formMeal.steps[$index].name"></textarea>
+                <textarea data-ng-model="formMeal.steps[$index].name" class="admin-input-paragraph"></textarea>
                 <a href="" data-ng-click="formMeal.steps.splice($index,2)"><img src="/assets/bin.png"/></a>
             </li>
 
             <!-- entry box for adding new step -->
             <li>
-                <textarea data-ng-model="newStep.name"></textarea>
+                <textarea data-ng-model="newStep.name" class="admin-input-paragraph"></textarea>
                 <a href="" data-ng-click="formMeal.steps.push(newStep); newStep={name:''}">ADD STEP</a>
             </li>
         </ol>
