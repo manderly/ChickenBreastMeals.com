@@ -7,6 +7,7 @@ var mealSchema = mongoose.Schema({
 	snippet: String,
 	description: String,
 	tags: Array,
+	mealOptions: Array,
 	prepTime: String,
 	cookTime: String,
 	ovenTemp: String,

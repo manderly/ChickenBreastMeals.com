@@ -9,47 +9,52 @@
     </button>
 
     <br>
-    <b>Meal Name:</b>
-        <br>
-        <input type="text" required data-ng-model="formMeal.name">
+    <h2>Recipe Name</h2>
+        <input  type="text" 
+                required data-ng-model="formMeal.name" 
+                placeholder="Give your meal a unique name."
+                class="admin-input-oneline">
         <a href="" data-ng-click="formMeal.name = ''">Clear</a>
-        <br>
 
-    <b>Snippet</b>
-        <br>
-        <input type="text" data-ng-model="formMeal.snippet"/>
+    <h2>Snippet</h2>
+        <input  type="text" 
+                required data-ng-model="formMeal.snippet" 
+                placeholder="A brief recipe description."
+                class="admin-input-oneline">
         <a href="" data-ng-click="formMeal.snippet = ''">Clear</a>
-        <br>
 
-    <b>Description</b>
-        <br>
-        <input type="text" data-ng-model="formMeal.description"/>
+    <h2>Description</h2>
+        <input  type="text" 
+                required data-ng-model="formMeal.description" 
+                placeholder="Tell us about this recipe, where it came from, why it's special. Be creative!"
+                class="admin-input-paragraph"/>
         <a href="" data-ng-click="formMeal.description = ''">Clear</a>
-        <br>
 
-    <b>Tags</b>
+    <h2>Tags</h2>
         <div class="shortInput">
             <ol>
                 <li data-ng-repeat="tag in formMeal.tags">
-                    <input data-ng-model="formMeal.tags[$index].name">
+                    <input  data-ng-model="formMeal.tags[$index].name"
+                            class="admin-input-short">
                     <a href="" data-ng-click="formMeal.tags.pop($index)"><img src="/assets/delete.png"/></a>
                 </li>
             </ol>
 
             <li>
-                <input data-ng-model="newTag.name">
+                <input  data-ng-model="newTag.name"
+                        class="admin-input-short">
                 <a href="" data-ng-click="formMeal.tags.push(newTag); newTag={name:''}">ADD TAG</a>
             </li>
 
         </div>
 
-    <b>Dietary Options</b>
+    <h2>Dietary Options</h2>
         <div class="cms-checkboxes">
-            <input type="checkbox" name="mealOptions" value="noGluten" data-ng-model="meal.mealOptions.glutenfree">Gluten free<br>
-            <input type="checkbox" name="mealOptions" value="noDairy" data-ng-model="meal.mealOptions.dairyfree">Dairy free<br>
-            <input type="checkbox" name="mealOptions" value="lowCarb" data-ng-model="meal.mealOptions.lowcarb">Low carb<br>
-            <input type="checkbox" name="mealOptions" value="lowFat" data-ng-model="meal.mealOptions.lowfat">Low fat<br>
-            <input type="checkbox" name="mealOptions" value="paleo" data-ng-model="meal.mealOptions.paleo">Paleo<br>
+            <input type="checkbox" name="mealOptions" value="noGluten" data-ng-model="formMeal.mealOptions.glutenfree">Gluten free<br>
+            <input type="checkbox" name="mealOptions" value="noDairy" data-ng-model="formMeal.mealOptions.dairyfree">Dairy free<br>
+            <input type="checkbox" name="mealOptions" value="lowCarb" data-ng-model="formMeal.mealOptions.lowcarb">Low carb<br>
+            <input type="checkbox" name="mealOptions" value="lowFat" data-ng-model="formMeal.mealOptions.lowfat">Low fat<br>
+            <input type="checkbox" name="mealOptions" value="paleo" data-ng-model="formMeal.mealOptions.paleo">Paleo<br>
             <input type="checkbox" name="mealOptions" value="quick" data-ng-model="meal.mealOptions.quick">Quick<br>
         </div>
 
@@ -70,26 +75,30 @@
 
 
     <br>
-    <b>Ingredients</b>
+    <h2>Ingredients</h2>
         <ol>
+            <!-- loop through and display existing ingredients -->
             <li data-ng-repeat="ingredient in formMeal.ingredients">
-                <input data-ng-model="meal.ingredients[$index].name">
-                <a href="" data-ng-click="meal.ingredients.pop($index)"><img src="/assets/delete.png"/></a>
+                <input data-ng-model="formMeal.ingredients[$index].name">
+                <a href="" data-ng-click="formMeal.ingredients.pop($index)"><img src="/assets/delete.png"/></a>
             </li>
 
+            <!-- entry box for adding new ingredient -->
             <li>
-                <input ng-model="newIngredient.name">
-                <a href="" ng-click="meal.ingredients.push(newIngredient); newIngredient={name:''}">ADD INGREDIENT</a>
+                <input data-ng-model="newIngredient.name">
+                <a href="" data-ng-click="formMeal.ingredients.push(newIngredient); newIngredient={name:''}">ADD INGREDIENT</a>
             </li>
         </ol>
 
-    <b>Recipe Steps</b>
+    <h2>Recipe Steps</h2>
         <ol class="cms-recipeInstructionSteps">
+            <!-- loop through and display existing instructions -->
             <li ng-repeat="instruction in formMeal.instructions">
                 <textarea ng-model="meal.instructions[$index].name"></textarea>
                 <a href="" ng-click="meal.instructions.pop($index)"><img src="/assets/bin.png"/></a>
             </li>
 
+            <!-- entry box for adding new instruction -->
             <li>
                 <textarea ng-model="newInstruction.name"></textarea>
                 <a href="" ng-click="formMeal.instructions.push(newInstruction); newInstruction={name:''}">ADD STEP</a>
@@ -113,7 +122,7 @@
             <li>
                 <b>New Image:</b>
                 <input type="file" fileread="newImage">
-                <a href="" ng-click="meal.images.push('/images/meals/' + newImage.name); fileread={name:''}">ADD IMAGE</a>
+                <a href="" data-ng-click="formMeal.images.push('/images/meals/' + newImage.name); fileread={name:''}">ADD IMAGE</a>
                 <br>
             </li>
         </ol>

@@ -20,8 +20,7 @@ module.exports = function(app) {
 			mealsServer.saveNewMeal($scope.formMeal)
 			.success(function(data) {
 				$scope.meals.push(data);
-				$scope.formMeal.name = '';
-				$scope.formMeal.snippet = '';
+				$scope.formMeal = {};
 				$scope.creatingNewMeal = false;
 				$scope.editMealForm.$setPristine();
 			});
@@ -30,15 +29,26 @@ module.exports = function(app) {
 		$scope.createNewMeal = function() {
 			$scope.formMeal = {}; //set the form to empty
 			$scope.creatingNewMeal = true;
-			console.log("Creating a new meal cbm-admin-controller.js");
+
+			//must initialize all these meal components for a new meal
+			$scope.formMeal.tags = [];
+			formMeal.mealOptions = {
+				dairyfree:false,
+				glutenfree:false,
+				lowcarb:false,
+                lowfat:false,
+                paleo:false,
+                quick:false
+			};
+			$scope.formMeal.ingredients = [];
+			$scope.formMeal.instructions = [];
+            $scope.formMeal.images = [];
 		};
 
 		$scope.editMeal = function(meal) {
-			console.log("editing this meal: " + meal);
+			$scope.formMeal = meal; //set the form contents to match the meal object's contents
 			//meal.editing = true; //not sure what this does, removal candidate
 			$scope.mealSelected = true;
-			//set mealEdit to meal so we can access its parameters
-			$scope.formMeal = meal;
 		};
 
 		$scope.saveMeal = function(meal) {
