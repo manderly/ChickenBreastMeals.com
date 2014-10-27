@@ -7,13 +7,14 @@ var mealSchema = mongoose.Schema({
 	snippet: String,
 	description: String,
 	tags: Array,
-	mealOptions: Array,
+	mealOptions: Object,
 	prepTime: String,
 	cookTime: String,
 	ovenTemp: String,
 	ingredients: Array,
 	steps: Array,
-	imageUrl: String
+	imageUrl: String,
+	published: Boolean,
 });
 
 module.exports = mongoose.model('Meal', mealSchema);

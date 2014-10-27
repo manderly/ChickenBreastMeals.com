@@ -31,6 +31,19 @@ module.exports = function(app) {
 			}
 		};
 
+		$scope.adminSelectMealViewDetails = function(meal) {
+			console.log("Selecting this meal in cbm-admin-controller.js: " + meal.name);
+			$scope.adminMealSelected = true;
+			//set mealDetail to meal so we can access its parameters in the view
+			//$scope.mealDetail = meal;
+
+			//de-select the other meals and highlight the clicked meal
+			$scope.meals.forEach(function(mealIndex) {
+				mealIndex.selected = false;
+			});
+			$scope.meals[$scope.meals.indexOf(meal)].selected=true;
+		};
+
 		$scope.saveOldMeal = function(mealFromForm) {
 			console.log("admin-controller.js mealfromform is " + mealFromForm._id);
 			mealsServer.saveOldMeal(mealFromForm)

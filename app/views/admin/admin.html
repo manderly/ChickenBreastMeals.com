@@ -6,7 +6,7 @@
         </div>
     
         <div id="admin-bar-right">
-            <button data-ng-disabled="newMealForm.$invalid" 
+            <button data-ng-disabled="editMealForm.$invalid || isUnchanged(formMeal)" 
                     data-ng-click="saveFormContents(formMeal)"
                     class="save-button">
                     SAVE TO DATABASE
@@ -24,9 +24,12 @@
             <ul>
                 <li
                     data-ng-repeat="meal in meals | filter: query | orderBy: alphabetical"
-                    data-ng-class="{selectedMeal:meals[$index].selected}">
+                    data-ng-click="adminSelectMealViewDetails(meal)"
+                    data-ng-class="{selectedMealCMS:meal.selected}"
+                    class="cms-meal-list-item">
                         <a href="" data-ng-click="editMeal(meal)">{{meal.name}}</a>
-                        <a href="" data-ng-click="deleteMeal(meal)">&nbsp&nbsp[Delete]</a>
+                        <a href="" data-ng-click="deleteMeal(meal)">
+                            <span id="delete-button">[Delete]</span></a>
                 </li>
                 
             </ul>

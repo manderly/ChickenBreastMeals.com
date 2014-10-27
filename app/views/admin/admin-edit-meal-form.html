@@ -94,7 +94,7 @@
             <input  type="checkbox" 
                     name="mealOptions" 
                     value="quick" 
-                    data-ng-model="meal.mealOptions.quick">
+                    data-ng-model="formMeal.mealOptions.quick">
                     Quick<br>
 
         </div>
@@ -118,18 +118,25 @@
 
     <br>
     <h2>Ingredients</h2>
-        <ol>
+        <ol class="ingredients-list">
             <!-- loop through and display existing ingredients -->
             <li data-ng-repeat="ingredient in formMeal.ingredients">
-                <input data-ng-model="formMeal.ingredients[$index].name">
+                <textarea   name="ingredientLines"
+                            type="text"
+                            data-ng-model="formMeal.ingredients[$index].name"
+                            placeholder="Add ingredient"></textarea>
                 
                 <a href="" data-ng-click="formMeal.ingredients.splice($index,2)"><img src="/assets/delete.png"/></a>
             </li>
 
             <!-- entry box for adding new ingredient -->
             <li>
-                <input data-ng-model="newIngredient.name">
-                <a href="" data-ng-click="formMeal.ingredients.push(newIngredient); newIngredient={name:''}">ADD INGREDIENT</a>
+                <textarea   data-ng-model="newIngredient.name"
+                            name="ingredientLines"
+                            type="text"
+                            placeholder="Add ingredient"></textarea>
+                </br>
+                <a href="" data-ng-click="formMeal.ingredients.push(newIngredient); newIngredient={name:''}">+ ADD ANOTHER INGREDIENT</a>
             </li>
         </ol>
 
