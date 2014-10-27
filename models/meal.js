@@ -13,7 +13,7 @@ var mealSchema = mongoose.Schema({
 	ovenTemp: String,
 	ingredients: Array,
 	steps: Array,
-	photos: Array
+	imageUrl: String
 });
 
 module.exports = mongoose.model('Meal', mealSchema);

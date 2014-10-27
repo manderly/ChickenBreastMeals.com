@@ -30,6 +30,16 @@ module.exports = function(app) {
 				return promise;
 			},
 
+			saveOldMeal: function(meal) {
+				console.log("meal name in meals-server.js is " + meal.name);
+				console.log("meal._id is: " + meal._id);
+				var promise = $http.put('/db/' + meal._id, meal)
+					.error(function(data,status){
+						errFunc(data,status);
+				});
+				return promise;
+			},
+
 			deleteMeal: function(meal) {
 				console.log("deleting meal in meals-server.js " + meal.name);
 				console.log("meal._id is: " + meal._id);
