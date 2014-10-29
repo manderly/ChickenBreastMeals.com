@@ -4,7 +4,7 @@ module.exports = function(app) {
 	app.factory('mealsServer', function($http) {
 
 		var errFunc = function(data,status) {
-			console.log("error!");
+			console.log("error in meals-server.js!");
 			console.log(data);
 			console.log(status);
 		};
@@ -24,7 +24,7 @@ module.exports = function(app) {
 			saveNewMeal: function(meal,image) {
 				console.log("meal name in meals-server.js is " + meal.name);
 				console.log("JSON stringify meal: " + JSON.stringify(meal));
-				var promise = $http.post('/db', meal)
+				var promise = $http.post('/db', {meal:meal,image:image})
 					.error(function(data,status){
 						errFunc(data,status);
 				});

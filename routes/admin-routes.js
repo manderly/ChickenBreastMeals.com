@@ -1,5 +1,5 @@
 //serverside routes
-
+var fs = require('fs');
 //reboot grunt manually if you edit this file
 var Meal = require('../models/meal');
 
@@ -15,14 +15,18 @@ module.exports = function(app) {
 	});
 
 	//for image upload
-	app.post('/upload', function(req,res) {
-		console.log('req.files is ' + JSON.stringify(req.files));
-  	});
+	//app.post('/upload', function(req,res) {
+		//console.log('req.files is ' + JSON.stringify(req.files));
+  	//});
 
 	//todo: add authorization
 	app.post(baseUrl, function(req, res) {
-		var meal = new Meal(req.body);
-		console.log("req.body is " + req.body);
+		var meal = new Meal(req.body.meal);
+		fs.writeFile('image-filename.jpg',req.body.image,function(err) {
+			if (err) throw err;
+			console.log("it's saved!");
+		});
+		console.log("req.body.meal is " + req.body.meal);
 		meal.save(function(err, resMeal) {
 			if (err) return res.status(500).json(err);
 			return res.send(resMeal);
