@@ -21,12 +21,12 @@ module.exports = function(app) {
 
 	//todo: add authorization
 	app.post(baseUrl, function(req, res) {
-		var meal = new Meal(req.body.meal);
-		fs.writeFile('image-filename.jpg',req.body.image,function(err) {
-			if (err) throw err;
-			console.log("it's saved!");
-		});
-		console.log("req.body.meal is " + req.body.meal);
+		var meal = new Meal(req.body);
+		// fs.writeFile('image-filename.jpg',req.body.image,function(err) {
+		// 	if (err) throw err;
+		// 	console.log("it's saved!");
+		// });
+		console.log("req.body.meal is " + req.body);
 		meal.save(function(err, resMeal) {
 			if (err) return res.status(500).json(err);
 			return res.send(resMeal);

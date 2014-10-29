@@ -24,7 +24,8 @@ module.exports = function(app) {
 			saveNewMeal: function(meal,image) {
 				console.log("meal name in meals-server.js is " + meal.name);
 				console.log("JSON stringify meal: " + JSON.stringify(meal));
-				var promise = $http.post('/db', {meal:meal,image:image})
+				meal.image = image;
+				var promise = $http.post('/db', meal)
 					.error(function(data,status){
 						errFunc(data,status);
 				});

@@ -13,7 +13,7 @@ var mealSchema = mongoose.Schema({
 	ovenTemp: String,
 	ingredients: Array,
 	steps: Array,
-	imageUrl: String,
+	image: String,
 	published: Boolean,
 });
 

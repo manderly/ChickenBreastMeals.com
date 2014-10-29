@@ -26,9 +26,9 @@ module.exports = function(app) {
 		$scope.saveFormContents = function(mealFromForm) {
 			console.log("$scope.file is " + JSON.stringify($scope.file));
 			if ($scope.creatingNewMeal === false) {
-				$scope.saveOldMeal(mealFromForm,$scope.file);
+				$scope.saveOldMeal(mealFromForm,$scope.imageSrc);
 			} else {
-				mealsServer.saveNewMeal($scope.formMeal,$scope.file)
+				mealsServer.saveNewMeal($scope.formMeal,$scope.imageSrc)
 				.success(function(data) { //perform an asynchronous operation
 					$scope.meals.push(data);
 					$scope.formMeal = {};
