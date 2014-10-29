@@ -5,19 +5,23 @@ var Meal = require('../models/meal');
 
 module.exports = function(app) {
 	var baseUrl = '/db';
-	console.log("* admin-routes.js got called");
 
 	app.get(baseUrl, function(req, res) {
-		console.log("admin-routes.js getting called");
+		console.log("admin-routes.js getting called"); //gets called multiple times
 		Meal.find({}, function(err,meals){
 			if (err) return res.status(500).json(err);
 			return res.send(meals);
 		});
 	});
 
+	//for image upload
+	app.post('/upload', function(req,res) {
+		console.log('req.files is ' + JSON.stringify(req.files));
+  	});
+
 	//todo: add authorization
 	app.post(baseUrl, function(req, res) {
-		var meal = new Meal(req.body); //todo: this is req.body in the example
+		var meal = new Meal(req.body);
 		console.log("req.body is " + req.body);
 		meal.save(function(err, resMeal) {
 			if (err) return res.status(500).json(err);

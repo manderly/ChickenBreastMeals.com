@@ -575,8 +575,7 @@ ADMMIN CMS
 }
 
 .cms-recipeEditContainer {
-  height:500px;
-  width:68%;
+  width:700px;
   overflow-y:scroll;
   display:block;
   float:right;

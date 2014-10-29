@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
 
-	app.controller('cbmAdminController', function($scope, mealsServer, $http) {
+	app.controller('cbmAdminController', function($scope, mealsServer, $http, fileReader) {
 		$scope.creatingNewMeal = false;
 		$scope.placeholderArray = ["Add ingredient", "Add another ingredient"];
 
@@ -14,13 +14,28 @@ module.exports = function(app) {
 			});
 		};
 
+		$scope.postImage = function() {
+			console.log("called postImages in cbm-admin-controller.js");
+			//action="/upload" 
+            //method="post" 
+		}
+
+		$scope.getFile = function () {
+		    $scope.progress = 0;
+		    fileReader.readAsDataUrl($scope.file, $scope)
+		      .then(function(result) {
+		        $scope.imageSrc = result;
+		      });
+		};
+
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
+			console.log("$scope.imageSrc is " + $scope.imageSrc);
 			if ($scope.creatingNewMeal === false) {
-				$scope.saveOldMeal(mealFromForm);
+				$scope.saveOldMeal(mealFromForm,$scope.imageSrc);
 			} else {
-				mealsServer.saveNewMeal($scope.formMeal)
-				.success(function(data) {
+				mealsServer.saveNewMeal($scope.formMeal,$scope.imageSrc)
+				.success(function(data) { //perform an asynchronous operation
 					$scope.meals.push(data);
 					$scope.formMeal = {};
 					$scope.creatingNewMeal = false;

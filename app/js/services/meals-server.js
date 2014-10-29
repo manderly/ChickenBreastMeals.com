@@ -21,8 +21,9 @@ module.exports = function(app) {
 				return promise;
 			},
 
-			saveNewMeal: function(meal) {
+			saveNewMeal: function(meal,image) {
 				console.log("meal name in meals-server.js is " + meal.name);
+				console.log("JSON stringify meal: " + JSON.stringify(meal));
 				var promise = $http.post('/db', meal)
 					.error(function(data,status){
 						errFunc(data,status);
@@ -30,9 +31,10 @@ module.exports = function(app) {
 				return promise;
 			},
 
-			saveOldMeal: function(meal) {
+			saveOldMeal: function(meal,image) {
 				console.log("meal name in meals-server.js is " + meal.name);
 				console.log("meal._id is: " + meal._id);
+				console.log("JSON stringify meal: " + JSON.stringify(meal));
 				var promise = $http.put('/db/' + meal._id, meal)
 					.error(function(data,status){
 						errFunc(data,status);

@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var multer = require('multer');
 var bodyparser = require('body-parser');
 var mongoose = require('mongoose');
 var http = require('http');
@@ -10,6 +11,9 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/meals-developm
 app.use(express.static(__dirname + '/build'));
 
 app.use(bodyparser.json());
+app.use(multer({
+	dest: './uploads'
+}));
 
 require('./routes/admin-routes')(app);
 
