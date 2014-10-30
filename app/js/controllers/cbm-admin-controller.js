@@ -60,7 +60,12 @@ module.exports = function(app) {
 		};
 
 		$scope.adminSelectMealViewDetails = function(meal) {
+			
+			$scope.formMeal = meal; //set the form contents to match the meal object's contents
 			$scope.adminMealSelected = true;
+			$scope.creatingNewMeal = false;
+			$scope.mealSelected = true;
+
 			$scope.meals.forEach(function(mealIndex) {
 				mealIndex.selected = false;
 			});
@@ -87,15 +92,6 @@ module.exports = function(app) {
 			$scope.formMeal.ingredients = [];
 			$scope.formMeal.steps = [];
 		};
-
-
-
-		$scope.editMeal = function(meal) {
-			$scope.formMeal = meal; //set the form contents to match the meal object's contents
-			$scope.creatingNewMeal = false; //not sure what this does, removal candidate
-			$scope.mealSelected = true;
-		};
-
 		
 
 		$scope.deleteMeal = function(meal) {
