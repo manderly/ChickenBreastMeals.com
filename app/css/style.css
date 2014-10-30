@@ -444,6 +444,11 @@ ADMMIN CMS
   justify-content: space-around;
   clear:both;
 }
+
+.previewImage {
+  height:50px;
+}
+
 /* always-on admin bar across top */
 #admin-bar-left {
     display:block;

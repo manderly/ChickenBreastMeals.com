@@ -1,6 +1,6 @@
 <!--meal details on right-->
 <div class="cms-recipeEdit">
-    <h2>Add Photo</h2>
+    <h2>Recipe Photo</h2>
         <div class="admin-add-image">
             <!--prompt for new image-->
              <!-- add image has its own form -->
@@ -20,9 +20,22 @@
                   
             Preview:
             <i ng-hide="formMeal.image">No image chosen</i>
+            <img class="previewImage" ng-src="{{previewImage}}">
+
+            <!-- <img style="height:50px" ng-src="{{imageSrc && imageSrc || formMeal.image}}"/><br/>-->
+            <!--
+            <span class="previewImage" ng-switch="imageSrc">              
+                <img ng-switch-when="true" ng-src="imageSrc">
+                <img ng-switch-when="false" ng-src="formMeal.image">
+                <img ng-switch-default ng-src="">
+            </span>
+        -->
+            <!--
             <img style="height:50px" ng-show="imageSrc" ng-src="{{imageSrc}}"/>
             <img style="height:50px" ng-show="formMeal.image" ng-src="{{formMeal.image}}"/><br/>
             </form>
+            -->
+
             <!-- if user has chosen an image, offer trash can icon -->
             <!-- <a href="" ng-click="meal.images.splice($index,2)"><img src="/assets/bin.png"/></a>-->
 

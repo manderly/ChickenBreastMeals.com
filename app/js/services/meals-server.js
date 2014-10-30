@@ -23,7 +23,9 @@ module.exports = function(app) {
 
 			saveOldMeal: function(meal,image) {
 				console.log("SAVING EXISTING MEAL " + meal.name);
-				meal.image = image;
+				if (image) {
+					meal.image = image;
+				} //if imageSrc has been updated, use the new image. Otherwise, don't
 				var promise = $http.put('/db/' + meal._id, meal)
 					.error(function(data,status){
 						errFunc(data,status);

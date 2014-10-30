@@ -22,13 +22,29 @@ module.exports = function(app) {
 		      });
 		};
 
+		$scope.setPreviewImage = function() {
+			$scope.previewImage = null;
+
+			if ($scope.formMeal.image) { 
+				//if formMeal has an image, show that
+				$scope.previewImage = $scope.formMeal.image;
+			}
+
+			if ($scope.imageSrc) {
+				//but check if there's an imageSrc (an updated but unsaved image)
+				//and show that instead if there is one
+				$scope.previewImage = $scope.imageSrc;
+			}
+			console.log("$scope.previewImage is " + $scope.previewImage);
+		}
+
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
 			console.log("SAVING FORM CONTENTS -- $scope.file is " + JSON.stringify($scope.file));
 			
 			if ($scope.creatingNewMeal === false) {
 			//PUT - updating an old meal
-				mealsServer.saveOldMeal(mealFromForm,$scope.imageSrc)
+				mealsServer.saveOldMeal(mealFromForm,$scope.imageSrc) //this imageSrc wipes saved image because it's empty
 				.success(function(data) {
 					$scope.getAllMeals();
 				});
@@ -51,6 +67,7 @@ module.exports = function(app) {
 			});
 			$scope.meals[$scope.meals.indexOf(meal)].selected=true;
 			$scope.imageSrc = null;
+			$scope.setPreviewImage();
 		};
 
 		$scope.createNewMeal = function() {
