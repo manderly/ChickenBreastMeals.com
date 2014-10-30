@@ -24,10 +24,16 @@ module.exports = function(app) {
 
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
-			console.log("$scope.file is " + JSON.stringify($scope.file));
+			console.log("SAVING FORM CONTENTS -- $scope.file is " + JSON.stringify($scope.file));
+			
 			if ($scope.creatingNewMeal === false) {
-				$scope.saveOldMeal(mealFromForm,$scope.imageSrc);
-			} else {
+			//PUT - updating an old meal
+				mealsServer.saveOldMeal(mealFromForm,$scope.imageSrc)
+				.success(function(data) {
+					$scope.getAllMeals();
+				});
+			} else { 
+			//POST - creating new meal
 				mealsServer.saveNewMeal($scope.formMeal,$scope.imageSrc)
 				.success(function(data) { //perform an asynchronous operation
 					$scope.meals.push(data);
@@ -44,14 +50,7 @@ module.exports = function(app) {
 				mealIndex.selected = false;
 			});
 			$scope.meals[$scope.meals.indexOf(meal)].selected=true;
-		};
-
-		$scope.saveOldMeal = function(mealFromForm) {
-			console.log("admin-controller.js mealfromform is " + mealFromForm._id);
-			mealsServer.saveOldMeal(mealFromForm)
-				.success(function(data) {
-					$scope.getAllMeals();
-				});
+			$scope.imageSrc = null;
 		};
 
 		$scope.createNewMeal = function() {

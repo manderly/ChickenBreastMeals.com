@@ -4,25 +4,24 @@
         <div class="admin-add-image">
             <!--prompt for new image-->
              <!-- add image has its own form -->
-            <form 
+             <form 
                 name="uploadImageForm"
                 ng-submit="postImage()" 
                 enctype="multipart/form-data"
-                >
+                > 
                 <!--changed to ng-submit because http://stackoverflow.com/questions/23700771/angular-post-to-node-server -->
 
             <input 
                 type="file" 
                 name="thumbnail" 
                 ng-file-select="onFileSelect($files)" 
-                data-ng-model="formMeal.imageUrl"
+                data-ng-model="formMeal.image"
                 >
+                  
             Preview:
-            <i ng-hide="imageSrc">No image chosen</i>
-            <img style="height:50px" ng-src="{{imageSrc}}"/><br/>
-            Image url: {{formMeal.imageUrl}}
-            <!-- maybe don't need this -->
-            <!-- <input type="submit" value="UPLOAD FILE" style="border:1px solid black"></input>-->
+            <i ng-hide="formMeal.image">No image chosen</i>
+            <img style="height:50px" ng-show="imageSrc" ng-src="{{imageSrc}}"/>
+            <img style="height:50px" ng-show="formMeal.image" ng-src="{{formMeal.image}}"/><br/>
             </form>
             <!-- if user has chosen an image, offer trash can icon -->
             <!-- <a href="" ng-click="meal.images.splice($index,2)"><img src="/assets/bin.png"/></a>-->

@@ -13,12 +13,7 @@ module.exports = function(app) {
 			return res.send(meals);
 		});
 	});
-
-	//for image upload
-	//app.post('/upload', function(req,res) {
-		//console.log('req.files is ' + JSON.stringify(req.files));
-  	//});
-
+	
 	//todo: add authorization
 	app.post(baseUrl, function(req, res) {
 		var meal = new Meal(req.body);
