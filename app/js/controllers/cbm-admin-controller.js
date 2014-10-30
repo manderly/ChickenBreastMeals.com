@@ -24,7 +24,6 @@ module.exports = function(app) {
 
 		$scope.setPreviewImage = function() {
 			$scope.previewImage = null;
-
 			if ($scope.formMeal.image) { 
 				//if formMeal has an image, show that
 				$scope.previewImage = $scope.formMeal.image;

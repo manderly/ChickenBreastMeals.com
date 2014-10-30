@@ -2,25 +2,19 @@
 <div class="cms-recipeEdit">
     <h2>Recipe Photo</h2>
         <div class="admin-add-image">
-            <!--prompt for new image-->
-             <!-- add image has its own form -->
-             <form 
-                name="uploadImageForm"
-                ng-submit="postImage()" 
-                enctype="multipart/form-data"
-                > 
-                <!--changed to ng-submit because http://stackoverflow.com/questions/23700771/angular-post-to-node-server -->
-
-            <input 
-                type="file" 
-                name="thumbnail" 
-                ng-file-select="onFileSelect($files)" 
-                data-ng-model="formMeal.image"
-                >
+            
+             <form  name="uploadImageForm"
+                    ng-submit="postImage()" 
+                    enctype="multipart/form-data">
+                
+                <input  type="file" 
+                        name="thumbnail" 
+                        ng-file-select="onFileSelect($files)" 
+                        data-ng-model="formMeal.image">
                   
-            Preview:
-            <i ng-hide="formMeal.image">No image chosen</i>
-            <img class="previewImage" ng-src="{{previewImage}}">
+                    Preview:
+                    <i ng-hide="previewImage">Choose an image</i>
+                    <img class="previewImage" ng-show="previewImage" ng-src="{{previewImage}}">
 
             <!-- <img style="height:50px" ng-src="{{imageSrc && imageSrc || formMeal.image}}"/><br/>-->
             <!--
@@ -33,9 +27,8 @@
             <!--
             <img style="height:50px" ng-show="imageSrc" ng-src="{{imageSrc}}"/>
             <img style="height:50px" ng-show="formMeal.image" ng-src="{{formMeal.image}}"/><br/>
-            </form>
             -->
-
+            </form>
             <!-- if user has chosen an image, offer trash can icon -->
             <a href="" ng-show="formMeal.image" ng-click="formMeal.image = ''"><img src="/assets/bin.png"/></a>
 
