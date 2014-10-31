@@ -19,10 +19,13 @@ module.exports = function(app) {
 		    fileReader.readAsDataUrl($scope.file, $scope)
 		      .then(function(result) {
 		        $scope.imageSrc = result;
+		        $scope.setPreviewImage();
 		      });
 		};
 
+
 		$scope.setPreviewImage = function() {
+			console.log("setPreviewImage called successfly!");
 			$scope.previewImage = null;
 			if ($scope.formMeal.image) { 
 				//if formMeal has an image, show that

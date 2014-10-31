@@ -1,41 +1,30 @@
 <!--meal details on right-->
 <div class="cms-recipeEdit">
     <h2>Recipe Photo</h2>
-        <div class="admin-add-image">
-            
-             <form  name="uploadImageForm"
-                    ng-submit="postImage()" 
+        
+        <form name="editMealForm">
+            <div class="admin-add-image">
+            <form  name="uploadImageForm"
+                    ng-submit="postImage()"
+                      
                     enctype="multipart/form-data">
                 
                 <input  type="file" 
                         name="thumbnail" 
-                        ng-file-select="onFileSelect($files)" 
+                        ng-file-select="onFileSelect($files)"
+                        ng-change="setPreviewImage()"
                         data-ng-model="formMeal.image">
                   
                     Preview:
                     <i ng-hide="previewImage">Choose an image</i>
                     <img class="previewImage" ng-show="previewImage" ng-src="{{previewImage}}">
 
-            <!-- <img style="height:50px" ng-src="{{imageSrc && imageSrc || formMeal.image}}"/><br/>-->
-            <!--
-            <span class="previewImage" ng-switch="imageSrc">              
-                <img ng-switch-when="true" ng-src="imageSrc">
-                <img ng-switch-when="false" ng-src="formMeal.image">
-                <img ng-switch-default ng-src="">
-            </span>
-        -->
-            <!--
-            <img style="height:50px" ng-show="imageSrc" ng-src="{{imageSrc}}"/>
-            <img style="height:50px" ng-show="formMeal.image" ng-src="{{formMeal.image}}"/><br/>
-            -->
-            
             <!-- if user has chosen an image, offer trash can icon -->
             <a href="" ng-show="formMeal.image" ng-click="formMeal.image = ''"><img src="/assets/bin.png"/></a>
-            </form>
-        </div>
-
-
-    <form name="editMealForm">
+            
+            </form><!-- close upload image form-->
+            </div>
+    
     <h2>Recipe Name</h2>
         <input  type="text" 
                 required 
