@@ -3,8 +3,6 @@
 module.exports = function(app) {
 
 	app.controller('cbmAdminController', function($scope, mealsServer, $http, fileReader) {
-		$scope.creatingNewMeal = false;
-		$scope.placeholderArray = ["Add ingredient", "Add another ingredient"];
 
 		//Uses meals-server.js to get all the existing meal data
 		$scope.getAllMeals = function() {
@@ -19,13 +17,13 @@ module.exports = function(app) {
 		    fileReader.readAsDataUrl($scope.file, $scope)
 		      .then(function(result) {
 		        $scope.imageSrc = result;
-		        $scope.setPreviewImage();
+		        $scope.updatePreviewImage();
 		      });
 		};
 
 
-		$scope.setPreviewImage = function() {
-			console.log("setPreviewImage called successfly!");
+		$scope.updatePreviewImage = function() {
+			console.log("ADMIN: Updating preview image!");
 			$scope.previewImage = null;
 			if ($scope.formMeal.image) { 
 				//if formMeal has an image, show that
@@ -37,7 +35,6 @@ module.exports = function(app) {
 				//and show that instead if there is one
 				$scope.previewImage = $scope.imageSrc;
 			}
-			console.log("$scope.previewImage is " + $scope.previewImage);
 		}
 
 		//saves a new meal or updates an existing meal
@@ -55,11 +52,13 @@ module.exports = function(app) {
 				mealsServer.saveNewMeal($scope.formMeal,$scope.imageSrc)
 				.success(function(data) { //perform an asynchronous operation
 					$scope.meals.push(data);
-					$scope.formMeal = {};
+					//$scope.formMeal = {};
 					$scope.creatingNewMeal = false;
-					$scope.editMealForm.$setPristine();
+					$scope.getAllMeals();
+					//$scope.editMealForm.$setPristine();
 				});
 			}
+			$scope.updatePreviewImage();
 		};
 
 		$scope.adminSelectMealViewDetails = function(meal) {
@@ -73,12 +72,13 @@ module.exports = function(app) {
 				mealIndex.selected = false;
 			});
 			$scope.meals[$scope.meals.indexOf(meal)].selected=true;
+
 			$scope.imageSrc = null;
-			$scope.setPreviewImage();
+			$scope.updatePreviewImage();
 		};
 
 		$scope.createNewMeal = function() {
-			console.log("in create new meal mode");
+			console.log("ADMIN: In 'create new meal' mode");
 			$scope.formMeal = {}; //set the form to empty
 			$scope.creatingNewMeal = true;
 
@@ -94,6 +94,7 @@ module.exports = function(app) {
 				};
 			$scope.formMeal.ingredients = [];
 			$scope.formMeal.steps = [];
+			$scope.updatePreviewImage();
 		};
 		
 
@@ -104,29 +105,9 @@ module.exports = function(app) {
 				})
 		};
 
-		//http://stackoverflow.com/questions/17216806/angularjs-uploading-an-image-with-ng-upload
-		$scope.uploadFile = function(files) {
-		    var fd = new FormData();
-		    //Take the first selected file
-		    fd.append("file", files[0]);
-
-		    $http.post(uploadUrl, fd, {
-		        withCredentials: true,
-		        headers: {'Content-Type': undefined },
-		        transformRequest: angular.identity
-		    })
-		    .success(function() {
-		    	console.log("successfully uploaded image");
-		    })
-		    .error(function() {
-		    	console.log("error uploading image");
-		    })
-		};
-
-		$scope.siteName = "Chicken Breast Meals.com";
 		$scope.orderProp = 'cooktime';
 
 		$scope.getAllMeals();
-		$scope.createNewMeal();
+		$scope.createNewMeal(); //so the empty form works without clicking [create new meal]
 	});
 };

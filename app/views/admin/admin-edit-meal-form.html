@@ -4,25 +4,26 @@
         
         <form name="editMealForm">
             <div class="admin-add-image">
+
+            <!--
             <form  name="uploadImageForm"
                     ng-submit="postImage()"
-                      
                     enctype="multipart/form-data">
-                
+            -->
                 <input  type="file" 
-                        name="thumbnail" 
+                        name="thumbnail"
                         ng-file-select="onFileSelect($files)"
-                        ng-change="setPreviewImage()"
+                        ng-change="updatePreviewImage()"
                         data-ng-model="formMeal.image">
                   
                     Preview:
                     <i ng-hide="previewImage">Choose an image</i>
                     <img class="previewImage" ng-show="previewImage" ng-src="{{previewImage}}">
 
-            <!-- if user has chosen an image, offer trash can icon -->
+            <!-- if an image exists on this meal, offer trash can icon -->
             <a href="" ng-show="formMeal.image" ng-click="formMeal.image = ''"><img src="/assets/bin.png"/></a>
             
-            </form><!-- close upload image form-->
+            <!--</form>--> <!-- close upload image form-->
             </div>
     
     <h2>Recipe Name</h2>
