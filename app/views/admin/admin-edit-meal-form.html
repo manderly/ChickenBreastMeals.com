@@ -1,40 +1,49 @@
 <!--meal details on right-->
 <div class="cms-recipeEdit">
-    <form name="editMealForm">
+    <h2>Recipe Photo</h2>
+        
+        <form name="editMealForm">
+            <div class="admin-add-image">
 
+            <!--
+            <form  name="uploadImageForm"
+                    ng-submit="postImage()"
+                    enctype="multipart/form-data">
+            -->
+                <input  type="file" 
+                        name="thumbnail"
+                        ng-file-select="onFileSelect($files)"
+                        ng-change="updatePreviewImage()"
+                        data-ng-model="formMeal.image">
+                  
+                    Preview:
+                    <i ng-hide="previewImage">Choose an image</i>
+                    <img class="previewImage" ng-show="previewImage" ng-src="{{previewImage}}">
+
+            <!-- if an image exists on this meal, offer trash can icon -->
+            <a href="" ng-show="formMeal.image" ng-click="formMeal.image = ''"><img src="/assets/bin.png"/></a>
+            
+            <!--</form>--> <!-- close upload image form-->
+            </div>
+    
     <h2>Recipe Name</h2>
         <input  type="text" 
-                required data-ng-model="formMeal.name" 
+                required 
+                data-ng-model="formMeal.name" 
                 placeholder="Give your meal a unique name."
                 class="admin-input-oneline">
 
-    <h2>Add Photo</h2>
-        <div class="admin-add-image">
-            <!--prompt for new image-->
-            <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
-
-            <!-- 
-            <input type="file" fileread="newImage">
-            <a href="" data-ng-click="formMeal.imageUrl('/images/meals/' + newImage.name); fileread={name:''}">UPLOAD PHOTO</a>
-
-            <img ng-src="{{formMeal.imageUrl}}" id="mealImage">
-            {{formMeal.imageUrl}}<!-- print the image's filepath-->
-            
-            <!-- if user has chosen an image, offer trash can icon -->
-            <a href="" ng-click="meal.images.splice($index,2)"><img src="/assets/bin.png"/></a>
-
-        </div>
-
-
     <h2>Snippet</h2>
         <input  type="text" 
-                required data-ng-model="formMeal.snippet" 
+                required 
+                data-ng-model="formMeal.snippet" 
                 placeholder="A brief recipe description."
                 class="admin-input-oneline">
 
     <h2>Description</h2>
         <input  type="text" 
-                required data-ng-model="formMeal.description" 
+                required 
+                data-ng-model="formMeal.description" 
                 placeholder="Tell us about this recipe, where it came from, why it's special. Be creative!"
                 class="admin-input-paragraph"/>
 

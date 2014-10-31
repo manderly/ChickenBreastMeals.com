@@ -444,6 +444,11 @@ ADMMIN CMS
   justify-content: space-around;
   clear:both;
 }
+
+.previewImage {
+  height:50px;
+}
+
 /* always-on admin bar across top */
 #admin-bar-left {
     display:block;
@@ -575,8 +580,7 @@ ADMMIN CMS
 }
 
 .cms-recipeEditContainer {
-  height:500px;
-  width:68%;
+  width:700px;
   overflow-y:scroll;
   display:block;
   float:right;

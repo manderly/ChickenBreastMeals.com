@@ -1,14 +1,12 @@
 //serverside routes
-
+var fs = require('fs');
 //reboot grunt manually if you edit this file
 var Meal = require('../models/meal');
 
 module.exports = function(app) {
 	var baseUrl = '/db';
-	console.log("* admin-routes.js got called");
 
 	app.get(baseUrl, function(req, res) {
-		console.log("admin-routes.js getting called");
 		Meal.find({}, function(err,meals){
 			if (err) return res.status(500).json(err);
 			return res.send(meals);
@@ -17,8 +15,7 @@ module.exports = function(app) {
 
 	//todo: add authorization
 	app.post(baseUrl, function(req, res) {
-		var meal = new Meal(req.body); //todo: this is req.body in the example
-		console.log("req.body is " + req.body);
+		var meal = new Meal(req.body);
 		meal.save(function(err, resMeal) {
 			if (err) return res.status(500).json(err);
 			return res.send(resMeal);

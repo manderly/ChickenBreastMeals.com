@@ -2,9 +2,7 @@
 
 module.exports = function(app) {
 
-	app.controller('cbmAdminController', function($scope, mealsServer, $http) {
-		$scope.creatingNewMeal = false;
-		$scope.placeholderArray = ["Add ingredient", "Add another ingredient"];
+	app.controller('cbmAdminController', function($scope, mealsServer, $http, fileReader) {
 
 		//Uses meals-server.js to get all the existing meal data
 		$scope.getAllMeals = function() {
@@ -14,39 +12,70 @@ module.exports = function(app) {
 			});
 		};
 
+		$scope.getFile = function () {
+		    $scope.progress = 0;
+		    fileReader.readAsDataUrl($scope.file, $scope)
+		      .then(function(result) {
+		        $scope.imageSrc = result;
+		        $scope.updatePreviewImage();
+		      });
+		};
+
+
+		$scope.updatePreviewImage = function() {
+			console.log("ADMIN: Updating preview image!");
+			$scope.previewImage = null;
+			if ($scope.formMeal.image) { 
+				//if formMeal has an image, show that
+				$scope.previewImage = $scope.formMeal.image;
+			}
+
+			if ($scope.imageSrc) {
+				//but check if there's an imageSrc (an updated but unsaved image)
+				//and show that instead if there is one
+				$scope.previewImage = $scope.imageSrc;
+			}
+		}
+
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
+			console.log("SAVING FORM CONTENTS -- $scope.file is " + JSON.stringify($scope.file));
+			
 			if ($scope.creatingNewMeal === false) {
-				$scope.saveOldMeal(mealFromForm);
-			} else {
-				mealsServer.saveNewMeal($scope.formMeal)
+			//PUT - updating an old meal
+				mealsServer.saveOldMeal(mealFromForm,$scope.imageSrc) //this imageSrc wipes saved image because it's empty
 				.success(function(data) {
-					$scope.meals.push(data);
-					$scope.formMeal = {};
+					$scope.getAllMeals();
+				});
+			} else { 
+			//POST - creating new meal
+				mealsServer.saveNewMeal($scope.formMeal,$scope.imageSrc)
+				.success(function(data) { //perform an asynchronous operation
 					$scope.creatingNewMeal = false;
-					$scope.editMealForm.$setPristine();
+					$scope.getAllMeals();
 				});
 			}
+			$scope.updatePreviewImage();
 		};
 
 		$scope.adminSelectMealViewDetails = function(meal) {
+			
+			$scope.formMeal = meal; //set the form contents to match the meal object's contents
 			$scope.adminMealSelected = true;
+			$scope.creatingNewMeal = false;
+			$scope.mealSelected = true;
+
 			$scope.meals.forEach(function(mealIndex) {
 				mealIndex.selected = false;
 			});
 			$scope.meals[$scope.meals.indexOf(meal)].selected=true;
-		};
 
-		$scope.saveOldMeal = function(mealFromForm) {
-			console.log("admin-controller.js mealfromform is " + mealFromForm._id);
-			mealsServer.saveOldMeal(mealFromForm)
-				.success(function(data) {
-					$scope.getAllMeals();
-				});
+			$scope.imageSrc = null;
+			$scope.updatePreviewImage();
 		};
 
 		$scope.createNewMeal = function() {
-			console.log("in create new meal mode");
+			console.log("ADMIN: In 'create new meal' mode");
 			$scope.formMeal = {}; //set the form to empty
 			$scope.creatingNewMeal = true;
 
@@ -62,16 +91,8 @@ module.exports = function(app) {
 				};
 			$scope.formMeal.ingredients = [];
 			$scope.formMeal.steps = [];
+			$scope.updatePreviewImage();
 		};
-
-
-
-		$scope.editMeal = function(meal) {
-			$scope.formMeal = meal; //set the form contents to match the meal object's contents
-			$scope.creatingNewMeal = false; //not sure what this does, removal candidate
-			$scope.mealSelected = true;
-		};
-
 		
 
 		$scope.deleteMeal = function(meal) {
@@ -81,29 +102,9 @@ module.exports = function(app) {
 				})
 		};
 
-		//http://stackoverflow.com/questions/17216806/angularjs-uploading-an-image-with-ng-upload
-		$scope.uploadFile = function(files) {
-		    var fd = new FormData();
-		    //Take the first selected file
-		    fd.append("file", files[0]);
-
-		    $http.post(uploadUrl, fd, {
-		        withCredentials: true,
-		        headers: {'Content-Type': undefined },
-		        transformRequest: angular.identity
-		    })
-		    .success(function() {
-		    	console.log("successfully uploaded image");
-		    })
-		    .error(function() {
-		    	console.log("error uploading image");
-		    })
-		};
-
-		$scope.siteName = "Chicken Breast Meals.com";
 		$scope.orderProp = 'cooktime';
 
 		$scope.getAllMeals();
-		$scope.createNewMeal();
+		$scope.createNewMeal(); //so the empty form works without clicking [create new meal]
 	});
 };
