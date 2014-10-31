@@ -22,10 +22,11 @@ module.exports = function(app) {
 			},
 
 			saveOldMeal: function(meal,image) {
-				console.log("SAVING EXISTING MEAL " + meal.name);
+				//if imageSrc has been updated, use the new image. Otherwise, don't.
 				if (image) {
 					meal.image = image;
-				} //if imageSrc has been updated, use the new image. Otherwise, don't
+				} 
+
 				var promise = $http.put('/db/' + meal._id, meal)
 					.error(function(data,status){
 						errFunc(data,status);
@@ -34,8 +35,8 @@ module.exports = function(app) {
 			},
 
 			saveNewMeal: function(meal,image) {
-				console.log("SAVING NEW MEAL: " + meal.name);
 				meal.image = image;
+
 				var promise = $http.post('/db', meal)
 					.error(function(data,status){
 						errFunc(data,status);

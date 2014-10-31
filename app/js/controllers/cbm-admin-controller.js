@@ -51,11 +51,8 @@ module.exports = function(app) {
 			//POST - creating new meal
 				mealsServer.saveNewMeal($scope.formMeal,$scope.imageSrc)
 				.success(function(data) { //perform an asynchronous operation
-					$scope.meals.push(data);
-					//$scope.formMeal = {};
 					$scope.creatingNewMeal = false;
 					$scope.getAllMeals();
-					//$scope.editMealForm.$setPristine();
 				});
 			}
 			$scope.updatePreviewImage();

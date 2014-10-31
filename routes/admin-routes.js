@@ -7,21 +7,15 @@ module.exports = function(app) {
 	var baseUrl = '/db';
 
 	app.get(baseUrl, function(req, res) {
-		console.log("admin-routes.js getting called"); //gets called multiple times
 		Meal.find({}, function(err,meals){
 			if (err) return res.status(500).json(err);
 			return res.send(meals);
 		});
 	});
-	
+
 	//todo: add authorization
 	app.post(baseUrl, function(req, res) {
 		var meal = new Meal(req.body);
-		// fs.writeFile('image-filename.jpg',req.body.image,function(err) {
-		// 	if (err) throw err;
-		// 	console.log("it's saved!");
-		// });
-		console.log("req.body.meal is " + req.body);
 		meal.save(function(err, resMeal) {
 			if (err) return res.status(500).json(err);
 			return res.send(resMeal);
