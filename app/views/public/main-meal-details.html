@@ -4,8 +4,10 @@
     <img src="./images/site/cbm_logo_large.png">
 </div>
 
+<div class="mealDetailsContainerWrapper">
 <!-- when viewing meal details, show details -->
 <div class="mealDetailsContents" data-ng-show="mealSelected">
+    <a href="" ng-click="closePopup()">[ Close ]</a>
     <img data-ng-src="{{mealDetail.image}}" class="meal-hero-img">
     <h1>{{mealDetail.name}}</h1>
         <p class="prepTimeData">
@@ -17,11 +19,6 @@
         </p>
 
     <p class="mealDescription">{{mealDetail.description}}</p>
-
-    <h2>Tags</h2>
-        <span class="tagNames">
-        <li class="tag" data-ng-repeat="tag in mealDetail.tags">{{tag.name}}</li>
-        </span>
 
     <h2>{{mealDetail.ingredients.length}} Ingredients</h2>
         <ul class="mealIngredientsList">
@@ -37,9 +34,5 @@
         </li>
         </ol>
 
-    <h2>Tasty Pics</h2>
-        <span data-ng-repeat="image in mealDetail.images">
-        <img data-ng-src="{{image}}" id="mealAdditionalImg">
-        </span>
-
 </div><!--closes mealDetailsContents-->
+</div>

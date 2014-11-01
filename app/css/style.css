@@ -1,5 +1,5 @@
 html { 
-    background-color:#f1f1f1;
+    background-color:#fff;
     overflow:hidden;
     color:#383838;
 }
@@ -75,12 +75,11 @@ textarea {
 
 .wrapper {
   display: flex; 
-  justify-content: space-around; 
+  justify-content: space-around;
 }
 
 .userSortSettings {
-    background:white;
-    border-bottom:1px #ddd solid;
+    background:#f1f1f1;
     margin-bottom:14px;
     height:50px;
     text-align:center;
@@ -173,12 +172,6 @@ textarea {
 /*********************/
 
 .mealsSnippetContainer {
-  height:500px;
-  width:55.5%;
-  max-width:55.5%;
-  overflow-x:hidden;
-    margin-left:20px;
-    margin-right:10px;
 }
 
 .mealsSnippetContainer:hover{
@@ -205,16 +198,17 @@ ul.mealGrid li {
     vertical-align:top;
     box-shadow: 0 0 5px #ddd;
     box-sizing: border-box;
-    width:23.5%;
-    height:200px;
+    width:200px;
+    height:280px;
     transition: background-color .5s linear;
     -moz-transition: background-color .5s linear;
     -webkit-transition: background-color .5s linear;
     -ms-transition: background-color .5s linear;
     overflow:hidden;
-    margin:.6% .6%;
+    margin:.5em;
     position:relative;
     cursor:pointer;
+    border:1px solid blue;
 }
 
 ul.mealGrid li:hover {
@@ -242,20 +236,32 @@ ul.mealGrid li:hover {
 }
 
 .mealGridTextArea {
-    font-size:.7em;
+    font-size:.9em;
     width:100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    height:80px;
+    height:130px;
     bottom:0px;
     display:block;
     position:absolute;
-    color:white;
 }
 
 .mealGridTextArea h3,p {
     margin-left:8px;
     margin-right:3px;
     line-height:1em;
+}
+
+.mealGridTitleArea {
+  border:1px solid green;
+  background-color:#383838;
+  color:white;
+  height:70px;
+}
+
+.mealGridDetailArea {
+  border:1px solid red;
+  background-color:white;
+  color:black;
+  height:100px;
 }
 
 /*
@@ -303,12 +309,16 @@ ul.mealGrid li:hover {
 /* Meal Details pane (right side)
 /*********************/
 
-.mealDetailsContainer {
-  float:right;
-  display:block;
-  width:40%;
-  max-width:40%;
+.mealDetailsContainerWrapper {
+  z-index:100;
+  background-color:rgba(0,0,0,0.5);
+  position:absolute;
+  width:100%;
+}
+.mealDetailsContents {
   background-color:white;
+  margin:40px auto;
+  width:500px;
   height:500px;
   overflow-y:auto;
   overflow-x:hidden;
@@ -318,7 +328,6 @@ ul.mealGrid li:hover {
     -moz-box-shadow: 0 2px 6px rgba(50,50,50,0.50);
     box-shadow: 0 2px 6px rgba(50,50,50,0.50);
   border-radius:6px;
-    margin-right:20px;
 }
 
 .mealDetailsEmpty { 
@@ -354,7 +363,6 @@ ul.mealGrid li:hover {
     text-indent:10px;
     border-bottom:1px solid #f1f1f1;
     padding:6px 0;
-    width:320px;
     overflow-x:hidden;
 }
 

@@ -6,19 +6,28 @@
             data-ng-class="{selectedMeal:meal.selected}"
             class="mealPreviewButton"
             >
-                <!-- <img ng-src="{{meal.images[0]}}"> -->
+                <!-- meal image -->
                 <img ng-src="{{meal.image}}">
 
+                <!-- text region below image-->
                 <div class="mealGridTextArea">
-                    <h3><a href="" class="mealTitle">{{meal.name}}</a></h3>
-                    <p class="snippet">{{meal.snippet}}</p>
+                    <!-- title portion-->
+                    <div class="mealGridTitleArea">
+                        <h3><a href="" class="mealTitle">{{meal.name}}</a></h3>
+                    </div>
+
+                    <!-- brief details portion -->
+                    <div class="mealGridDetailArea">
+                        <span class="tagNames">
+                            <li class="tag" data-ng-repeat="tag in meal.tags">{{tag.name}}</li>
+                        </span>
+                        {{meal.prepTime + meal.cookTime}} mins, {{meal.ingredients.length}} ingredients
+                    </div>
                 </div>
 
-                <span class="prepData">
-                    <span class="cookTime">{{meal.cooktime}}</span>
-                    <span class="mins">mins</span>
-                </span>
 
+
+                
         </li>
     </ul>
 </div><!-- closes mealsScrollList"-->

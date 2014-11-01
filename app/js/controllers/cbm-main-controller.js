@@ -33,8 +33,15 @@ module.exports = function(app) {
 			mealIndex.selected = false;
 		});
 		$scope.meals[$scope.meals.indexOf(meal)].selected=true;
-
 	};
+
+	$scope.closePopup = function() {
+		console.log("closing the pop up");
+		$scope.mealSelected = false;
+		$scope.meals.forEach(function(mealIndex) {
+			mealIndex.selected = false;
+		});
+	}
 
 	//get, create, edit, delete
 	$scope.getMeals = function() {
