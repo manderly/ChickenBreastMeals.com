@@ -1,7 +1,6 @@
 'use strict';
 
 var express = require('express');
-var multer = require('multer');
 var bodyparser = require('body-parser');
 var mongoose = require('mongoose');
 var http = require('http');
@@ -12,9 +11,6 @@ app.use(express.static(__dirname + '/build'));
 
 app.use(bodyparser.json({limit:'50mb'}));
 app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
-app.use(multer({
-	dest: './uploads'
-}));
 
 require('./routes/admin-routes')(app);
 
