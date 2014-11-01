@@ -67,18 +67,7 @@ require('./services/meals-server')(cbmApp);
 require('./directives/admin-edit-meal-form')(cbmApp);
 require('./directives/main-meal-details')(cbmApp);
 require('./directives/main-meal-list')(cbmApp);
-
-cbmApp.directive("ngFileSelect", function() {
-  return {
-    link: function ($scope, el) {
-
-      el.bind("change", function (e) {
-        $scope.file = (e.srcElement || e.target).files[0];
-        $scope.getFile();
-      })
-    }
-  }
-});
+require('./directives/ng-file-select')(cbmApp);
 
 //routes
 require('./routes/cbm-routes')(cbmApp);
