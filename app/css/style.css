@@ -528,7 +528,7 @@ ADMMIN CMS
     display:block;
     width:96%;
     margin:0 auto;
-    height:1.5em;
+    padding-bottom:1em;
 }
 
 .cms-meal-list-item:hover {
