@@ -13,6 +13,13 @@ module.exports = function(app) {
 		});
 	});
 
+	app.get(baseUrl + '/:url', function(req, res) {
+		Meal.findOne({'url':req.params.url}, function(err, meal){
+			if(err) return res.status(500).json(err);
+			return res.json(meal)
+		});
+	});
+
 	//todo: add authorization
 	app.post(baseUrl, function(req, res) {
 		var meal = new Meal(req.body);
@@ -21,6 +28,7 @@ module.exports = function(app) {
 			return res.send(resMeal);
 		});
 	});
+
 
 	app.get(baseUrl + '/:id', function(req, res) {
 		Meal.findOne({'_id':req.params.id}, function(err, meal){

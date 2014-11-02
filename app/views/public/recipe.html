@@ -1,0 +1,58 @@
+<!-- when no details are being viewed, show the site logo -->
+<!--
+<div class="mealDetailsEmpty" data-ng-hide="mealSelected">
+    « Select a recipe from the list at left.
+    <img src="./images/site/cbm_logo_large.png">
+</div>
+
+-->
+
+<!-- when viewing meal details, show details -->
+<div class="recipeWrapper">
+
+    <!-- Title and description -->
+    <div class="recipe-name-and-summary">
+        <h1 class="half-width">{{recipe.name}}</h1>
+        <p class="recipe-description-text half-width">{{recipe.description}}</p>
+    </div>
+
+    <!-- Side by side recipe photo and high level stats -->
+    <div class="recipe-detail-top">
+        <div class="recipe-hero-image">
+             <img data-ng-src="{{recipe.image}}">
+        </div>
+
+        <div class="recipe-stats">
+            <ul>
+                <li class="stat-prep-time">PREP TIME </br>{{recipe.prepTime}} MINUTES</li>
+                <li class="stat-cook-time">COOKING TIME </br>{{recipe.cookTime}} MINUTES</li>
+                <li class="stat-skill-level">SKILL LEVEL </br>{{recipe.skillLevel}}</li>
+                <li class="stat-yield">MAKES</br> {{recipe.yield}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <p class="prepTimeData">
+    <span id="minsData"> READY IN: </span>
+    <span id="prepDataHighlight"><b>{{recipe.prepTime + recipe.cookTime}} mins</b></span>
+    <br>
+    PREP: {{recipe.prepTime}} mins<br>
+    COOK: {{recipe.cookTime}} mins
+    </p>
+
+    
+
+    <h2>{{recipe.ingredients.length}} Ingredients</h2>
+        <ul class="mealIngredientsList">
+        <li data-ng-repeat="ingredient in recipe.ingredients" class="mealIngredient">
+        <input type="checkbox"/> {{ingredient.name}}
+        </li>
+        </ul>
+
+    <h2>Step by Step Instructions</h2>
+        <ol class="mealInstructionsList">
+        <li data-ng-repeat="step in recipe.steps">
+            {{step.name}}
+        </li>
+        </ol>
+</div>

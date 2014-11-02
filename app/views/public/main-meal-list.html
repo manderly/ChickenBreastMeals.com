@@ -1,7 +1,7 @@
 <div class="mealsScrollList">
     <ul class="mealGrid">
         <li
-            data-ng-click="selectMealViewDetails(meal)"
+            data-ng-click="viewRecipe(meal)"
             data-ng-repeat="meal in meals | filter: query"
             data-ng-class="{selectedMeal:meal.selected}"
             class="mealPreviewButton"
@@ -18,16 +18,11 @@
 
                     <!-- brief details portion -->
                     <div class="mealGridDetailArea">
-                        <span class="tagNames">
-                            <li class="tag" data-ng-repeat="tag in meal.tags">{{tag.name}}</li>
-                        </span>
+                        <span class="tagNames" data-ng-repeat="tag in meal.tags">{{tag.name}}</span>
                         {{meal.prepTime + meal.cookTime}} mins, {{meal.ingredients.length}} ingredients
                     </div>
                 </div>
-
-
-
-                
+  
         </li>
     </ul>
 </div><!-- closes mealsScrollList"-->

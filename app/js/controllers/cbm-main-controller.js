@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-	app.controller('cbmMainController', function($scope, $http) {
+	app.controller('cbmMainController', function($scope, $http, $location) {
 
 	$scope.siteName = "Chicken Breast Meals.com";
 	$scope.orderProp = 'cooktime';
@@ -22,26 +22,10 @@ module.exports = function(app) {
 		};
 	};
 
-	$scope.selectMealViewDetails = function(meal) {
+	$scope.viewRecipe = function(meal) {
 		console.log("Selecting this meal in meal-list-controller.js: " + meal);
-		$scope.mealSelected = true;
-		//set mealDetail to meal so we can access its parameters in the view
-		$scope.mealDetail = meal;
-
-		//de-select the other meals and highlight the clicked meal
-		$scope.meals.forEach(function(mealIndex) {
-			mealIndex.selected = false;
-		});
-		$scope.meals[$scope.meals.indexOf(meal)].selected=true;
+		$location.path('/recipe/' + meal.url);
 	};
-
-	$scope.closePopup = function() {
-		console.log("closing the pop up");
-		$scope.mealSelected = false;
-		$scope.meals.forEach(function(mealIndex) {
-			mealIndex.selected = false;
-		});
-	}
 
 	//get, create, edit, delete
 	$scope.getMeals = function() {
@@ -53,6 +37,7 @@ module.exports = function(app) {
 		});
 	};
 
+//removal candidates
 	$scope.createNewMeal = function(newMeal) {
 		$http.post('/db',newMeal)
 		.success(function(data) {
@@ -64,6 +49,7 @@ module.exports = function(app) {
 		});
 	};
 
+//removal candidates
 	$scope.editMeal = function(existingMeal) {
 		$http.put('/db/' + existingMeal._id, existingMeal)
 		.success(function(data) {
@@ -75,6 +61,7 @@ module.exports = function(app) {
 		});
 	};
 
+//removal candidates
 	$scope.deleteExistingMeal = function(id) {
 		$http.delete('/db/'+ id)
 		.success(function(data) {

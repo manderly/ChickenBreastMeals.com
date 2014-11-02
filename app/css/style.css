@@ -1,7 +1,22 @@
+/* Colors */
+/* 
+
+link orange:            #ed783b
+link highlight yellow:  #f1bd4d
+
+header brown:           #351414
+
+
+*/
+
 html { 
     background-color:#fff;
-    overflow:hidden;
     color:#383838;
+}
+
+body {
+  padding:0;
+  margin:0;
 }
 
 body, textarea {
@@ -41,11 +56,9 @@ footer {
     height: 60px;
     left: 0;
     position: absolute;
-    width: 100%;
     background-color:#351414;
     color:#fff;
     font-size:.8em;
-    padding-left:20px;
 }
 /*padding / margin fix for lists */
 ul, ol {
@@ -174,10 +187,6 @@ textarea {
 .mealsSnippetContainer {
 }
 
-.mealsSnippetContainer:hover{
-  overflow-y:scroll;
-}
-
 .mealsSnippetContainer h1 {
   margin:0 auto;
   font-style:italic;
@@ -245,8 +254,6 @@ ul.mealGrid li:hover {
 }
 
 .mealGridTextArea h3,p {
-    margin-left:8px;
-    margin-right:3px;
     line-height:1em;
 }
 
@@ -306,48 +313,83 @@ ul.mealGrid li:hover {
 }
 
 /*********************
-/* Meal Details pane (right side)
+/* Recipe view
 /*********************/
 
-.mealDetailsContainerWrapper {
-  z-index:100;
-  background-color:rgba(0,0,0,0.5);
-  position:absolute;
+.recipeWrapper {
   width:100%;
-}
-.mealDetailsContents {
-  background-color:white;
-  margin:40px auto;
-  width:500px;
-  height:500px;
-  overflow-y:auto;
-  overflow-x:hidden;
-  padding:0 15px;
-  font-size:.8em;
-    webkit-box-shadow: 0 2px 6px rgba(50,50,50,0.50);
-    -moz-box-shadow: 0 2px 6px rgba(50,50,50,0.50);
-    box-shadow: 0 2px 6px rgba(50,50,50,0.50);
-  border-radius:6px;
+  border:1px solid orange;
 }
 
-.mealDetailsEmpty { 
-  font-size:1.2em;
-  text-align:center;
-  margin:0 auto;
-  padding-top:30px;
+.half-width {
+  width:50%;
 }
 
-.mealDetailsEmpty img {
-  display:block;
-  margin:10% auto;
-}
-
-.mealDescription {
-  font-style:italic;
-  padding:0 50px 0 0;
+.recipe-description-text {
+  float:left;
   line-height:1.5em;
-    color:#444;
+  border:1px solid blue;
 }
+
+.recipeView h1 {
+  font-size:2em;
+}
+
+
+
+.recipe-name-and-summary {
+  width:100%;
+  height:200px;
+  border:1px solid green;
+}
+
+.recipe-detail-top {
+  width:100%;
+  height:400px;
+  border:1px solid teal;
+}
+
+.recipe-hero-image {
+  float:left;
+  padding-right:3px;
+  width:32%;
+}
+
+.recipe-hero-image img {
+  width:100%;
+  overflow:hidden;
+}
+
+.recipe-stats {
+  float:left;
+  width:33%;
+  font-weight:700px;
+}
+
+.recipe-stats ul li {
+  width:100%;
+  height:97%;
+  padding-left:10px;
+  margin-bottom:3px;
+  display:table;
+}
+
+.stat-prep-time {
+  background-color:#f1bd4d;
+}
+
+.stat-cook-time {
+  background-color:#f1f1f1;
+}
+
+.stat-skill-level {
+  background-color:#fffddd;
+}
+
+.stat-yield {
+  background-color:indianred;
+}
+
 
 .mealIngredientsList li {
     list-style:none;
@@ -375,17 +417,7 @@ ul.mealGrid li:hover {
   margin-bottom:20px;
 }
 
-.meal-hero-img {
-  float:right;
-  display:block;
-  width:250px;
-  padding:10px;
-  margin-left:20px;
-  margin-bottom:10px;
-  webkit-box-shadow: 0 2px 6px rgba(50,50,50,0.50);
-  -moz-box-shadow: 0 2px 6px rgba(50,50,50,0.50);
-  box-shadow: 0 2px 6px rgba(50,50,50,0.50)
-}
+
 
 .prepTimeData {
   color:#ccc;

@@ -5,11 +5,6 @@
         <form name="editMealForm">
             <div class="admin-add-image">
 
-            <!--
-            <form  name="uploadImageForm"
-                    ng-submit="postImage()"
-                    enctype="multipart/form-data">
-            -->
                 <input  type="file" 
                         name="thumbnail"
                         ng-file-select="onFileSelect($files)"
@@ -23,7 +18,6 @@
             <!-- if an image exists on this meal, offer trash can icon -->
             <a href="" ng-show="formMeal.image" ng-click="formMeal.image = ''"><img src="/assets/bin.png"/></a>
             
-            <!--</form>--> <!-- close upload image form-->
             </div>
     
     <h2>Recipe Name</h2>
@@ -33,11 +27,11 @@
                 placeholder="Give your meal a unique name."
                 class="admin-input-oneline">
 
-    <h2>Snippet</h2>
+    <h2>URL</h2>
         <input  type="text" 
                 required 
-                data-ng-model="formMeal.snippet" 
-                placeholder="A brief recipe description."
+                data-ng-model="formMeal.url" 
+                placeholder="Enter-Recipe-URL-Like-This"
                 class="admin-input-oneline">
 
     <h2>Description</h2>

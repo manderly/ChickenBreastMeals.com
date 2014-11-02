@@ -3,6 +3,7 @@
 require('angular/angular');
 require('angular-route');
 
+/* todo: move this to its own file */
 var fileReader = function ($q, $log) {
   var onLoad = function(reader, deferred, scope) {
     return function () {
@@ -59,7 +60,7 @@ var cbmApp = angular.module('cbmApp',['ngRoute']);
 //controllers
 require('./controllers/cbm-main-controller')(cbmApp);
 require('./controllers/cbm-admin-controller')(cbmApp);
-
+require('./controllers/cbm-recipe-controller')(cbmApp);
 //services
 require('./services/meals-server')(cbmApp);
 
