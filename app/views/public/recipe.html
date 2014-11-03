@@ -8,28 +8,49 @@
 -->
 
 <!-- when viewing meal details, show details -->
-<div class="recipeWrapper">
+<div class="recipe-wrapper">
 
     <!-- Title and description -->
-    <div class="recipe-name-and-summary">
-        <h1 class="half-width">{{recipe.name}}</h1>
-        <p class="recipe-description-text half-width">{{recipe.description}}</p>
+    <div class="recipe-name-and-description">
+
+        <div class="recipe-description-text half-width">
+            <p>{{recipe.description}}</p>
+        </div>
+
+
+        <div class="recipe-name">
+            <h1>{{recipe.name}}</h1>
+        </div>
+
+        
     </div>
 
     <!-- Side by side recipe photo and high level stats -->
-    <div class="recipe-detail-top">
-        <div class="recipe-hero-image">
-             <img data-ng-src="{{recipe.image}}">
-        </div>
+    <div class="recipe-detail-wrapper">
 
-        <div class="recipe-stats">
-            <ul>
-                <li class="stat-prep-time">PREP TIME </br>{{recipe.prepTime}} MINUTES</li>
-                <li class="stat-cook-time">COOKING TIME </br>{{recipe.cookTime}} MINUTES</li>
-                <li class="stat-skill-level">SKILL LEVEL </br>{{recipe.skillLevel}}</li>
-                <li class="stat-yield">MAKES</br> {{recipe.yield}}</li>
-            </ul>
-        </div>
+            <div class="recipe-image-container">
+                 <img data-ng-src="{{recipe.image}}">
+            </div>
+
+            <div class="recipe-stats-container">
+                <ul>
+                    <li>
+                        <span class="recipe-span" id="stat-prep-time">PREP TIME
+                            </br>
+                            {{recipe.prepTime}} MINUTES</span></li>
+                    <li> 
+                        <span class="recipe-span" id="stat-cook-time">COOKING TIME
+                            </br>
+                            {{recipe.cookTime}} MINUTES</span></li>
+                    <li> 
+                        <span class="recipe-span" id="stat-skill-level">SKILL LEVEL
+                            </br>
+                            {{recipe.skillLevel}}</span></li>
+                    <li> 
+                        <span class="recipe-span" id="stat-yield">MAKES
+                            </br>{{recipe.yield}}</span></li>
+                </ul>
+            </div>
     </div>
 
     <p class="prepTimeData">
@@ -41,15 +62,14 @@
     </p>
 
     
-
-    <h2>{{recipe.ingredients.length}} Ingredients</h2>
+    <h2>INGREDIENTS</h2>
         <ul class="mealIngredientsList">
         <li data-ng-repeat="ingredient in recipe.ingredients" class="mealIngredient">
         <input type="checkbox"/> {{ingredient.name}}
         </li>
         </ul>
 
-    <h2>Step by Step Instructions</h2>
+    <h2>INSTRUCTIONS</h2>
         <ol class="mealInstructionsList">
         <li data-ng-repeat="step in recipe.steps">
             {{step.name}}
