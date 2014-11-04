@@ -21,6 +21,12 @@ module.exports = function(app) {
 		      });
 		};
 
+		$scope.difficultyLevels = [
+			{name:'easy'},
+			{name:'medium'},
+			{name:'advanced'},
+			{name:'master'}
+		];
 
 		$scope.updatePreviewImage = function() {
 			console.log("ADMIN: Updating preview image!");

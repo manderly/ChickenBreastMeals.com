@@ -41,27 +41,12 @@
                 placeholder="Tell us about this recipe, where it came from, why it's special. Be creative!"
                 class="admin-input-paragraph"/>
 
-    <!-- removing tags for now, maybe forever -->
-    <!-- 
-    <h2>Tags</h2>
-        <div class="shortInput">
-            <ol>
-                <li data-ng-repeat="tag in formMeal.tags">
-                    <input  data-ng-model="formMeal.tags[$index].name"
-                            class="admin-input-short">
-                    <a href="" data-ng-click="formMeal.tags.splice($index,2)"><img src="/assets/delete.png"/></a>
-                </li>
-            </ol>
+    <h2>Difficulty Level</h2>
+        <select required 
+                data-ng-model="formMeal.skillLevel" 
+                data-ng-options="difficultyLevel.name for difficultyLevel in difficultyLevels">
+                </select>
 
-            <li>
-                <input  data-ng-model="newTag.name"
-                        class="admin-input-short">
-                <a href="" data-ng-click="formMeal.tags.push(newTag); newTag={name:''}">ADD TAG</a>
-            </li>
-
-        </div>
-    -->
-    
     <h2>Dietary Options</h2>
         <div class="cms-checkboxes">
             <input  type="checkbox" 
@@ -126,14 +111,27 @@
 
 
     <h2>Recipe Steps</h2>
-    <div class="cms-input-time">
+    <div class="cms-inputs">
         <ul>
             <li><b>PREP TIME</b>
-                <input data-ng-model="formMeal.prepTime">
+                <input  data-ng-model="formMeal.prepTime"
+                        class="cms-input-short">
             </li>
 
             <li><b>COOK TIME</b>
-                <input data-ng-model="formMeal.cookTime">
+                <input  data-ng-model="formMeal.cookTime"
+                        class="cms-input-short">
+            </li>
+
+            <li><b>YIELD</b>
+                <input  data-ng-model="formMeal.yield"
+                        class="cms-input-short">
+            </li>
+
+            <li><b>PLURAL</b>
+                <input  data-ng-model="formMeal.plural" 
+                        placeholder='"Cookies"'
+                        class="cms-input-plural">
             </li>
         </ul>
     </div>

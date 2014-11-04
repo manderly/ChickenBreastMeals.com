@@ -308,7 +308,7 @@ ul.mealGrid li:hover {
 }
 
 /*********************
-/* Recipe view
+/* Recipe.html view
 /*********************/
 
 .recipe-wrapper {
@@ -318,6 +318,9 @@ ul.mealGrid li:hover {
 .half-width {
   width:49.9%;
 }
+
+
+/* TOP: Recipe name, description side by side */
 
 .recipe-name-and-description {
   border-bottom:3px dotted orange;
@@ -342,6 +345,8 @@ ul.mealGrid li:hover {
   width:49.9%;
 }
 
+/* MIDDLE: Recipe image, stats in colored bars list */
+
 /* puts image and stats container side by side */
 .recipe-image-container, .recipe-stats-container {
   display:inline-block;
@@ -361,7 +366,27 @@ ul.mealGrid li:hover {
   display:table;
   height:100%;
   width:50%;
+  vertical-align:middle;
 }
+
+.stats-tabs li {
+  padding:3%;
+
+}
+
+.stats-tabs li h3 {
+  margin:0;
+  padding:0;
+  font-size:.6em;
+  font-weight:bold;
+}
+
+.stats-tabs li h2 {
+  font-size:1.3em;
+  color:white;
+  font-weight:bold;
+}
+
 
 .recipe-detail-container {
   position:relative;
@@ -388,17 +413,17 @@ ul.mealGrid li:hover {
 }
 
 #stat-prep-time {
-  background-color:#f1bd4d;
+  background-color:#ffa500;
   margin-bottom:1.3333%;
 }
 
 #stat-cook-time {
-  background-color:#f1f1f1;
+  background-color:#fbd178;
   margin-bottom:1.3333%;
 }
 
 #stat-skill-level {
-  background-color:#fffddd;
+  background-color:#ba5613;
   margin-bottom:1.3333%;
 }
 
@@ -612,11 +637,16 @@ ADMMIN CMS
 }
 
 /* Prep time and cook time inputs */
-.cms-input-time ul li {
+.cms-inputs ul li {
     display:inline-block;
 }
-.cms-input-time input {
+
+.cms-input-short {
     width:40px;
+}
+
+.cms-input-plural {
+  width:90px;
 }
 
 .cms-checkboxes input { 

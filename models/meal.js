@@ -9,6 +9,8 @@ var mealSchema = mongoose.Schema({
 	description: String,
 	tags: Array,
 	skillLevel: String,
+	yield: String,
+	plural: String,
 	mealOptions: Object,
 	prepTime: String,
 	cookTime: String,
@@ -16,6 +18,8 @@ var mealSchema = mongoose.Schema({
 	ingredients: Array,
 	steps: Array,
 	image: String,
+	kCalPerServing: String,
+	kCalTotal: String,
 	published: Boolean,
 });
 
