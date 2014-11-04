@@ -27,7 +27,7 @@ module.exports = function(app) {
 			{name:'advanced'},
 			{name:'master'}
 		];
-
+		
 		$scope.updatePreviewImage = function() {
 			console.log("ADMIN: Updating preview image!");
 			$scope.previewImage = null;
