@@ -7,6 +7,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-express-server');
+	grunt.loadNpmTasks('grunt-concurrent');
+	grunt.loadNpmTasks('grunt-nodemon');
 
 	grunt.initConfig({
 		clean: {
@@ -43,20 +45,19 @@ module.exports = function(grunt) {
 			}
 		},
 
+		//automatically restarts the app if nodemon detects changes to files
+	    nodemon: {
+	      dev: {
+	        script: 'server.js',
+	        options: {
+	          watch: ['server.js','routes/*.*']
+	        }
+	      }
+	    },
+
 		karma: {
 		  unit: {
 				configFile: 'karma.conf.js',
-		  }
-		},
-
-		express: {
-		  options: {
-				port: 3000
-			},
-		  dev: {
-				options: {
-			  	script: 'server.js'
-				}
 		  }
 		},
 
@@ -69,17 +70,26 @@ module.exports = function(grunt) {
 				}
 		  },
 		  express: {
-				files: ['app/js/**/*.js', 'models/*.*', 'routes/*.*', 'app/index.html', 'app/views/**/*.html', 'app/css/*.css', 'app/views/**/*.html', 'server.js', 'models/*.js'],
+				files: ['app/js/**/*.js', 'models/*.*', 'app/index.html', 'app/views/**/*.html', 'app/css/*.css', 'app/views/**/*.html', 'server.js', 'models/*.js'],
 				tasks: ['build'],
 				options: {
 			  	spawn: false
 				}
 		  }
-		}
+		},
+
+		concurrent: {
+	      dev: {
+	        tasks: ['nodemon:dev', 'watch:express'],
+	        options: {
+	          logConcurrentOutput: true
+	        }
+	      }
+	    },
 	});
 
 	grunt.registerTask('build',['clean:dev','browserify:dev', 'copy:dev']);
 	grunt.registerTask('test', ['browserify:angulartest','karma:unit']);
-	grunt.registerTask('serve', ['express:dev','watch:express']);
+	grunt.registerTask('serve', ['concurrent:dev']);
 	grunt.registerTask('default',['build','serve']); //'test'
 };
