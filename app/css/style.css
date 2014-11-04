@@ -365,7 +365,6 @@ ul.mealGrid li:hover {
 
 .recipe-detail-container {
   position:relative;
-  border:1px solid gray;
   clear:both;
   overflow:hidden;
 }
@@ -377,6 +376,7 @@ ul.mealGrid li:hover {
 .recipe-image-container {
   float:left;
   width:33%;
+  line-height:0;
 }
 
 .recipe-image-container img {
