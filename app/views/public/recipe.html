@@ -26,29 +26,38 @@
     </div>
 
     <!-- Side by side recipe photo and high level stats -->
-    <div class="recipe-detail-wrapper">
+    <div class="recipe-detail-container">
 
             <div class="recipe-image-container">
                  <img data-ng-src="{{recipe.image}}">
             </div>
 
             <div class="recipe-stats-container">
-                <ul>
-                    <li>
-                        <span class="recipe-span" id="stat-prep-time">PREP TIME
+                <ul class="stats-tabs">
+
+                    <li id="stat-prep-time">
+                            PREP TIME</br>
+                            {{recipe.prepTime}} MINUTES
+                    </li>
+
+                    <li id="stat-cook-time">
+                            COOKING TIME
                             </br>
-                            {{recipe.prepTime}} MINUTES</span></li>
-                    <li> 
-                        <span class="recipe-span" id="stat-cook-time">COOKING TIME
+                            {{recipe.cookTime}} MINUTES</span>
+                    </li>
+
+                    <li id="stat-skill-level">
+                            SKILL LEVEL
                             </br>
-                            {{recipe.cookTime}} MINUTES</span></li>
-                    <li> 
-                        <span class="recipe-span" id="stat-skill-level">SKILL LEVEL
+                            {{recipe.skillLevel}}
+                    </li>
+
+                    <li id="stat-yield">
+                            MAKES
                             </br>
-                            {{recipe.skillLevel}}</span></li>
-                    <li> 
-                        <span class="recipe-span" id="stat-yield">MAKES
-                            </br>{{recipe.yield}}</span></li>
+                            {{recipe.yield}}
+                    </li>
+                    
                 </ul>
             </div>
     </div>

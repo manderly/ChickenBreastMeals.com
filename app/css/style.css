@@ -76,6 +76,10 @@ textarea {
     resize:none;
 }
 
+img {
+  border:none;
+}
+
 .scaling-container {
   max-width:1280px;
 }
@@ -338,59 +342,64 @@ ul.mealGrid li:hover {
   width:49.9%;
 }
 
-.recipe-detail-wrapper {
-  width:90%;
-  border:1px solid red;
+/* puts image and stats container side by side */
+.recipe-image-container, .recipe-stats-container {
+  display:inline-block;
+}
+
+.recipe-stats-container {
+  position:absolute;
+  top:0;
+  left:33.5%;
+  right:0;
+  bottom:0;
+  margin:0;
+  padding:0;
+}
+
+.stats-tabs {
+  display:table;
+  height:100%;
+  width:50%;
+}
+
+.recipe-detail-container {
+  position:relative;
+  border:1px solid gray;
   clear:both;
   overflow:hidden;
 }
 
 .recipe-detail-wrapper div {
   min-height:200px;
-  padding:10px;
 }
 
 .recipe-image-container {
   float:left;
   width:33%;
-  height:100%;
-  padding-right:3px;
 }
 
 .recipe-image-container img {
   width:100%;
 }
 
-.recipe-stats-container {
-  overflow:hidden;
-  min-height:100%;
-  width:33%;
-  font-weight:700px;
-  border:1px solid green;
-}
-
 .recipe-stats-container ul li {
-  height:25%;
-}
-
-.recipe-span {
-  display:block;
-  height:25%;
-  width:100%;
-  margin:5px 0;
-  border:1px solid purple;
+  height:24%;
 }
 
 #stat-prep-time {
   background-color:#f1bd4d;
+  margin-bottom:1.3333%;
 }
 
 #stat-cook-time {
   background-color:#f1f1f1;
+  margin-bottom:1.3333%;
 }
 
 #stat-skill-level {
   background-color:#fffddd;
+  margin-bottom:1.3333%;
 }
 
 #stat-yield {
@@ -681,7 +690,20 @@ ADMMIN CMS
   .recipe-image-container {
     float:none;
     margin-right:0;
-    width:auto;
+    width:100%;
     border:0;
   }
+
+
+  .stats-tabs {
+    display:block;
+    width:100%;
+  }
+
+  .recipe-stats-container {
+    display:block;
+    position:relative;
+    left:0;
+  }
+
 }
