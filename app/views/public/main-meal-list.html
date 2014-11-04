@@ -1,24 +1,30 @@
 <div class="mealsScrollList">
     <ul class="mealGrid">
         <li
-            data-ng-click="selectMealViewDetails(meal)"
+            data-ng-click="viewRecipe(meal)"
             data-ng-repeat="meal in meals | filter: query"
             data-ng-class="{selectedMeal:meal.selected}"
             class="mealPreviewButton"
             >
-                <!-- <img ng-src="{{meal.images[0]}}"> -->
-                <img ng-src="{{meal.image}}">
-
+                
+                
                 <div class="mealGridTextArea">
-                    <h3><a href="" class="mealTitle">{{meal.name}}</a></h3>
-                    <p class="snippet">{{meal.snippet}}</p>
+                    <!-- meal image -->
+                    <img ng-src="{{meal.image}}"/>
+                    <!-- title portion-->
+                    <div class="mealGridTitleArea">
+                        <a href="" class="mealTitle">{{meal.name}}</a>
+                    </div>
+
+                    <!-- brief details portion -->
+                    <div class="mealGridDetailArea">
+                        <!-- REMOVING TAGS
+                        <span class="tagNames" data-ng-repeat="tag in meal.tags">{{tag.name}}</span>
+                        -->
+                        {{meal.prepTime + meal.cookTime}} mins, {{meal.ingredients.length}} ingredients
+                    </div>
                 </div>
-
-                <span class="prepData">
-                    <span class="cookTime">{{meal.cooktime}}</span>
-                    <span class="mins">mins</span>
-                </span>
-
+  
         </li>
     </ul>
 </div><!-- closes mealsScrollList"-->

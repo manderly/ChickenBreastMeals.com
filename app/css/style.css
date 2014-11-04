@@ -1,7 +1,24 @@
+/* Colors */
+/* 
+
+tan:                    #c9b8a7
+header orange:          #ff9b2e
+link orange:            #ed783b
+link highlight yellow:  #f1bd4d
+
+header brown:           #351414
+
+
+*/
+
 html { 
-    background-color:#f1f1f1;
-    overflow:hidden;
+    background-color:#fff;
     color:#383838;
+}
+
+body {
+  padding:0;
+  margin:0;
 }
 
 body, textarea {
@@ -41,11 +58,9 @@ footer {
     height: 60px;
     left: 0;
     position: absolute;
-    width: 100%;
     background-color:#351414;
     color:#fff;
     font-size:.8em;
-    padding-left:20px;
 }
 /*padding / margin fix for lists */
 ul, ol {
@@ -59,6 +74,14 @@ li {
 
 textarea {
     resize:none;
+}
+
+img {
+  border:none;
+}
+
+.scaling-container {
+  max-width:1280px;
 }
 
 /*********************
@@ -75,12 +98,11 @@ textarea {
 
 .wrapper {
   display: flex; 
-  justify-content: space-around; 
+  justify-content: space-around;
 }
 
 .userSortSettings {
-    background:white;
-    border-bottom:1px #ddd solid;
+    background:#f1f1f1;
     margin-bottom:14px;
     height:50px;
     text-align:center;
@@ -173,16 +195,7 @@ textarea {
 /*********************/
 
 .mealsSnippetContainer {
-  height:500px;
-  width:55.5%;
-  max-width:55.5%;
-  overflow-x:hidden;
-    margin-left:20px;
-    margin-right:10px;
-}
-
-.mealsSnippetContainer:hover{
-  overflow-y:scroll;
+  text-align:center;
 }
 
 .mealsSnippetContainer h1 {
@@ -200,19 +213,14 @@ ul.mealGrid {
 
 ul.mealGrid li {
     display: inline-block;
-    background-color:white;
-    border:1px solid #ddd;
     vertical-align:top;
-    box-shadow: 0 0 5px #ddd;
-    box-sizing: border-box;
-    width:23.5%;
-    height:200px;
+    width:200px;
+    height:340px;
     transition: background-color .5s linear;
     -moz-transition: background-color .5s linear;
     -webkit-transition: background-color .5s linear;
     -ms-transition: background-color .5s linear;
-    overflow:hidden;
-    margin:.6% .6%;
+    margin:.5em;
     position:relative;
     cursor:pointer;
 }
@@ -222,40 +230,41 @@ ul.mealGrid li:hover {
 }
 
 .mealPreviewButton img {
-    max-width:200%;
-    max-height:100%;
-    position:relative;
+    width:100%;
+    max-width:100%;
     overflow:hidden;
+    margin-bottom:-4px;
 }
 
 .mealPreviewButton img:hover {
     opacity: 0.75;
 }
 
-.prepData {
-    color:white;
-    position:absolute;
-    display:block;
-    right:3px;
-    bottom:80px; /*must match height in mealGridTextArea*/
-    text-shadow: 1px 1px #000000;
-}
-
 .mealGridTextArea {
-    font-size:.7em;
+    font-size:.9em;
     width:100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    height:80px;
-    bottom:0px;
+    height:130px;
     display:block;
     position:absolute;
-    color:white;
+    text-align:left;
 }
 
 .mealGridTextArea h3,p {
-    margin-left:8px;
-    margin-right:3px;
     line-height:1em;
+}
+
+.mealGridTitleArea {
+  background-color:#383838;
+  color:white;
+  height:70px;
+  padding:10px;
+  font-weight:bold;
+}
+
+.mealGridDetailArea {
+  background-color:white;
+  color:black;
+  height:100px;
 }
 
 /*
@@ -267,7 +276,6 @@ ul.mealGrid li:hover {
   -ms-transition: background-color .2s linear;
     box-shadow: 0 0 5px #ddd;
 }*/
-
 
 .selectedMeal .mealTitle {
     font-style:italic;
@@ -300,45 +308,129 @@ ul.mealGrid li:hover {
 }
 
 /*********************
-/* Meal Details pane (right side)
+/* Recipe.html view
 /*********************/
 
-.mealDetailsContainer {
+.recipe-wrapper {
+  padding:0 30px 615px;
+}
+
+.half-width {
+  width:49.9%;
+}
+
+
+/* TOP: Recipe name, description side by side */
+
+.recipe-name-and-description {
+  border-bottom:3px dotted orange;
+  margin-bottom:20px;
+  font-weight:bold;
+}
+
+.recipe-description-text {
+  color:#c9b8a7;
   float:right;
-  display:block;
-  width:40%;
-  max-width:40%;
-  background-color:white;
-  height:500px;
-  overflow-y:auto;
-  overflow-x:hidden;
-  padding:0 15px;
-  font-size:.8em;
-    webkit-box-shadow: 0 2px 6px rgba(50,50,50,0.50);
-    -moz-box-shadow: 0 2px 6px rgba(50,50,50,0.50);
-    box-shadow: 0 2px 6px rgba(50,50,50,0.50);
-  border-radius:6px;
-    margin-right:20px;
-}
-
-.mealDetailsEmpty { 
-  font-size:1.2em;
-  text-align:center;
-  margin:0 auto;
-  padding-top:30px;
-}
-
-.mealDetailsEmpty img {
-  display:block;
-  margin:10% auto;
-}
-
-.mealDescription {
-  font-style:italic;
-  padding:0 50px 0 0;
   line-height:1.5em;
-    color:#444;
+  vertical-align:top;
 }
+
+.recipeView h1 {
+  font-size:2em;
+}
+
+.recipe-name {
+  font-size:2em;
+  color:#ff9b2e;
+  width:49.9%;
+}
+
+/* MIDDLE: Recipe image, stats in colored bars list */
+
+/* puts image and stats container side by side */
+.recipe-image-container, .recipe-stats-container {
+  display:inline-block;
+}
+
+.recipe-stats-container {
+  position:absolute;
+  top:0;
+  left:33.5%;
+  right:0;
+  bottom:0;
+  margin:0;
+  padding:0;
+}
+
+.stats-tabs {
+  display:table;
+  height:100%;
+  width:50%;
+  vertical-align:middle;
+}
+
+.stats-tabs li {
+  padding:3%;
+
+}
+
+.stats-tabs li h3 {
+  margin:0;
+  padding:0;
+  font-size:.6em;
+  font-weight:bold;
+}
+
+.stats-tabs li h2 {
+  font-size:1.3em;
+  color:white;
+  font-weight:bold;
+}
+
+
+.recipe-detail-container {
+  position:relative;
+  clear:both;
+  overflow:hidden;
+}
+
+.recipe-detail-wrapper div {
+  min-height:200px;
+}
+
+.recipe-image-container {
+  float:left;
+  width:33%;
+  line-height:0;
+}
+
+.recipe-image-container img {
+  width:100%;
+}
+
+.recipe-stats-container ul li {
+  height:24%;
+}
+
+#stat-prep-time {
+  background-color:#ffa500;
+  margin-bottom:1.3333%;
+}
+
+#stat-cook-time {
+  background-color:#fbd178;
+  margin-bottom:1.3333%;
+}
+
+#stat-skill-level {
+  background-color:#ba5613;
+  margin-bottom:1.3333%;
+}
+
+#stat-yield {
+  background-color:indianred;
+}
+
 
 .mealIngredientsList li {
     list-style:none;
@@ -354,7 +446,6 @@ ul.mealGrid li:hover {
     text-indent:10px;
     border-bottom:1px solid #f1f1f1;
     padding:6px 0;
-    width:320px;
     overflow-x:hidden;
 }
 
@@ -367,17 +458,7 @@ ul.mealGrid li:hover {
   margin-bottom:20px;
 }
 
-.meal-hero-img {
-  float:right;
-  display:block;
-  width:250px;
-  padding:10px;
-  margin-left:20px;
-  margin-bottom:10px;
-  webkit-box-shadow: 0 2px 6px rgba(50,50,50,0.50);
-  -moz-box-shadow: 0 2px 6px rgba(50,50,50,0.50);
-  box-shadow: 0 2px 6px rgba(50,50,50,0.50)
-}
+
 
 .prepTimeData {
   color:#ccc;
@@ -488,7 +569,7 @@ ADMMIN CMS
     display:block;
     width:96%;
     margin:0 auto;
-    height:1.5em;
+    padding-bottom:1em;
 }
 
 .cms-meal-list-item:hover {
@@ -556,11 +637,16 @@ ADMMIN CMS
 }
 
 /* Prep time and cook time inputs */
-.cms-input-time ul li {
+.cms-inputs ul li {
     display:inline-block;
 }
-.cms-input-time input {
+
+.cms-input-short {
     width:40px;
+}
+
+.cms-input-plural {
+  width:90px;
 }
 
 .cms-checkboxes input { 
@@ -606,4 +692,48 @@ ADMMIN CMS
 }
 .ingredients-list li:nth-child(odd) {
     background-color:#f5f5f5;
+}
+
+
+/* 1048 */
+@media (max-width: 1048px) {
+  .filterNav {
+    padding:10px;
+    border:1px solid red;
+  }
+
+  
+
+
+}
+
+/* 600 */
+@media (max-width: 600px) {
+  .recipe-description-text {
+    display:none;
+  }
+
+  .recipe-name {
+    width:100%;
+  }
+
+  .recipe-image-container {
+    float:none;
+    margin-right:0;
+    width:100%;
+    border:0;
+  }
+
+
+  .stats-tabs {
+    display:block;
+    width:100%;
+  }
+
+  .recipe-stats-container {
+    display:block;
+    position:relative;
+    left:0;
+  }
+
 }

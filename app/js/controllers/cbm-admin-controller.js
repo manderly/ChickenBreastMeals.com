@@ -21,6 +21,12 @@ module.exports = function(app) {
 		      });
 		};
 
+		$scope.difficultyLevels = [
+			{name:'easy'},
+			{name:'medium'},
+			{name:'advanced'},
+			{name:'master'}
+		];
 
 		$scope.updatePreviewImage = function() {
 			console.log("ADMIN: Updating preview image!");
@@ -40,7 +46,6 @@ module.exports = function(app) {
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
 			console.log("SAVING FORM CONTENTS -- $scope.file is " + JSON.stringify($scope.file));
-			
 			if ($scope.creatingNewMeal === false) {
 			//PUT - updating an old meal
 				mealsServer.saveOldMeal(mealFromForm,$scope.imageSrc) //this imageSrc wipes saved image because it's empty

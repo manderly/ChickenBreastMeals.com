@@ -10,6 +10,11 @@ module.exports = function(app) {
 			controller: 'cbmMainController'
 		})
 
+		.when('/recipe/:url', {
+			templateUrl: '/views/public/recipe.html',
+			controller: 'cbmRecipeController'
+		})
+
 		.when('/about', {
 			templateUrl: '/views/public/about.html',
 			controller: 'cbmMainController'
