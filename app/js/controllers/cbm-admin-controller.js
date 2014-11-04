@@ -29,7 +29,6 @@ module.exports = function(app) {
 		];
 		
 		$scope.updatePreviewImage = function() {
-			console.log("ADMIN: Updating preview image!");
 			$scope.previewImage = null;
 			if ($scope.formMeal.image) { 
 				//if formMeal has an image, show that
@@ -46,6 +45,8 @@ module.exports = function(app) {
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
 			console.log("SAVING FORM CONTENTS -- $scope.file is " + JSON.stringify($scope.file));
+			console.log("skill level is:")
+			console.log(mealFromForm.skillLevel.name);
 			if ($scope.creatingNewMeal === false) {
 			//PUT - updating an old meal
 				mealsServer.saveOldMeal(mealFromForm,$scope.imageSrc) //this imageSrc wipes saved image because it's empty
@@ -80,12 +81,14 @@ module.exports = function(app) {
 		};
 
 		$scope.createNewMeal = function() {
-			console.log("ADMIN: In 'create new meal' mode");
 			$scope.formMeal = {}; //set the form to empty
 			$scope.creatingNewMeal = true;
 
 			//must initialize all these meal components for a new meal
 			$scope.formMeal.tags = [];
+			$scope.formMeal.skillLevel = {
+					name:'easy'
+			};
 			$scope.formMeal.mealOptions = {
 					dairyfree:false,
 					glutenfree:false,

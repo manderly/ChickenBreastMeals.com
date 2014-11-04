@@ -8,7 +8,7 @@ var mealSchema = mongoose.Schema({
 	snippet: String,
 	description: String,
 	tags: Array,
-	skillLevel: String,
+	skillLevel: Object,
 	yield: String,
 	plural: String,
 	mealOptions: Object,

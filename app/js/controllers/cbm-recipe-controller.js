@@ -10,7 +10,8 @@ module.exports = function(app) {
 
 		//get, create, edit, delete
 		$scope.getRecipe = function() {
-			$http.get('/db/' + $scope.params.url).success(function(data) {
+			$http.get('/db/' + $scope.params.url)
+			.success(function(data) {
 				$scope.recipe = data;
 				$scope.totalTime = $scope.getPrepTimeTotal($scope.recipe);
 			})
