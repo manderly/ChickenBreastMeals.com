@@ -7,8 +7,8 @@
 
                 <input  type="file" 
                         name="thumbnail"
-                        ng-file-select="onFileSelect($files)"
-                        ng-change="updatePreviewImage()"
+                        data-ng-file-select="onFileSelect($files)"
+                        data-ng-change="updatePreviewImage()"
                         data-ng-model="formMeal.image">
                   
                     Preview:
@@ -23,16 +23,13 @@
     <h2>Recipe Name</h2>
         <input  type="text" 
                 required 
-                data-ng-model="formMeal.name" 
+                data-ng-model="formMeal.name"
+                data-ng-blur="createURL(formMeal.name)" 
                 placeholder="Give your meal a unique name."
                 class="admin-input-oneline">
 
     <h2>URL</h2>
-        <input  type="text" 
-                required 
-                data-ng-model="formMeal.url" 
-                placeholder="Enter-Recipe-URL-Like-This"
-                class="admin-input-oneline">
+        {{formMeal.url}}
 
     <h2>Description</h2>
         <textarea  type="text" 

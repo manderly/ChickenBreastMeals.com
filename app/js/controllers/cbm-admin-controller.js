@@ -40,13 +40,15 @@ module.exports = function(app) {
 				//and show that instead if there is one
 				$scope.previewImage = $scope.imageSrc;
 			}
-		}
+		};
+
+		$scope.createURL = function(recipeName) {
+			$scope.formMeal.url = recipeName.replace(/\s+/g,'-').replace(/[^a-zA-Z0-9-]/g,'').toLowerCase();
+		};
 
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
 			console.log("SAVING FORM CONTENTS -- $scope.file is " + JSON.stringify($scope.file));
-			console.log("skill level is:")
-			console.log(mealFromForm.skillLevel.name);
 			if ($scope.creatingNewMeal === false) {
 			//PUT - updating an old meal
 				mealsServer.saveOldMeal(mealFromForm,$scope.imageSrc) //this imageSrc wipes saved image because it's empty

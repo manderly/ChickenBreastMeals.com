@@ -25,7 +25,7 @@ module.exports = function(app) {
 				//if imageSrc has been updated, use the new image. Otherwise, don't.
 				if (image) {
 					meal.image = image;
-				} 
+				}
 
 				var promise = $http.put('/db/' + meal._id, meal)
 					.error(function(data,status){
@@ -36,7 +36,6 @@ module.exports = function(app) {
 
 			saveNewMeal: function(meal,image) {
 				meal.image = image;
-
 				var promise = $http.post('/db', meal)
 					.error(function(data,status){
 						errFunc(data,status);
