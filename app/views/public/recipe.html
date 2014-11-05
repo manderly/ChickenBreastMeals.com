@@ -60,18 +60,21 @@
     COOK: {{recipe.cookTime}} mins
     </p>
 
-    
-    <h2>INGREDIENTS</h2>
+    <div class="ingredients-container">
+    <h2 class="in-title">INGREDIENTS</h2>
         <ul class="mealIngredientsList">
         <li data-ng-repeat="ingredient in recipe.ingredients" class="mealIngredient">
         <input type="checkbox"/> {{ingredient.name}}
         </li>
         </ul>
+    </div>
 
-    <h2>INSTRUCTIONS</h2>
+    <div class="instructions-container">
+    <h2 class="in-title">INSTRUCTIONS</h2>
         <ol class="mealInstructionsList">
         <li data-ng-repeat="step in recipe.steps">
             {{step.name}}
         </li>
         </ol>
+    </div>
 </div>
