@@ -456,8 +456,11 @@ ul.mealGrid li:hover {
     list-style:none;
 }
 
+/* INSTRUCTIONS column */
+
 .mealInstructionsList {
     padding-left:30px;
+    line-height:2em;
 }
 
 .mealIngredient {
