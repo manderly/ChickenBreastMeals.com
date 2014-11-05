@@ -5,7 +5,6 @@ var Meal = require('../models/meal');
 
 module.exports = function(app) {
 	var baseUrl = '/db';
-	console.log("whatever1234");
 
 	app.get(baseUrl, function(req, res) {
 		Meal.find({}, function(err,meals){
