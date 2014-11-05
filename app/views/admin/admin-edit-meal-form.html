@@ -3,7 +3,7 @@
     <h2>Recipe Photo</h2>
         
         <form name="editMealForm">
-            <div class="admin-add-image">
+            <div class="admin-wide-entry-bar">
 
                 <input  type="file" 
                         name="thumbnail"
@@ -35,11 +35,11 @@
                 class="admin-input-oneline">
 
     <h2>Description</h2>
-        <input  type="text" 
+        <textarea  type="text" 
                 required 
                 data-ng-model="formMeal.description" 
                 placeholder="Tell us about this recipe, where it came from, why it's special. Be creative!"
-                class="admin-input-paragraph"/>
+                class="admin-input-paragraph"></textarea>
 
     <h2>Difficulty Level</h2>
         <select required 
@@ -114,39 +114,49 @@
     <div class="cms-inputs">
         <ul>
             <li><b>PREP TIME</b>
-                <input  data-ng-model="formMeal.prepTime"
+                <input  
+                        required
+                        data-ng-model="formMeal.prepTime"
                         class="cms-input-short">
             </li>
 
             <li><b>COOK TIME</b>
-                <input  data-ng-model="formMeal.cookTime"
+                <input  required
+                        data-ng-model="formMeal.cookTime"
                         class="cms-input-short">
             </li>
 
             <li><b>YIELD</b>
-                <input  data-ng-model="formMeal.yield"
+                <input  required
+                        data-ng-model="formMeal.yield"
                         class="cms-input-short">
             </li>
 
             <li><b>PLURAL</b>
-                <input  data-ng-model="formMeal.plural" 
+                <input  required
+                        data-ng-model="formMeal.plural" 
                         placeholder='"Cookies"'
                         class="cms-input-plural">
             </li>
         </ul>
     </div>
 
-        <ol class="cms-recipeSteps">
+        <ol>
             <!-- loop through and display existing step -->
             <li data-ng-repeat="step in formMeal.steps">
-                <textarea data-ng-model="formMeal.steps[$index].name" class="admin-input-paragraph"></textarea>
+                <textarea   data-ng-model="formMeal.steps[$index].name" 
+                            class="admin-input-paragraph"></textarea>
+
                 <a href="" data-ng-click="formMeal.steps.splice($index,2)"><img src="/assets/bin.png"/></a>
             </li>
 
             <!-- entry box for adding new step -->
             <li>
-                <textarea data-ng-model="newStep.name" class="admin-input-paragraph"></textarea>
-                <a href="" data-ng-click="formMeal.steps.push(newStep); newStep={name:''}">ADD STEP</a>
+                <textarea   data-ng-model="newStep.name" 
+                            class="admin-input-paragraph"
+                            placeholder="Add another preparation step"></textarea>
+                <br>
+                <a href="" data-ng-click="formMeal.steps.push(newStep); newStep={name:''}">+ ADD STEP</a>
             </li>
         </ol>
         <br><br><br><br><br><br><br><br>
