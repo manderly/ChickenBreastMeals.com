@@ -21,13 +21,8 @@ module.exports = function(app) {
 		      });
 		};
 
-		$scope.difficultyLevels = [
-			{name:'easy'},
-			{name:'medium'},
-			{name:'advanced'},
-			{name:'master'}
-		];
-		
+		$scope.difficultyLevels = ['easy','medium','advanced','master'];
+
 		$scope.updatePreviewImage = function() {
 			$scope.previewImage = null;
 			if ($scope.formMeal.image) { 
@@ -67,17 +62,17 @@ module.exports = function(app) {
 		};
 
 		$scope.adminSelectMealViewDetails = function(meal) {
-			
-			$scope.formMeal = meal; //set the form contents to match the meal object's contents
-			$scope.adminMealSelected = true;
+			//set the form contents to match the meal object's contents
+			$scope.formMeal = meal;
 			$scope.creatingNewMeal = false;
-			$scope.mealSelected = true;
 
+			//unselect the other meals
 			$scope.meals.forEach(function(mealIndex) {
 				mealIndex.selected = false;
 			});
 			$scope.meals[$scope.meals.indexOf(meal)].selected=true;
 
+			//set image and dropdown contents
 			$scope.imageSrc = null;
 			$scope.updatePreviewImage();
 		};
@@ -85,12 +80,12 @@ module.exports = function(app) {
 		$scope.createNewMeal = function() {
 			$scope.formMeal = {}; //set the form to empty
 			$scope.creatingNewMeal = true;
-
+			
 			//must initialize all these meal components for a new meal
 			$scope.formMeal.tags = [];
-			$scope.formMeal.skillLevel = {
-					name:'easy'
-			};
+
+			//default skillLevel to Easy and show it in the dropdown
+			$scope.formMeal.skillLevel = $scope.difficultyLevels[0];
 			$scope.formMeal.mealOptions = {
 					dairyfree:false,
 					glutenfree:false,
