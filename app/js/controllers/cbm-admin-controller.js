@@ -48,20 +48,29 @@ module.exports = function(app) {
 			}
 		};
 
+		$scope.changePreparationStep = function(index) {
+			if (index == $scope.formMeal.steps.length -1) {
+				$scope.formMeal.steps.push('');
+			}
+		}
+
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
 			console.log("SAVING FORM CONTENTS -- $scope.file is " + JSON.stringify($scope.file));
-			//$scope.formMeal.ingredients.pop(); //delete the extra ingredient
-			if ($scope.creatingNewMeal === false) {
+			
 			//PUT - updating an old meal
-				mealsServer.saveOldMeal(mealFromForm,$scope.imageSrc) //this imageSrc wipes saved image because it's empty
+			if ($scope.creatingNewMeal === false) { 
+
+				//this imageSrc wipes saved image because it's empty
+				mealsServer.saveOldMeal(mealFromForm,$scope.imageSrc) 
 				.success(function(data) {
 					$scope.getAllMeals();
 				});
-			} else { 
+
 			//POST - creating new meal
+			} else {  
 				mealsServer.saveNewMeal($scope.formMeal,$scope.imageSrc)
-				.success(function(data) { //perform an asynchronous operation
+				.success(function(data) { 
 					$scope.creatingNewMeal = false;
 					$scope.getAllMeals();
 				});
@@ -73,9 +82,15 @@ module.exports = function(app) {
 			//set the form contents to match the meal object's contents
 			$scope.formMeal = meal;
 
+			//add an empty ingredient and prep step if not present at end
 			var lastIngredient = $scope.formMeal.ingredients.length -1;
 			if ($scope.formMeal.ingredients[lastIngredient] != '') {
 				$scope.formMeal.ingredients.push('');
+			}
+
+			var lastPrepStep = $scope.formMeal.steps.length -1;
+			if ($scope.formMeal.steps[lastPrepStep] != '') {
+				$scope.formMeal.steps.push('');
 			}
 
 			$scope.creatingNewMeal = false;

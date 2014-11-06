@@ -99,21 +99,6 @@
                             data-ng-click="formMeal.ingredients.splice($index,1)">
                             <img src="/assets/delete.png"/></a>
             </li>
-
-            <!-- entry box for adding new ingredient -->
-            <!--
-            <li>
-                <textarea   data-ng-model="newIngredient.name"
-                            name="ingredientLines"
-                            type="text"
-                            placeholder="Add ingredient"
-                            data-ng-change="changeIngredient()"
-                            data-ng-model-options="{updateOn: 'blur'}">
-                            </textarea>
-            </li>
-        -->
-            <!-- <a href="" data-ng-click="formMeal.ingredients.push(newIngredient); newIngredient={name:''}">
-                + ADD ANOTHER INGREDIENT</a> -->
         </ol>
 
 
@@ -150,21 +135,16 @@
 
         <ol>
             <!-- loop through and display existing step -->
-            <li data-ng-repeat="step in formMeal.steps">
+            <li data-ng-repeat="step in formMeal.steps track by $index">
+                
                 <textarea   data-ng-model="formMeal.steps[$index].name" 
-                            class="admin-input-paragraph"></textarea>
+                            class="admin-input-paragraph"
+                            placeholder="Add a preparation step"
+                            data-ng-change="changePreparationStep($index)"></textarea>
 
                 <a href="" data-ng-click="formMeal.steps.splice($index,2)"><img src="/assets/bin.png"/></a>
             </li>
 
-            <!-- entry box for adding new step -->
-            <li>
-                <textarea   data-ng-model="newStep.name" 
-                            class="admin-input-paragraph"
-                            placeholder="Add another preparation step"></textarea>
-                <br>
-                <a href="" data-ng-click="formMeal.steps.push(newStep); newStep={name:''}">+ ADD STEP</a>
-            </li>
         </ol>
         <br><br><br><br><br><br><br><br>
     </div>
