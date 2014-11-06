@@ -3,6 +3,7 @@
 module.exports = function(app) {
 
 	app.controller('cbmAdminController', function($scope, mealsServer, $http, fileReader) {
+		$scope.dirtyIngredient = false;
 
 		//Uses meals-server.js to get all the existing meal data
 		$scope.getAllMeals = function() {
@@ -41,9 +42,16 @@ module.exports = function(app) {
 			$scope.formMeal.url = recipeName.replace(/\s+/g,'-').replace(/[^a-zA-Z0-9-]/g,'').toLowerCase();
 		};
 
+		$scope.changeIngredient = function(index) {
+			if (index == $scope.formMeal.ingredients.length -1) {
+				$scope.formMeal.ingredients.push('');
+			}
+		};
+
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
 			console.log("SAVING FORM CONTENTS -- $scope.file is " + JSON.stringify($scope.file));
+			//$scope.formMeal.ingredients.pop(); //delete the extra ingredient
 			if ($scope.creatingNewMeal === false) {
 			//PUT - updating an old meal
 				mealsServer.saveOldMeal(mealFromForm,$scope.imageSrc) //this imageSrc wipes saved image because it's empty
@@ -64,6 +72,12 @@ module.exports = function(app) {
 		$scope.adminSelectMealViewDetails = function(meal) {
 			//set the form contents to match the meal object's contents
 			$scope.formMeal = meal;
+
+			var lastIngredient = $scope.formMeal.ingredients.length -1;
+			if ($scope.formMeal.ingredients[lastIngredient] != '') {
+				$scope.formMeal.ingredients.push('');
+			}
+
 			$scope.creatingNewMeal = false;
 
 			//unselect the other meals
@@ -94,7 +108,7 @@ module.exports = function(app) {
 	                paleo:false,
 	                quick:false
 				};
-			$scope.formMeal.ingredients = [];
+			$scope.formMeal.ingredients = [''];
 			$scope.formMeal.steps = [];
 			$scope.updatePreviewImage();
 		};
@@ -111,5 +125,6 @@ module.exports = function(app) {
 
 		$scope.getAllMeals();
 		$scope.createNewMeal(); //so the empty form works without clicking [create new meal]
+
 	});
 };

@@ -87,23 +87,33 @@
     <h2>Ingredients</h2>
         <ol class="ingredients-list">
             <!-- loop through and display existing ingredients -->
-            <li data-ng-repeat="ingredient in formMeal.ingredients">
+            <li data-ng-repeat="ingredient in formMeal.ingredients track by $index">
                 <textarea   name="ingredientLines"
                             type="text"
                             data-ng-model="formMeal.ingredients[$index].name"
-                            placeholder="Add ingredient"></textarea>
-                
-                <a href="" data-ng-click="formMeal.ingredients.splice($index,2)"><img src="/assets/delete.png"/></a>
+                            placeholder="Add ingredient"
+                            data-ng-change="changeIngredient($index)"
+                            ></textarea>
+                <!-- trash can button -->
+                <a href=""  data-ng-show="ingredient" 
+                            data-ng-click="formMeal.ingredients.splice($index,1)">
+                            <img src="/assets/delete.png"/></a>
             </li>
 
             <!-- entry box for adding new ingredient -->
+            <!--
             <li>
                 <textarea   data-ng-model="newIngredient.name"
                             name="ingredientLines"
                             type="text"
-                            placeholder="Add ingredient"></textarea>
+                            placeholder="Add ingredient"
+                            data-ng-change="changeIngredient()"
+                            data-ng-model-options="{updateOn: 'blur'}">
+                            </textarea>
             </li>
-            <a href="" data-ng-click="formMeal.ingredients.push(newIngredient); newIngredient={name:''}">+ ADD ANOTHER INGREDIENT</a>
+        -->
+            <!-- <a href="" data-ng-click="formMeal.ingredients.push(newIngredient); newIngredient={name:''}">
+                + ADD ANOTHER INGREDIENT</a> -->
         </ol>
 
 
