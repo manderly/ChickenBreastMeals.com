@@ -87,6 +87,10 @@ img {
   max-width:1280px;
 }
 
+.content {
+  padding-top:60px;
+}
+
 /*********************
 /* Site Layout and Navigation
 /*********************/
@@ -111,7 +115,7 @@ img {
   position:absolute;
   left:0;
   z-index:5;
-  top:45%;
+  top:40%;
   margin:auto auto;
   width:100%;
   margin-bottom:20px;
