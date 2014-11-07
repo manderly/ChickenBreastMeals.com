@@ -449,6 +449,13 @@ ul.mealGrid li:hover {
   padding:0;
   font-size:1.6vh;
   font-weight:bold;
+  color:black;
+}
+
+.recipe-stat {
+  display:table-cell;
+  padding-left:10px;
+  vertical-align:middle;
 }
 
 .recipe-detail-container {
@@ -472,7 +479,7 @@ ul.mealGrid li:hover {
 }
 
 .recipe-stats-container ul li {
-  height:24%;
+  /* height:24%; */
 }
 
 #stat-prep-time {
