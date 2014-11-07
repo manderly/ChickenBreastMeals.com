@@ -341,7 +341,7 @@ img {
   margin:5px;
 }
 
-.siteTitle {
+.siteTitle img {
   float:left;
   width:350px;
   display:block;
@@ -869,5 +869,14 @@ ADMMIN CMS
 
   .search-input {
     width:320px;
+  }
+
+  .mealPreviewButton {
+    clear:both;
+    width:100%;
+    height:590px;
+    margin:.5em;
+    position:relative;
+    cursor:pointer;
   }
 }
