@@ -12,5 +12,5 @@ To use:
 
 Screenshots:
 
-![alt text](screenshots/cbm_app_screenshot_11_3_2014.jpg "Chicken Breast Meals main view as of 11/3/2014")
+![alt text](screenshots/cbm_app_screenshot_11_6_2014.jpg "Chicken Breast Meals main view as of 11/6/2014")
 ![alt text](screenshots/cbm_app_screenshot_11_4_2014.jpg "Chicken Breast Meals recipe view as of 11/4/2014")
