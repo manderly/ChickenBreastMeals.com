@@ -320,10 +320,20 @@ ul.mealGrid li:hover {
 
 .mealGridDetailArea {
   background-color:white;
-  color:black;
+  color:#999;
   height:55px;
+  font-weight:bold;
+  font-size:.9em;
+  text-align:center;
 }
 
+.mealGridDetailArea img {
+  width:auto;
+}
+
+.detail-time {
+  color:#333;
+}
 
 
 /*
@@ -800,7 +810,7 @@ ADMMIN CMS
   .content {
     padding-top:100px;
   }
-  
+
   .navMenu {
     float:none;
   }

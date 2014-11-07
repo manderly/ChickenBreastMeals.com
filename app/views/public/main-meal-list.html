@@ -21,7 +21,9 @@
                         <!-- REMOVING TAGS
                         <span class="tagNames" data-ng-repeat="tag in meal.tags">{{tag.name}}</span>
                         -->
-                        {{meal.prepTime + meal.cookTime}} mins, {{meal.ingredients.length}} ingredients
+                        <img src="images/site/clock.jpg" class="clock-img">
+                        <span class="detail-time">{{meal.prepTime + meal.cookTime}}</span> mins, 
+                        <span class="detail-time">{{meal.ingredients.length -1}}</span> ingredients
                     </div>
                 </div>
   
