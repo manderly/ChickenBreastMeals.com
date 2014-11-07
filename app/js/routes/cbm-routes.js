@@ -25,11 +25,6 @@ module.exports = function(app) {
 			controller: 'cbmMainController'
 		})
 
-		.when('/contact', {
-			templateUrl: '/views/public/contact.html',
-			controller: 'cbmMainController'
-		})
-
 		.when('/admin', {
 			templateUrl: '/views/admin/admin.html',
 			controller: 'cbmMainController'

@@ -151,7 +151,7 @@ img {
 
 .userSortSettings {
     background:#fff;
-    margin:20px;
+    margin:10px;
     text-align:center;
     clear:both;
 }
@@ -183,19 +183,11 @@ img {
     list-style:none;
     font-size:.85em;
     cursor:pointer;
-    display:inline;
-    padding:4px 6px 6px 8px;
+    display:inline-block;
     margin-right:5px;
-    background-color:#f1f1f1;
-    border-radius:3px;
-    text-transform:uppercase;
     text-align:center;
+    line-height:36px;
 }
-
-.filterNav li:hover {
-    background-color:red;
-}
-
 
 .navMenu {
     list-style: none;
@@ -241,6 +233,7 @@ img {
 .mealsSnippetContainer {
   text-align:center;
   background-color:#f0eee5;
+  width:100%;
 }
 
 .mealsSnippetContainer h1 {
