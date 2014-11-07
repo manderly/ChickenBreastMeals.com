@@ -1,8 +1,9 @@
 <div class="mealsScrollList">
     <ul class="mealGrid">
+        <!-- create meals grid -->
         <li
             data-ng-click="viewRecipe(meal)"
-            data-ng-repeat="meal in meals | filter: query"
+            data-ng-repeat="meal in meals | filter: filterMeals"
             data-ng-class="{selectedMeal:meal.selected}"
             class="mealPreviewButton"
             >
@@ -18,9 +19,6 @@
 
                     <!-- brief details portion -->
                     <div class="mealGridDetailArea">
-                        <!-- REMOVING TAGS
-                        <span class="tagNames" data-ng-repeat="tag in meal.tags">{{tag.name}}</span>
-                        -->
                         <img src="images/site/clock.jpg" class="clock-img">
                         <span class="detail-time">{{meal.prepTime + meal.cookTime}}</span> mins, 
                         <span class="detail-time">{{meal.ingredients.length -1}}</span> ingredients

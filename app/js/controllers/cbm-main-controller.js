@@ -6,21 +6,30 @@ module.exports = function(app) {
 	$scope.siteName = "Chicken Breast Meals.com";
 	$scope.orderProp = 'cooktime';
 
-	//viewing and filtering meals
-	$scope.filterMeals = function(query, filterByOption) {
-	    console.log("Showing meals that meet this criteria: " + query + "or" + filterByOption);
-	    return function(meal) {
-		    if (meal.title.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
-		      return true;
-		    } else if (!filterByOption.glutenfree) {
-		      return true;
-		    } else if (filterByOption.glutenfree && meal.mealOptions.glutenfree) {
-		      return true;
-		    } else {
-		      return false;
-		    }
-		};
+	//filter is filled with everything that's listed in mealOptions 
+	//$scope.filter = {};
+
+	$scope.getOptionsFor = function(propName) {
+		return ($scope.meals || []).map(function (meal) {
+			return meal[propName];
+		}).filter(function(meal, index, array) {
+			return array.indexOf(meal) === index;
+		});
 	};
+
+	//viewing and filtering meals by properties
+	//thanks: http://jsfiddle.net/ExpertSystem/wYfs4/
+	$scope.filterMeals = function(meal) {
+	    var matches = true;
+	    for (var name in $scope.filter) {
+	    	if ($scope.filter[name] && !meal.mealOptions[name]) {
+	    		matches = false;
+	    		break;
+	    	}
+	    }
+	    return matches;
+	};
+
 
 	$scope.viewRecipe = function(meal) {
 		console.log("Selecting this meal in meal-list-controller.js: " + meal);

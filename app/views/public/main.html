@@ -1,4 +1,4 @@
-<div data-ng-controller="cbmMainController">
+<div data-ng-controller="cbmMainController" data-ng-init="filter={}">
     <div class="hero-wrapper">
         <div class="focus-wrapper">
             <div class="hero-tagline">Just chicken breast. Seriously.</div>
@@ -13,12 +13,11 @@
         <div class="filters">
             <ul class="filterNav">
                 Show only:
-                <li data-ng-click="filterByOption.glutenfree = !filterByOption.glutenfree">Gluten Free</li>
-                <!--toggle between true and null -->
-                <li>Low Carb</li>
-                <li>Low Fat</li>
-                <li>Paleo</li>
-                <li>Quick</li>
+                <!-- create properties list using ng-repeat -->
+                <li data-ng-repeat="(name, bool) in meals[meals.length -1].mealOptions">
+                    <input type="checkbox" data-ng-model="filter[name]"/>
+                    {{name}}
+                </li>
             </ul>
         </div>
     </div><!--closes userSortSettings-->

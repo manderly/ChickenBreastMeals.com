@@ -116,15 +116,15 @@ module.exports = function(app) {
 			//default skillLevel to Easy and show it in the dropdown
 			$scope.formMeal.skillLevel = $scope.difficultyLevels[0];
 			$scope.formMeal.mealOptions = {
-					dairyfree:false,
-					glutenfree:false,
-					lowcarb:false,
-	                lowfat:false,
-	                paleo:false,
-	                quick:false
+					"Dairy Free":false,
+					"Gluten Free":false,
+					"Low Carb":false,
+	                "Low Fat":false,
+	                "Paleo":false,
+	                "Quick":false
 				};
 			$scope.formMeal.ingredients = [''];
-			$scope.formMeal.steps = [];
+			$scope.formMeal.steps = [''];
 			$scope.updatePreviewImage();
 		};
 		

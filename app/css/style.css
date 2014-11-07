@@ -176,8 +176,6 @@ img {
 /*********************/
 
 .filters {
-    width:600px;
-    margin-left:26px;
     display:inline-block;
 }
 
@@ -616,6 +614,11 @@ About Page
 
 .about img {
   float:right;
+  margin:0 0 20px 20px;
+}
+
+.about h1 {
+  font-size:1.8em;
 }
 
 /***********

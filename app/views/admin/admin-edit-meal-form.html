@@ -49,37 +49,37 @@
             <input  type="checkbox" 
                     name="mealOptions" 
                     value="noGluten" 
-                    data-ng-model="formMeal.mealOptions.glutenfree">
-                    Gluten free<br>
+                    data-ng-model="formMeal.mealOptions['Gluten Free']">
+                    Gluten Free<br>
 
             <input  type="checkbox" 
                     name="mealOptions" 
                     value="noDairy" 
-                    data-ng-model="formMeal.mealOptions.dairyfree">
-                    Dairy free<br>
+                    data-ng-model="formMeal.mealOptions['Dairy Free']">
+                    Dairy Free<br>
 
             <input  type="checkbox" 
                     name="mealOptions" 
                     value="lowCarb" 
-                    data-ng-model="formMeal.mealOptions.lowcarb">
-                    Low carb<br>
+                    data-ng-model="formMeal.mealOptions['Low Carb']">
+                    Low Carb<br>
 
             <input  type="checkbox" 
                     name="mealOptions" 
                     value="lowFat" 
-                    data-ng-model="formMeal.mealOptions.lowfat">
-                    Low fat<br>
+                    data-ng-model="formMeal.mealOptions['Low Fat']">
+                    Low Fat<br>
 
             <input  type="checkbox" 
                     name="mealOptions" 
                     value="paleo" 
-                    data-ng-model="formMeal.mealOptions.paleo">
+                    data-ng-model="formMeal.mealOptions['Paleo']">
                     Paleo<br>
 
             <input  type="checkbox" 
                     name="mealOptions" 
                     value="quick" 
-                    data-ng-model="formMeal.mealOptions.quick">
+                    data-ng-model="formMeal.mealOptions['Quick']">
                     Quick<br>
 
         </div>
@@ -142,7 +142,7 @@
                             placeholder="Add a preparation step"
                             data-ng-change="changePreparationStep($index)"></textarea>
 
-                <a href="" data-ng-click="formMeal.steps.splice($index,2)"><img src="/assets/bin.png"/></a>
+                <a href="" data-ng-click="formMeal.steps.splice($index,1)"><img src="/assets/bin.png"/></a>
             </li>
 
         </ol>
