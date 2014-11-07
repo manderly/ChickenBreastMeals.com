@@ -438,10 +438,11 @@ ul.mealGrid li:hover {
 }
 
 .stats-tabs li h2 {
-  font-size:2.5vh;
+  font-size:3vh;
   color:white;
   margin:0;
   font-weight:bold;
+  text-transform:lowercase;
 }
 
 .stats-tabs li h3 {
@@ -796,6 +797,14 @@ ADMMIN CMS
 
 /* 600 */
 @media (max-width: 600px) {
+  .content {
+    padding-top:100px;
+  }
+  
+  .navMenu {
+    float:none;
+  }
+
   .recipe-description-text {
     display:none;
   }
@@ -819,6 +828,10 @@ ADMMIN CMS
 
   .stats-tabs li {
     display:block;
+  }
+
+  .recipe-stat {
+    height:70px
   }
 
   .recipe-stats-container {
