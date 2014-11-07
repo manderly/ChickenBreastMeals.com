@@ -245,28 +245,22 @@ img {
   list-style: none;
 }
 
-ul.mealGrid {
-    list-style:none;
-    padding-top:15px;
+.mealPreviewButton {
+  list-style:none;
+  padding-top:15px;
+  display: inline-block;
+  vertical-align:top;
+  width:200px;
+  height:360px;
+  transition: background-color .5s linear;
+  -moz-transition: background-color .5s linear;
+  -webkit-transition: background-color .5s linear;
+  -ms-transition: background-color .5s linear;
+  margin:.5em;
+  position:relative;
+  cursor:pointer;
 }
 
-ul.mealGrid li {
-    display: inline-block;
-    vertical-align:top;
-    width:200px;
-    height:400px;
-    transition: background-color .5s linear;
-    -moz-transition: background-color .5s linear;
-    -webkit-transition: background-color .5s linear;
-    -ms-transition: background-color .5s linear;
-    margin:.5em;
-    position:relative;
-    cursor:pointer;
-}
-
-ul.mealGrid li:hover {
-    webkit-box-shadow: 0 2px 6px rgba(50,50,50,0.50);
-}
 
 .mealPreviewButton img {
     width:100%;
@@ -323,17 +317,6 @@ ul.mealGrid li:hover {
   color:#333;
 }
 
-
-/*
-.mealPreviewButton:hover {
-  background-color:#f1f1f1;
-  transition: background-color .2s linear;
-  -moz-transition: background-color .2s linear;  
-  -webkit-transition: background-color .2s linear; 
-  -ms-transition: background-color .2s linear;
-    box-shadow: 0 0 5px #ddd;
-}*/
-
 .selectedMeal .mealTitle {
     font-style:italic;
     color:#f1bd4d;
@@ -358,9 +341,9 @@ ul.mealGrid li:hover {
   margin:5px;
 }
 
-.siteTitle img {
-  width:350px;
+.siteTitle {
   float:left;
+  width:350px;
   display:block;
 }
 
@@ -805,7 +788,10 @@ ADMMIN CMS
   }
 
   .siteTitle img {
-    width:100%;
+    width:80%;
+    float:none;
+    display:block;
+    margin:0 auto;
   }
 
   .navMenu {
@@ -823,6 +809,7 @@ ADMMIN CMS
     width:200%;
     height:auto;
   }
+
   .recipe-description-text {
     display:none;
   }
@@ -837,7 +824,6 @@ ADMMIN CMS
     width:100%;
     border:0;
   }
-
 
   .stats-tabs {
     display:block;
@@ -872,4 +858,16 @@ ADMMIN CMS
     padding-left:0;
   }
 
+
+
+}
+
+@media  (max-width: 480px) {
+  .hero-tagline {
+    font-size:1.2em;
+  } 
+
+  .search-input {
+    width:320px;
+  }
 }
