@@ -2,7 +2,6 @@
     <header>
         <div id="admin-bar-left">
             <h1>Edit Meal Recipe Data</h1>
-            <p>Total meals in data: {{meals.length}}</p>
         </div>
     
         <div id="admin-bar-right">
@@ -17,10 +16,13 @@
     <!-- meal navigator on left -->
     <div class="cms-wrapper">
         <div class="cms-recipeTitleList">
+            <p>Total meals in data: {{meals.length}}</p>
+
             <a href="" 
                 data-ng-click="createNewMeal()"
                 id="new-meal-button">
                 [Create new meal]</a>
+            </br>
             <ul>
                 <li
                     data-ng-repeat="meal in meals | filter: query | orderBy: alphabetical"
