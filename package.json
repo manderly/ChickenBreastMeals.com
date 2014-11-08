@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/MJGrant/ChickenBreastMeals.com",
   "devDependencies": {
+    "chai": "^1.9.2",
+    "chai-http": "^0.4.0",
     "debowerify": "^0.8.1",
     "grunt": "^0.4.5",
     "grunt-browserify": "^3.1.0",
@@ -29,6 +31,7 @@
     "grunt-express-server": "^0.4.19",
     "grunt-karma": "^0.9.0",
     "grunt-mocha": "^0.4.11",
+    "grunt-mocha-test": "^0.12.2",
     "grunt-nodemon": "^0.3.0",
     "grunt-simple-mocha": "^0.4.0",
     "karma": "^0.12.23",
@@ -36,7 +39,9 @@
     "karma-firefox-launcher": "^0.1.3",
     "karma-jasmine": "^0.1.5",
     "karma-phantomjs-launcher": "^0.1.4",
-    "karma-safari-launcher": "^0.1.1"
+    "karma-safari-launcher": "^0.1.1",
+    "load-grunt-tasks": "^1.0.0",
+    "mocha": "^2.0.1"
   },
   "dependencies": {
     "bcrypt-nodejs": "latest",

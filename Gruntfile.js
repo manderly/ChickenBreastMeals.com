@@ -1,14 +1,5 @@
 module.exports = function(grunt) {
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-browserify');
-	grunt.loadNpmTasks('grunt-mocha');
-	grunt.loadNpmTasks('grunt-simple-mocha');
-	grunt.loadNpmTasks('grunt-karma');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-express-server');
-	grunt.loadNpmTasks('grunt-concurrent');
-	grunt.loadNpmTasks('grunt-nodemon');
+	require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({
 		clean: {
@@ -40,7 +31,7 @@ module.exports = function(grunt) {
 					transform: ['debowerify'],
 					debug: true
 				},
-			src: ['test/**/*test.js'],
+			src: ['test/**/*.js'],
 			dest: 'test/angular-testbundle.js'
 			}
 		},
@@ -78,18 +69,28 @@ module.exports = function(grunt) {
 		  }
 		},
 
-		concurrent: {
-	      dev: {
-	        tasks: ['nodemon:dev', 'watch:express'],
-	        options: {
-	          logConcurrentOutput: true
-	        }
-	      }
+	    mochaTest: {
+	    	test: {
+	    		options: {
+	    			reporter: 'spec',
+	    		},
+	    	src: ['test/**/*.js']
+	    	}
 	    },
+
+		concurrent: {
+	     	start: {
+	        	tasks: ['mochaTest', 'nodemon:dev', 'watch:express'],
+        		options: {
+	          		logConcurrentOutput: true
+	        	}
+	      	}
+	    },
+
+	    
 	});
 
-	grunt.registerTask('build',['clean:dev','browserify:dev', 'copy:dev']);
-	grunt.registerTask('test', ['browserify:angulartest','karma:unit']);
-	grunt.registerTask('serve', ['concurrent:dev']);
-	grunt.registerTask('default',['build','serve']); //'test'
+	grunt.registerTask('build', ['clean:dev','browserify:dev', 'copy:dev']);
+	grunt.registerTask('test', ['browserify:angulartest','mochaTest']);
+	grunt.registerTask('default', ['build','concurrent:start']); 
 };
