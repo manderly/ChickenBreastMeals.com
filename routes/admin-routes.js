@@ -22,10 +22,13 @@ module.exports = function(app) {
 
 	//todo: add authorization
 	app.post(baseUrl, function(req, res) {
+		//res.send({"testMeal":"Test mealName"});
+		
 		var meal = new Meal(req.body);
 		meal.save(function(err, resMeal) {
 			if (err) return res.status(500).json(err);
-			return res.send(resMeal);
+			return res.send(resMeal); 
+		
 		});
 	});
 

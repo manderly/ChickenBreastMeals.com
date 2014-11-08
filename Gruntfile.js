@@ -54,18 +54,23 @@ module.exports = function(grunt) {
 
 		watch: {
 		  angulartest: {
-				files: ['app/js/**/*.js', 'app/index.html', 'app/views/**/*.html'],
-				tasks: ['browserify:angulartest'],
-				options: {
-			  	spawn:false
-				}
+			files: ['app/js/**/*.js', 'app/index.html', 'app/views/**/*.html'],
+			tasks: ['browserify:angulartest'],
+			options: {
+		  		spawn:false
+			}
 		  },
-		  express: {
-				files: ['app/js/**/*.js', 'models/*.*', 'app/index.html', 'app/views/**/*.html', 'app/css/*.css', 'app/views/**/*.html', 'server.js', 'models/*.js'],
-				tasks: ['build'],
-				options: {
-			  	spawn: false
-				}
+		express: {
+			files: ['app/js/**/*.js', 'models/*.*', 'app/index.html', 'app/views/**/*.html', 'app/css/*.css', 'app/views/**/*.html', 'server.js', 'models/*.js'],
+			tasks: ['build'],
+			options: {
+		  		spawn: false
+			}
+		  },
+		test: {
+		  	files: ['test/**/*.js'],
+		  	tasks: ['mochaTest'],
+		  	
 		  }
 		},
 
@@ -80,17 +85,13 @@ module.exports = function(grunt) {
 
 		concurrent: {
 	     	start: {
-	        	tasks: ['mochaTest', 'nodemon:dev', 'watch:express'],
+	        	tasks: ['nodemon:dev', 'watch:express','watch:test'],
         		options: {
 	          		logConcurrentOutput: true
 	        	}
 	      	}
 	    },
-
-	    
 	});
 
-	grunt.registerTask('build', ['clean:dev','browserify:dev', 'copy:dev']);
-	grunt.registerTask('test', ['browserify:angulartest','mochaTest']);
-	grunt.registerTask('default', ['build','concurrent:start']); 
+	grunt.registerTask('default', ['clean:dev','browserify:dev', 'copy:dev','concurrent:start']); 
 };
