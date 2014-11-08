@@ -26,7 +26,7 @@ var fakeMeal = {
   published: true,
   rating:5
 };
-
+var id;
 
 describe('Testing testing', function(){
   it('should pass a simple test: true = true', function() {
@@ -86,6 +86,7 @@ describe('REST API', function() {
     chai.request(baseUrl)
       .get('/db')
       .then(function(res) {
+        expect(res).to.have.status(200);
         expect(res).to.be.json;
         done();
       }, function(err) {
@@ -93,17 +94,49 @@ describe('REST API', function() {
       });
   });
 
-  it('should be able to create a meal', function(done) {
+  it('should create a meal', function(done) {
     chai.request(baseUrl)
       .post('/db')
       .send(fakeMeal)
       .then(function(res) {
+        expect(res).to.have.status(200);
         expect(res.body).to.have.property('name');
+        expect(res.body.name).to.eql('Fake Meal');
+        id = res.body._id;
         done();
       }, function(err) {
-        throw err;
+          throw err;
       });
   });
+
+  it('should get a meal', function(done) {
+    chai.request(baseUrl)
+        .get('/db')
+        .then(function(res) {
+            expect(res).to.have.status(200);
+            expect(Array.isArray(res.body)).to.be.true;
+            expect(res.body[0]).to.have.property('name');
+            done();//
+        }, function(err) {
+            throw err;
+        });
+  });
+
+  it('retrieves the test meal', function(done) {
+    chai.request(baseUrl)
+        .get('/db/' + id)
+        .then(function(res) {
+            expect(res).to.have.status(200);
+            console.log(id);
+            console.log(res.body._id);
+            //expect(res.body.name).to.eql('Fake Meal');
+            //expect(res.body._id).to.eql(id);
+            done();
+        }, function(err) {
+            throw err;
+        });
+  });
+
 ////
   //it should have meals count > 0
   //it should be able to create a meal, read a meal, edit a meal, delete a meal

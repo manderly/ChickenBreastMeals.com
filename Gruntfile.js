@@ -93,5 +93,6 @@ module.exports = function(grunt) {
 	    },
 	});
 
-	grunt.registerTask('default', ['clean:dev','browserify:dev', 'copy:dev','concurrent:start']); 
+	grunt.registerTask('build',['clean:dev','browserify:dev', 'copy:dev'])
+	grunt.registerTask('default', ['build','concurrent:start']); 
 };
