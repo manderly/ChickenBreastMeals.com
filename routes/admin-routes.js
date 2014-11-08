@@ -33,7 +33,7 @@ module.exports = function(app) {
 	});
 
 
-	app.get(baseUrl + '/:id', function(req, res) {
+	app.get(baseUrl + '/getOne/:id', function(req, res) {
 		Meal.findOne({'_id':req.params.id}, function(err, meal){
 			if(err) return res.status(500).json(err);
 			return res.json(meal)

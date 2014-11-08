@@ -116,7 +116,7 @@ describe('REST API', function() {
             expect(res).to.have.status(200);
             expect(Array.isArray(res.body)).to.be.true;
             expect(res.body[0]).to.have.property('name');
-            done();//
+            done();
         }, function(err) {
             throw err;
         });
@@ -124,13 +124,11 @@ describe('REST API', function() {
 
   it('retrieves the test meal', function(done) {
     chai.request(baseUrl)
-        .get('/db/' + id)
+        .get('/db/getOne/' + id)
         .then(function(res) {
             expect(res).to.have.status(200);
-            console.log(id);
-            console.log(res.body._id);
-            //expect(res.body.name).to.eql('Fake Meal');
-            //expect(res.body._id).to.eql(id);
+            expect(res.body.name).to.eql('Fake Meal');
+            expect(res.body._id).to.eql(id);
             done();
         }, function(err) {
             throw err;
