@@ -42,9 +42,9 @@ module.exports = function(app) {
 
 	app.put(baseUrl + '/:id', function(req, res) {
 		var meal = req.body;
-		delete meal._id;
+		//delete meal._id;
 		Meal.findOneAndUpdate({'_id': req.params.id}, meal, function(err, resMeal) {
-			if(err) return res.status(500).json(err);
+			if (err) return res.status(500).json(err);
 			return res.json(resMeal)
 		});
 	});

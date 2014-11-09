@@ -1,10 +1,11 @@
 require('es6-shim');
 var chai = require('chai');
-var chaihttp = require('chai-http');
-chai.use(chaihttp);
+var request = require('request');
+
 var expect = chai.expect;
 chai.request.addPromises(global.Promise);
 
+var id;
 var fakeMeal = {
   name:'Fake Meal',
   url:'fake-meal-url',
@@ -26,7 +27,7 @@ var fakeMeal = {
   published: true,
   rating:5
 };
-var id;
+
 
 describe('Testing testing', function(){
   it('should pass a simple test: true = true', function() {
@@ -38,107 +39,92 @@ describe('REST API', function() {
   this.timeout(3000);
   var baseUrl = 'http://localhost:3000';
 
-  it('should get 200 on connect', function(done) {
-    chai.request(baseUrl)
-      .get('/')
-      .then(function(res) {
-        expect(res).to.have.status(200);
-        done();
-      }, function(err){
-        throw err;
-      });
-  });
-
-  it('should have a tools page', function(done) {
-    chai.request(baseUrl)
-      .get('/#/tools')
-      .then(function(res) {
-        expect(res).to.have.status(200);
-        done();
-      }, function(err) {
-        throw err;
-      });
-  });
-
-  it('should have an about page', function(done) {
-    chai.request(baseUrl)
-      .get('/#/about')
-      .then(function(res) {
-        expect(res).to.have.status(200);
-        done();
-      }, function(err) {
-        throw err;
-      });
-  });
-
-  it('should have an admin page', function(done) {
-    chai.request(baseUrl)
-      .get('/#/admin')
-      .then(function(res) {
-        expect(res).to.have.status(200);
-        done();
-      }, function(err) {
-        throw err;
-      });
-  });
-
-  it('should have meals data as json', function(done) {
-    chai.request(baseUrl)
-      .get('/db')
-      .then(function(res) {
-        expect(res).to.have.status(200);
-        expect(res).to.be.json;
-        done();
-      }, function(err) {
-        throw err;
-      });
-  });
-
-  it('should create a meal', function(done) {
-    chai.request(baseUrl)
-      .post('/db')
-      .send(fakeMeal)
-      .then(function(res) {
-        expect(res).to.have.status(200);
-        expect(res.body).to.have.property('name');
-        expect(res.body.name).to.eql('Fake Meal');
-        id = res.body._id;
-        done();
-      }, function(err) {
-          throw err;
-      });
-  });
-
-  it('should get a meal', function(done) {
-    chai.request(baseUrl)
-        .get('/db')
-        .then(function(res) {
-            expect(res).to.have.status(200);
-            expect(Array.isArray(res.body)).to.be.true;
-            expect(res.body[0]).to.have.property('name');
+    it('should get 200 on connect', function (done) {
+        request.get(baseUrl, function(err, res, body) {
+            expect(res.statusCode).to.equal(200);
             done();
-        }, function(err) {
-            throw err;
         });
-  });
+    });
 
-  it('retrieves the test meal', function(done) {
-    chai.request(baseUrl)
-        .get('/db/getOne/' + id)
-        .then(function(res) {
-            expect(res).to.have.status(200);
-            expect(res.body.name).to.eql('Fake Meal');
-            expect(res.body._id).to.eql(id);
+    it('should have a tools page', function (done) {
+        request.get(baseUrl + '/#/tools', function(err,res,body) {
+            expect(res.statusCode).to.equal(200);
             done();
-        }, function(err) {
-            throw err;
         });
-  });
+    });
 
-////
-  //it should have meals count > 0
-  //it should be able to create a meal, read a meal, edit a meal, delete a meal
-  //a meal should have these parts: name, description, etc
-  //an individual meal can be viewed on the recipe page
+    it('should have an about page', function (done) {
+        request.get(baseUrl + '/#/about', function(err,res,body) {
+            expect(res.statusCode).to.equal(200);
+            done();
+        });
+    });
 
+    it('should have an admin page', function (done) {
+        request.get(baseUrl + '/#/admin', function(err,res,body) {
+            expect(res.statusCode).to.equal(200);
+            done();
+        });
+    });
+
+    it('should have meals data as json', function (done) {
+        request.get(baseUrl + '/db', function(err,res,body) {
+            expect(res.statusCode).to.equal(200);
+            expect(res).to.be.json;
+            done();
+        });
+    });
+
+    it('should POST a meal', function (done) {
+        request.post({url:baseUrl + '/db', json:fakeMeal}, function(err,res,body) {
+            expect(res.statusCode).to.equal(200);
+            expect(body).to.have.property('name');
+            expect(body.name).to.eql('Fake Meal');
+            id = body._id;
+            done();
+        });
+    });
+
+    it('should GET a meal', function (done) {
+        request.get({url:baseUrl + '/db', json:true}, function(err,res,body) {
+            expect(res.statusCode).to.equal(200);
+            expect(Array.isArray(body)).to.be.true;
+            expect(body[0]).to.have.property('name');
+            done(); 
+        });
+    });
+
+    it('should GET the test meal', function (done) {
+        request.get({url:baseUrl + '/db/getOne/' + id, json:true}, function(err,res,body) {
+            expect(res.statusCode).to.equal(200);
+            expect(body).to.have.property('name');
+            expect(body.name).to.eql('Fake Meal');
+            expect(body._id).to.eql(id);
+            done();
+        });
+    });
+
+    it('should PUT a name edit to the test meal', function (done) {
+        request.put({url:baseUrl + '/db/' + id, json:{'name':'Fake Meal Updated'}}, function(err,res,body) {
+            expect(res.statusCode).to.equal(200);
+            expect(body.name).to.eql('Fake Meal Updated');
+            expect(body._id).to.eql(id);
+            done();
+        });
+    });
+
+    it('should DELETE the test meal', function (done) {
+        request.del({url:baseUrl + '/db/' + id, json:true}, function(err,res,body) {
+            expect(res.statusCode).to.equal(200);
+            done();
+        });
+    });
+
+    it('should confirm test meal was deleted', function (done) {
+        request.get({url:baseUrl + '/db/getOne/' + id, json:true}, function(err,res,body) {
+            expect(res.statusCode).to.equal(200);
+            expect(body).to.equal(null);
+            done();
+        });
+    });
 });
