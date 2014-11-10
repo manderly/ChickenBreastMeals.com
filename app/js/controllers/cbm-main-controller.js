@@ -6,9 +6,6 @@ module.exports = function(app) {
 	$scope.siteName = "Chicken Breast Meals.com";
 	$scope.orderProp = 'cooktime';
 
-	//filter is filled with everything that's listed in mealOptions 
-	//$scope.filter = {};
-
 	$scope.getOptionsFor = function(propName) {
 		return ($scope.meals || []).map(function (meal) {
 			return meal[propName];
@@ -20,16 +17,18 @@ module.exports = function(app) {
 	//viewing and filtering meals by properties
 	//thanks: http://jsfiddle.net/ExpertSystem/wYfs4/
 	$scope.filterMeals = function(meal) {
-	    var matches = true;
-	    for (var name in $scope.filter) {
-	    	if ($scope.filter[name] && !meal.mealOptions[name]) {
-	    		matches = false;
-	    		break;
-	    	}
-	    }
-	    return matches;
+		//check if each (published) meal contains any mealOptions that exist in $scope.filter object
+		if (meal.published) {
+		    var matches = true;
+		    for (var name in $scope.filter) {
+		    	if ($scope.filter[name] && !meal.mealOptions[name]) {
+		    		matches = false;
+		    		break;
+		    	}
+		    }
+		    return matches;
+		}
 	};
-
 
 	$scope.viewRecipe = function(meal) {
 		console.log("Selecting this meal in meal-list-controller.js: " + meal);

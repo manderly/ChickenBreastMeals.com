@@ -3,6 +3,13 @@
     Meal database ID:</br>
     {{formMeal._id}}
 
+    <h2>Published</h2>
+        <input  type="checkbox" 
+            name="publishedBoolean" 
+            value="published" 
+            data-ng-model="formMeal.published">
+            Published<br>
+            
     <h2>Recipe Photo</h2>
         
         <form name="editMealForm">
@@ -149,7 +156,12 @@
             </li>
 
         </ol>
+
+
         <br><br><br><br><br><br><br><br>
     </div>
+
+    
+
 </form>
 </div>

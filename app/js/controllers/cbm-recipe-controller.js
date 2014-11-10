@@ -8,7 +8,6 @@ module.exports = function(app) {
 			return parseInt(meal.cookTime) + parseInt(meal.prepTime);
 		};
 
-		//get, create, edit, delete
 		$scope.getRecipe = function() {
 			$http.get('/db/' + $scope.params.url)
 			.success(function(data) {
