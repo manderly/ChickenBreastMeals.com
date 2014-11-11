@@ -1,0 +1,167 @@
+<!--meal details on right-->
+<div class="cms-recipeEdit">
+    Meal database ID:</br>
+    {{formMeal._id}}
+
+    <h2>Published</h2>
+        <input  type="checkbox" 
+            name="publishedBoolean" 
+            value="published" 
+            data-ng-model="formMeal.published">
+            Published<br>
+            
+    <h2>Recipe Photo</h2>
+        
+        <form name="editMealForm">
+            <div class="admin-wide-entry-bar">
+
+                <input  type="file" 
+                        name="thumbnail"
+                        data-ng-file-select="onFileSelect($files)"
+                        data-ng-change="updatePreviewImage()"
+                        data-ng-model="formMeal.image">
+                  
+                    Preview:
+                    <i ng-hide="previewImage">Choose an image</i>
+                    <img class="previewImage" ng-show="previewImage" ng-src="{{previewImage}}">
+
+            <!-- if an image exists on this meal, offer trash can icon -->
+            <a href="" ng-show="formMeal.image" ng-click="formMeal.image = ''"><img src="/assets/bin.png"/></a>
+            
+            </div>
+    
+    <h2>Recipe Name</h2>
+        <input  type="text" 
+                required 
+                data-ng-model="formMeal.name"
+                data-ng-blur="createURL(formMeal.name)" 
+                placeholder="Give your meal a unique name."
+                class="admin-input-oneline">
+
+    <h2>URL</h2>
+        {{formMeal.url}}
+
+    <h2>Description</h2>
+        <textarea  type="text" 
+                required 
+                data-ng-model="formMeal.description" 
+                placeholder="Tell us about this recipe, where it came from, why it's special. Be creative!"
+                class="admin-input-paragraph"></textarea>
+
+    <h2>Difficulty Level</h2>
+        <select required 
+                data-ng-model="formMeal.skillLevel" 
+                data-ng-options="difficultyLevel for difficultyLevel in difficultyLevels">
+                </select>
+
+    <h2>Dietary Options</h2>
+        <div class="cms-checkboxes">
+            <input  type="checkbox" 
+                    name="mealOptions" 
+                    value="noGluten" 
+                    data-ng-model="formMeal.mealOptions['Gluten Free']">
+                    Gluten Free<br>
+
+            <input  type="checkbox" 
+                    name="mealOptions" 
+                    value="noDairy" 
+                    data-ng-model="formMeal.mealOptions['Dairy Free']">
+                    Dairy Free<br>
+
+            <input  type="checkbox" 
+                    name="mealOptions" 
+                    value="lowCarb" 
+                    data-ng-model="formMeal.mealOptions['Low Carb']">
+                    Low Carb<br>
+
+            <input  type="checkbox" 
+                    name="mealOptions" 
+                    value="lowFat" 
+                    data-ng-model="formMeal.mealOptions['Low Fat']">
+                    Low Fat<br>
+
+            <input  type="checkbox" 
+                    name="mealOptions" 
+                    value="paleo" 
+                    data-ng-model="formMeal.mealOptions['Paleo']">
+                    Paleo<br>
+
+            <input  type="checkbox" 
+                    name="mealOptions" 
+                    value="quick" 
+                    data-ng-model="formMeal.mealOptions['Quick']">
+                    Quick<br>
+
+        </div>
+
+    <h2>Ingredients</h2>
+        <ol class="ingredients-list">
+            <!-- loop through and display existing ingredients -->
+            <li data-ng-repeat="ingredient in formMeal.ingredients track by $index">
+                <textarea   name="ingredientLines"
+                            type="text"
+                            data-ng-model="formMeal.ingredients[$index].name"
+                            placeholder="Add ingredient"
+                            data-ng-change="changeIngredient($index)"
+                            ></textarea>
+                <!-- trash can button -->
+                <a href=""  data-ng-show="ingredient" 
+                            data-ng-click="formMeal.ingredients.splice($index,1)">
+                            <img src="/assets/delete.png"/></a>
+            </li>
+        </ol>
+
+
+    <h2>Recipe Steps</h2>
+    <div class="cms-inputs">
+        <ul>
+            <li><b>PREP TIME</b>
+                <input  
+                        required
+                        data-ng-model="formMeal.prepTime"
+                        class="cms-input-short">
+            </li>
+
+            <li><b>COOK TIME</b>
+                <input  required
+                        data-ng-model="formMeal.cookTime"
+                        class="cms-input-short">
+            </li>
+
+            <li><b>YIELD</b>
+                <input  required
+                        data-ng-model="formMeal.yield"
+                        class="cms-input-short">
+            </li>
+
+            <li><b>PLURAL</b>
+                <input  required
+                        data-ng-model="formMeal.plural" 
+                        placeholder='"Cookies"'
+                        class="cms-input-plural">
+            </li>
+        </ul>
+    </div>
+
+        <ol>
+            <!-- loop through and display existing step -->
+            <li data-ng-repeat="step in formMeal.steps track by $index">
+                
+                <textarea   data-ng-model="formMeal.steps[$index].name" 
+                            class="admin-input-paragraph"
+                            placeholder="Add a preparation step"
+                            data-ng-change="changePreparationStep($index)"></textarea>
+
+                <a href="" data-ng-click="formMeal.steps.splice($index,1)"><img src="/assets/bin.png"/></a>
+            </li>
+
+        </ol>
+
+
+        <br><br><br><br><br><br><br><br>
+    </div>
+
+    
+
+</form>
+</div>

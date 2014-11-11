@@ -1,0 +1,48 @@
+<div data-ng-controller="cbmAdminController">
+    <header>
+        <div id="admin-bar-left">
+            <h1>Edit Meal Recipe Data</h1>
+        </div>
+    
+        <div id="admin-bar-right">
+            <button data-ng-disabled="editMealForm.$invalid || isUnchanged(formMeal)" 
+                    data-ng-click="saveFormContents(formMeal)"
+                    class="save-button">
+                    SAVE TO DATABASE
+            </button>
+        </div>
+    </header>
+
+    <!-- meal navigator on left -->
+    <div class="cms-wrapper">
+        <div class="cms-recipeTitleList">
+            <p>Total meals in data: {{meals.length}}</p>
+
+            <a href="" 
+                data-ng-click="createNewMeal()"
+                id="new-meal-button">
+                [Create new meal]</a>
+            </br>
+            <ul>
+                <li
+                    data-ng-repeat="meal in meals | filter: query | orderBy: alphabetical"
+                    data-ng-click="adminSelectMealViewDetails(meal)"
+                    data-ng-class="{selectedMealCMS:meal.selected}"
+                    class="cms-meal-list-item">
+                    <a href="">{{meal.name}}</a>
+                    <a href="" data-ng-click="deleteMeal(meal)">
+                    <span id="delete-button">[Delete]</span></a>
+                </li>
+                
+            </ul>
+        </div><!-- closes cms-recipeTitleList"-->
+
+
+        <div class="cms-recipeEditContainer">
+            
+            <div data-admin-edit-meal-form></div><!-- custom directive holds the new meal form -->
+        
+        </div><!-- closes cms-recipeEditContainer-->
+    </div><!--closes cms-wrapper-->
+</div>
+</html>

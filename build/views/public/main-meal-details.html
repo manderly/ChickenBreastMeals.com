@@ -1,0 +1,38 @@
+<!-- when no details are being viewed, show the site logo -->
+<div class="mealDetailsEmpty" data-ng-hide="mealSelected">
+    « Select a recipe from the list at left.
+    <img src="./images/site/cbm_logo_large.png">
+</div>
+
+<div class="mealDetailsContainerWrapper">
+<!-- when viewing meal details, show details -->
+<div class="mealDetailsContents" data-ng-show="mealSelected">
+    <a href="" ng-click="closePopup()">[ Close ]</a>
+    <img data-ng-src="{{mealDetail.image}}" class="meal-hero-img">
+    <h1>{{mealDetail.name}}</h1>
+        <p class="prepTimeData">
+        <span id="minsData"> READY IN: </span>
+        <span id="prepDataHighlight"><b>{{mealDetail.prepTime + mealDetail.cookTime}} mins</b></span>
+        <br>
+        PREP: {{mealDetail.prepTime}} mins<br>
+        COOK: {{mealDetail.cookTime}} mins
+        </p>
+
+    <p class="mealDescription">{{mealDetail.description}}</p>
+
+    <h2>{{mealDetail.ingredients.length}} Ingredients</h2>
+        <ul class="mealIngredientsList">
+        <li data-ng-repeat="ingredient in mealDetail.ingredients" class="mealIngredient">
+        <input type="checkbox"/> {{ingredient.name}}
+        </li>
+        </ul>
+
+    <h2>Step by Step Instructions</h2>
+        <ol class="mealInstructionsList">
+        <li data-ng-repeat="step in mealDetail.steps">
+            {{step.name}}
+        </li>
+        </ol>
+
+</div><!--closes mealDetailsContents-->
+</div>

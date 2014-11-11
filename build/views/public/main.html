@@ -1,0 +1,31 @@
+<div data-ng-controller="cbmMainController" data-ng-init="filter={}">
+    <div class="hero-wrapper">
+        <div class="focus-wrapper">
+            <div class="hero-tagline">Just chicken breast. Seriously.</div>
+            <input data-ng-model="query" class="searchInput" placeholder="Search by ingredient or recipe name"/>
+        </div>
+        
+        <img src="images/site/header_image.jpg" class="hero-image">
+    </div>
+
+
+    <div class="userSortSettings">
+        <div class="filters">
+            <ul class="filterNav">
+                <b>Show only:</b>
+                <!-- create properties list using ng-repeat -->
+                <li data-ng-repeat="(name, bool) in meals[meals.length -1].mealOptions">
+                    <input type="checkbox" data-ng-model="filter[name]"/>
+                    {{name}}
+                </li>
+            </ul>
+        </div>
+    </div><!--closes userSortSettings-->
+
+    <div class="wrapper">
+        <!-- grid or list on left -->
+        <div class="mealsSnippetContainer" data-main-meal-list></div>
+        
+    </div>
+
+</div>

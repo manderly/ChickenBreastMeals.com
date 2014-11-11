@@ -1,0 +1,88 @@
+<!-- when no details are being viewed, show the site logo -->
+
+<!-- when viewing meal details, show details -->
+<div class="recipe-wrapper">
+
+    <!-- Title and description -->
+    <div class="recipe-name-and-description">
+
+        <div class="recipe-description-text half-width">
+            <p>{{recipe.description}}</p>
+        </div>
+
+
+        <div class="recipe-name">
+            <h1>{{recipe.name}}</h1>
+        </div>
+
+        
+    </div>
+
+    <!-- Side by side recipe photo and high level stats -->
+    <div class="recipe-detail-container">
+
+            <div class="recipe-image-container">
+                 <img data-ng-src="{{recipe.image}}">
+            </div>
+
+            <div class="recipe-stats-container">
+                <ul class="stats-tabs">
+
+                    <li id="stat-prep-time">
+                            <div class="recipe-stat">
+                                <h3>PREP TIME</h3>
+                                <h2>{{recipe.prepTime}} MINUTES</h2>
+                            </div>
+                    </li>
+
+                    <li id="stat-cook-time">
+                            <div class="recipe-stat">
+                                <h3>COOKING TIME</h3>
+                                <h2>{{recipe.cookTime}} MINUTES</h2>
+                            </div>
+                    </li>
+
+                    <li id="stat-skill-level">
+                            <div class="recipe-stat">
+                                <h3>SKILL LEVEL</h3>
+                                <h2>{{recipe.skillLevel}}</h2>
+                            </div>
+                    </li>
+
+                    <li id="stat-yield">
+                            <div class="recipe-stat">
+                                <h3>MAKES</h3>
+                                <h2>{{recipe.yield}} {{recipe.plural}}</h2>
+                            </div>
+                    </li>
+                    
+                </ul>
+            </div>
+    </div>
+
+    <p class="prepTimeData">
+    <span id="ready-in"> READY IN: </span>
+    <span id="prepDataHighlight"><b>{{totalTime}} mins</b></span>
+    <br>
+    PREP: {{recipe.prepTime}} mins<br>
+    COOK: {{recipe.cookTime}} mins
+    </p>
+
+    <div class="ingredients-container">
+    <h2 class="in-title">INGREDIENTS</h2>
+        <ul class="mealIngredientsList">
+        <li data-ng-repeat="ingredient in recipe.ingredients" class="mealIngredient">
+        {{ingredient.name}}
+        </li>
+        </ul>
+    </div>
+
+    <div class="instructions-container">
+    <h2 class="in-title">INSTRUCTIONS</h2>
+        <ol class="mealInstructionsList">
+        <li data-ng-repeat="step in recipe.steps">
+            {{step.name}}
+        </li>
+        </ol>
+    </div>
+</div>

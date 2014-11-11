@@ -4,4 +4,3 @@ node_modules/
 .grunt
 app/bower_components
 bower_components
-build
