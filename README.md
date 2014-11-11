@@ -1,5 +1,6 @@
 ChickenBreastMeals.com
 ======================
+[![Build Status](https://travis-ci.org/MJGrant/ChickenBreastMeals.com.svg?branch=master)](https://travis-ci.org/MJGrant/ChickenBreastMeals.com)
 
 Chicken Breast Meals is a recipe website I designed and developed using AngularJS, Node, Express, MongoDB, and other web technologies. 
 
