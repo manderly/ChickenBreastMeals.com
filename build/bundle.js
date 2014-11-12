@@ -31,7 +31,7 @@ require('./directives/ng-file-select')(cbmApp);
 require('./routes/cbm-routes')(cbmApp);
 
 //cbmApp.constant('API_URL', 'http://localhost:3000');
-cbmApp.constant('API_URL', '/');
+//cbmApp.constant('API_URL', '/');
 
 
 },{"./..\\..\\bower_components\\angular-route\\angular-route.js":16,"./..\\..\\bower_components\\angular\\angular":17,"./controllers/cbm-admin-controller":2,"./controllers/cbm-login-controller":3,"./controllers/cbm-main-controller":4,"./controllers/cbm-recipe-controller":5,"./directives/admin-edit-meal-form":6,"./directives/main-meal-details":7,"./directives/main-meal-list":8,"./directives/ng-file-select":9,"./routes/cbm-routes":10,"./services/auth-interceptor":11,"./services/auth-token-factory":12,"./services/file-reader":13,"./services/meals-server":14,"./services/user-factory":15}],2:[function(require,module,exports){
@@ -558,7 +558,7 @@ module.exports = function(app) {
 'use strict';
 
 module.exports = function(app) {
-	app.factory('userFactory', function($http, API_URL, authTokenFactory, $q) {
+	app.factory('userFactory', function($http, authTokenFactory, $q) {
 
 	    return {
 	        login: login,
@@ -567,7 +567,7 @@ module.exports = function(app) {
 	    };
 
 	    function login(username, password) {
-	        return $http.post(API_URL + '/login', {
+	        return $http.post('/login', {
 	            username: username,
 	            password: password
 	        }).then(function success(response) {
@@ -582,7 +582,7 @@ module.exports = function(app) {
 
 	    function getUser() {
 	        if (authTokenFactory.getToken()) {
-	            return $http.get(API_URL + '/admin');
+	            return $http.get('/admin');
 	        } else {
 	            return $q.reject({ data: 'client has no auth token' });
 	        }
