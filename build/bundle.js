@@ -4,69 +4,19 @@
 require("./..\\..\\bower_components\\angular\\angular");
 require("./..\\..\\bower_components\\angular-route\\angular-route.js");
 
-/* todo: move this to its own file */
-var fileReader = function ($q, $log) {
-  var onLoad = function(reader, deferred, scope) {
-    return function () {
-      scope.$apply(function () {
-        deferred.resolve(reader.result);
-      });
-    };
-  };
-
-  var onError = function (reader, deferred, scope) {
-    return function () {
-      scope.$apply(function () {
-        deferred.reject(reader.result);
-      });
-    };
-  };
-
-  var onProgress = function(reader, scope) {
-    return function (event) {
-      scope.$broadcast("fileProgress",
-        {
-          total: event.total,
-          loaded: event.loaded
-        });
-    };
-  };
-
-  var getReader = function(deferred, scope) {
-    var reader = new FileReader();
-    reader.onload = onLoad(reader, deferred, scope);
-    reader.onerror = onError(reader, deferred, scope);
-    reader.onprogress = onProgress(reader, scope);
-    return reader;
-  };
-
-  var readAsDataURL = function (file, scope) {
-    var deferred = $q.defer();
-    var reader = getReader(deferred, scope);
-    reader.readAsDataURL(file);
-
-    return deferred.promise;
-  };
-
-  return {
-    readAsDataUrl: readAsDataURL
-  };
-};
-
 var cbmApp = angular.module('cbmApp',['ngRoute'], function config($httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
 });
-
-//filters
-
 
 //controllers
 require('./controllers/cbm-main-controller')(cbmApp);
 require('./controllers/cbm-admin-controller')(cbmApp);
 require('./controllers/cbm-recipe-controller')(cbmApp);
 require('./controllers/cbm-login-controller')(cbmApp);
+
 //services
 require('./services/meals-server')(cbmApp);
+require('./services/file-reader')(cbmApp);
 
 //directives
 require('./directives/admin-edit-meal-form')(cbmApp);
@@ -77,11 +27,14 @@ require('./directives/ng-file-select')(cbmApp);
 //routes
 require('./routes/cbm-routes')(cbmApp);
 
-//factories
 
 cbmApp.constant('API_URL', 'http://localhost:3000');
 
-cbmApp.factory("fileReader", ["$q", "$log", fileReader]);
+//factories 
+
+//removal candidates
+//cbmApp.factory("fileReader", ["$q", "$log"]);
+//cbmApp.factory("fileReader", ["$q", "$log", fileReader]);
 
 cbmApp.factory('UserFactory', function UserFactory($http, API_URL, AuthTokenFactory, $q) {
     return {
@@ -151,15 +104,15 @@ cbmApp.factory('AuthInterceptor', function AuthInterceptor(AuthTokenFactory) {
 
 });
 
-},{"./..\\..\\bower_components\\angular-route\\angular-route.js":13,"./..\\..\\bower_components\\angular\\angular":14,"./controllers/cbm-admin-controller":2,"./controllers/cbm-login-controller":3,"./controllers/cbm-main-controller":4,"./controllers/cbm-recipe-controller":5,"./directives/admin-edit-meal-form":7,"./directives/main-meal-details":8,"./directives/main-meal-list":9,"./directives/ng-file-select":10,"./routes/cbm-routes":11,"./services/meals-server":12}],2:[function(require,module,exports){
+},{"./..\\..\\bower_components\\angular-route\\angular-route.js":14,"./..\\..\\bower_components\\angular\\angular":15,"./controllers/cbm-admin-controller":2,"./controllers/cbm-login-controller":3,"./controllers/cbm-main-controller":4,"./controllers/cbm-recipe-controller":5,"./directives/admin-edit-meal-form":7,"./directives/main-meal-details":8,"./directives/main-meal-list":9,"./directives/ng-file-select":10,"./routes/cbm-routes":11,"./services/file-reader":12,"./services/meals-server":13}],2:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
 
-	app.controller('cbmAdminController', function($scope, mealsServer, $http, fileReader) {
+	app.controller('cbmAdminController', function($scope, $http, mealsServer, fileReader) {
+		//removal candidate
 		$scope.dirtyIngredient = false;
 
-		//Uses meals-server.js to get all the existing meal data
 		$scope.getAllMeals = function() {
 			mealsServer.index()
 			.success(function(data){
@@ -516,7 +469,7 @@ module.exports = function(app) {
 module.exports = function(app) {
 	app.config(function($routeProvider, $locationProvider) {
 		$routeProvider
-			//default page
+
 			.when('/', {
 				templateUrl: '/views/public/main.html',
 				controller: 'cbmMainController'
@@ -540,22 +493,6 @@ module.exports = function(app) {
 			.when('/admin', {
 				templateUrl: '/views/admin/admin.html',
 				controller: 'cbmAdminController',
-				resolve: {
-					auth: ["$q","UserFactory", function($q, UserFactory) {
-						var userInfo = UserFactory.getUser();
-
-						if (userInfo) {
-							console.log("user info exists");
-							console.log(userInfo);
-							redirectTo:'/admin'
-							return $q.when(userInfo);
-						} else {
-							console.log("user info rejected");
-							redirectTo:'/login'
-							return $q.reject({ authenticated: false });
-						}
-					}]
-				}
 			})
 
 			.when('/login', {
@@ -570,7 +507,6 @@ module.exports = function(app) {
 	.run(function($rootScope, $location) {
 		$rootScope.$on("$routeChangeStart", function(event,next,current) {
 			if ($rootScope.loggedInUser == null) {
-				console.log("user is not logged in")
 				if (next.templateUrl === '/views/admin/admin.html') {
 					$location.path('/login');
 				}
@@ -579,6 +515,63 @@ module.exports = function(app) {
 	});
 };
 },{}],12:[function(require,module,exports){
+'use strict';
+
+module.exports = function(app) {
+	app.factory('fileReader', function($http,$q,$log) {
+
+		//File reading methods
+		//var fileReader = function ($q, $log) {
+		  	var onLoad = function(reader, deferred, scope) {
+		    	return function () {
+		      		scope.$apply(function () {
+		        		deferred.resolve(reader.result);
+		      		});
+		    	};
+		  	};
+
+		  	var onError = function (reader, deferred, scope) {
+			    return function () {
+	      			scope.$apply(function () {
+			        	deferred.reject(reader.result);
+			      	});
+			    };
+		  	};
+
+	  		var onProgress = function(reader, scope) {
+			    return function (event) {
+			      	scope.$broadcast("fileProgress",
+			        {
+			          total: event.total,
+			          loaded: event.loaded
+			        });
+			    };
+		  	};
+
+		  	var getReader = function(deferred, scope) {
+		    	var reader = new FileReader();
+			    reader.onload = onLoad(reader, deferred, scope);
+			    reader.onerror = onError(reader, deferred, scope);
+			    reader.onprogress = onProgress(reader, scope);
+			    return reader;
+		  	};
+
+		  	var readAsDataURL = function (file, scope) {
+			    var deferred = $q.defer();
+			    var reader = getReader(deferred, scope);
+			    reader.readAsDataURL(file);
+
+			    return deferred.promise;
+		  	};
+
+		  	return {
+			    readAsDataUrl: readAsDataURL
+		  	};
+		//};
+	});
+};
+
+},{}],13:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -638,7 +631,7 @@ module.exports = function(app) {
 
 	});
 };
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * @license AngularJS v1.2.26
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -1561,7 +1554,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /**
  * @license AngularJS v1.2.26
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -23592,4 +23585,4 @@ var styleDirective = valueFn({
 })(window, document);
 
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>');
-},{}]},{},[1,2,3,4,5,6,7,8,9,10,11,12]);
+},{}]},{},[1,2,3,4,5,6,7,8,9,10,11,12,13]);

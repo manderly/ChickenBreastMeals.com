@@ -23,16 +23,6 @@ app.use(express.static(__dirname + '/build'));
 app.use(bodyparser.json({limit:'50mb'}));
 app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
 
-//app.use(expressJwt({ secret: jwtSecret }).unless({ path: [ '/login' ]}));
-
-/*
-app.get('/login',expressJwt({secret:jwtSecret}),
-	function(req,res) {
-		if(!req.user.admin) return res.send(401);
-		res.send(200);
-});
-*/
-
 require('./routes/admin-routes')(app);
 
 var server = http.createServer(app);
@@ -45,10 +35,6 @@ app.post('/login', authenticate, function (req, res) {
     token: token,
     user: user
   });
-});
-
-app.get('/me', function (req, res) {
-  res.send(req.user);
 });
 
 var port = process.env.PORT || 3000;
