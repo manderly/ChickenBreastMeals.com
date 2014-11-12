@@ -21,6 +21,7 @@
   "devDependencies": {
     "chai": "^1.9.2",
     "chai-http": "^1.0.0",
+    "cors": "^2.5.2",
     "debowerify": "^0.8.1",
     "es6-shim": "^0.20.2",
     "faker": "^2.0.1",
