@@ -5,7 +5,7 @@ require("./..\\..\\bower_components\\angular\\angular");
 require("./..\\..\\bower_components\\angular-route\\angular-route.js");
 
 var cbmApp = angular.module('cbmApp',['ngRoute'], function config($httpProvider) {
-    $httpProvider.interceptors.push('AuthInterceptor');
+    $httpProvider.interceptors.push('authInterceptor');
 });
 
 //controllers
@@ -17,6 +17,9 @@ require('./controllers/cbm-login-controller')(cbmApp);
 //services
 require('./services/meals-server')(cbmApp);
 require('./services/file-reader')(cbmApp);
+require('./services/user-factory')(cbmApp);
+require('./services/auth-interceptor')(cbmApp);
+require('./services/auth-token-factory')(cbmApp);
 
 //directives
 require('./directives/admin-edit-meal-form')(cbmApp);
@@ -29,78 +32,9 @@ require('./routes/cbm-routes')(cbmApp);
 
 cbmApp.constant('API_URL', 'http://localhost:3000');
 
-//factories 
-cbmApp.factory('UserFactory', function UserFactory($http, API_URL, AuthTokenFactory, $q) {
-    return {
-        login: login,
-        logout: logout,
-        getUser: getUser
-    };
-
-    function login(username, password) {
-        return $http.post(API_URL + '/login', {
-            username: username,
-            password: password
-        }).then(function success(response) {
-            AuthTokenFactory.setToken(response.data.token);
-        return response;
-        });
-    }
-
-    function logout() {
-        AuthTokenFactory.setToken();
-    }
-
-    function getUser() {
-        if (AuthTokenFactory.getToken()) {
-            return $http.get(API_URL + '/me');
-        } else {
-            return $q.reject({ data: 'client has no auth token' });
-        }
-    }
-});
 
 
-cbmApp.factory('AuthTokenFactory', function AuthTokenFactory($window) {
-    var store = $window.localStorage;
-    var key = 'auth-token';
-
-    return {
-        getToken: getToken,
-        setToken: setToken
-    };
-
-    function getToken() {
-        return store.getItem(key);
-    }
-
-    function setToken(token) {
-        if (token) {
-            store.setItem(key, token);
-        } else {
-            store.removeItem(key);
-        }
-    }
-});
-
-
-cbmApp.factory('AuthInterceptor', function AuthInterceptor(AuthTokenFactory) {
-    return {
-        request: addToken
-    };
-
-    function addToken(config) {
-        var token = AuthTokenFactory.getToken();
-        if (token) {
-            config.headers = config.headers || {};
-            config.headers.Authorization = 'Bearer ' + token;
-        }
-        return config;
-    }
-
-});
-
-},{"./..\\..\\bower_components\\angular-route\\angular-route.js":13,"./..\\..\\bower_components\\angular\\angular":14,"./controllers/cbm-admin-controller":2,"./controllers/cbm-login-controller":3,"./controllers/cbm-main-controller":4,"./controllers/cbm-recipe-controller":5,"./directives/admin-edit-meal-form":6,"./directives/main-meal-details":7,"./directives/main-meal-list":8,"./directives/ng-file-select":9,"./routes/cbm-routes":10,"./services/file-reader":11,"./services/meals-server":12}],2:[function(require,module,exports){
+},{"./..\\..\\bower_components\\angular-route\\angular-route.js":16,"./..\\..\\bower_components\\angular\\angular":17,"./controllers/cbm-admin-controller":2,"./controllers/cbm-login-controller":3,"./controllers/cbm-main-controller":4,"./controllers/cbm-recipe-controller":5,"./directives/admin-edit-meal-form":6,"./directives/main-meal-details":7,"./directives/main-meal-list":8,"./directives/ng-file-select":9,"./routes/cbm-routes":10,"./services/auth-interceptor":11,"./services/auth-token-factory":12,"./services/file-reader":13,"./services/meals-server":14,"./services/user-factory":15}],2:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -250,23 +184,23 @@ module.exports = function(app) {
 'use strict';
 
 module.exports = function(app) {
-	app.controller('cbmLoginController', function($scope, $location, $rootScope, UserFactory) {
+	app.controller('cbmLoginController', function($scope, $location, $rootScope, userFactory) {
 
-		UserFactory.getUser().then(function success(response) {
+		userFactory.getUser().then(function success(response) {
       		$scope.user = response.data;
     	});
 
 		$scope.login = function(username, password) {
 			$rootScope.loggedInUser = true; 
 
-	    	UserFactory.login(username, password).then(function success(response) {
+	    	userFactory.login(username, password).then(function success(response) {
 	    		$scope.user = response.data.user;
 	    		$location.path('/admin');
 	      		}, $scope.handleError);
 	    }
 
 	    $scope.logout = function() {
-	      	UserFactory.logout();
+	      	userFactory.logout();
 	      	$scope.user = null;
 	    }
 
@@ -463,6 +397,52 @@ module.exports = function(app) {
 'use strict';
 
 module.exports = function(app) {
+    app.factory('authInterceptor', function(authTokenFactory) {
+        return {
+            request: addToken
+        };
+
+        function addToken(config) {
+            var token = authTokenFactory.getToken();
+            if (token) {
+                config.headers = config.headers || {};
+                config.headers.Authorization = 'Bearer ' + token;
+            }
+            return config;
+        }
+    });
+};
+},{}],12:[function(require,module,exports){
+'use strict';
+
+module.exports = function(app) {
+    app.factory('authTokenFactory', function($window) {
+        
+        var store = $window.localStorage;
+        var key = 'auth-token';
+
+        return {
+            getToken: getToken,
+            setToken: setToken
+        };
+
+        function getToken() {
+            return store.getItem(key);
+        }
+
+        function setToken(token) {
+            if (token) {
+                store.setItem(key, token);
+            } else {
+                store.removeItem(key);
+            }
+        }
+    });
+}
+},{}],13:[function(require,module,exports){
+'use strict';
+
+module.exports = function(app) {
 	app.factory('fileReader', function($http,$q,$log) {
 
 		//File reading methods
@@ -514,7 +494,7 @@ module.exports = function(app) {
 	});
 };
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -574,7 +554,42 @@ module.exports = function(app) {
 
 	});
 };
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
+'use strict';
+
+module.exports = function(app) {
+	app.factory('userFactory', function($http, API_URL, authTokenFactory, $q) {
+
+	    return {
+	        login: login,
+	        logout: logout,
+	        getUser: getUser
+	    };
+
+	    function login(username, password) {
+	        return $http.post(API_URL + '/login', {
+	            username: username,
+	            password: password
+	        }).then(function success(response) {
+	            authTokenFactory.setToken(response.data.token);
+	        return response;
+	        });
+	    }
+
+	    function logout() {
+	        authTokenFactory.setToken();
+	    }
+
+	    function getUser() {
+	        if (authTokenFactory.getToken()) {
+	            return $http.get(API_URL + '/admin');
+	        } else {
+	            return $q.reject({ data: 'client has no auth token' });
+	        }
+	    }
+	});
+};
+},{}],16:[function(require,module,exports){
 /**
  * @license AngularJS v1.2.26
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -1497,7 +1512,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],14:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * @license AngularJS v1.2.26
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -23528,4 +23543,4 @@ var styleDirective = valueFn({
 })(window, document);
 
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>');
-},{}]},{},[1,2,3,4,5,6,7,8,9,10,11,12]);
+},{}]},{},[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);

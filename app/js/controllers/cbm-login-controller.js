@@ -1,23 +1,23 @@
 'use strict';
 
 module.exports = function(app) {
-	app.controller('cbmLoginController', function($scope, $location, $rootScope, UserFactory) {
+	app.controller('cbmLoginController', function($scope, $location, $rootScope, userFactory) {
 
-		UserFactory.getUser().then(function success(response) {
+		userFactory.getUser().then(function success(response) {
       		$scope.user = response.data;
     	});
 
 		$scope.login = function(username, password) {
 			$rootScope.loggedInUser = true; 
 
-	    	UserFactory.login(username, password).then(function success(response) {
+	    	userFactory.login(username, password).then(function success(response) {
 	    		$scope.user = response.data.user;
 	    		$location.path('/admin');
 	      		}, $scope.handleError);
 	    }
 
 	    $scope.logout = function() {
-	      	UserFactory.logout();
+	      	userFactory.logout();
 	      	$scope.user = null;
 	    }
 

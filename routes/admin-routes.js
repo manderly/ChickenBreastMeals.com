@@ -25,7 +25,6 @@ module.exports = function(app) {
 		meal.save(function(err, resMeal) {
 			if (err) return res.status(500).json(err);
 			return res.send(resMeal); 
-		
 		});
 	});
 
