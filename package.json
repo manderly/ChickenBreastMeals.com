@@ -50,6 +50,7 @@
   "dependencies": {
     "bcrypt-nodejs": "latest",
     "body-parser": "^1.8.3",
+    "cors": "^2.5.2",
     "express": "^4.9.4",
     "grunt-cli": "^0.1.13",
     "jwt-simple": "latest",
