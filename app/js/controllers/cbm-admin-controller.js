@@ -2,10 +2,10 @@
 
 module.exports = function(app) {
 
-	app.controller('cbmAdminController', function($scope, mealsServer, $http, fileReader) {
+	app.controller('cbmAdminController', function($scope, $http, mealsServer, fileReader) {
+		//removal candidate
 		$scope.dirtyIngredient = false;
 
-		//Uses meals-server.js to get all the existing meal data
 		$scope.getAllMeals = function() {
 			mealsServer.index()
 			.success(function(data){
