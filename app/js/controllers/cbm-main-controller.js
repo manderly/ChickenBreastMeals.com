@@ -6,6 +6,7 @@ module.exports = function(app) {
 		$scope.siteName = "Chicken Breast Meals.com";
 		$scope.orderProp = 'cooktime';
 
+
 		$scope.getOptionsFor = function(propName) {
 			return ($scope.meals || []).map(function (meal) {
 				return meal[propName];
