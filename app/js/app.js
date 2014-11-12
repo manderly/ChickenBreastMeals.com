@@ -26,15 +26,9 @@ require('./directives/ng-file-select')(cbmApp);
 //routes
 require('./routes/cbm-routes')(cbmApp);
 
-
 cbmApp.constant('API_URL', 'http://localhost:3000');
 
 //factories 
-
-//removal candidates
-//cbmApp.factory("fileReader", ["$q", "$log"]);
-//cbmApp.factory("fileReader", ["$q", "$log", fileReader]);
-
 cbmApp.factory('UserFactory', function UserFactory($http, API_URL, AuthTokenFactory, $q) {
     return {
         login: login,
@@ -65,6 +59,7 @@ cbmApp.factory('UserFactory', function UserFactory($http, API_URL, AuthTokenFact
     }
 });
 
+
 cbmApp.factory('AuthTokenFactory', function AuthTokenFactory($window) {
     var store = $window.localStorage;
     var key = 'auth-token';
@@ -86,6 +81,7 @@ cbmApp.factory('AuthTokenFactory', function AuthTokenFactory($window) {
         }
     }
 });
+
 
 cbmApp.factory('AuthInterceptor', function AuthInterceptor(AuthTokenFactory) {
     return {

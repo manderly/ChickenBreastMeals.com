@@ -27,15 +27,9 @@ require('./directives/ng-file-select')(cbmApp);
 //routes
 require('./routes/cbm-routes')(cbmApp);
 
-
 cbmApp.constant('API_URL', 'http://localhost:3000');
 
 //factories 
-
-//removal candidates
-//cbmApp.factory("fileReader", ["$q", "$log"]);
-//cbmApp.factory("fileReader", ["$q", "$log", fileReader]);
-
 cbmApp.factory('UserFactory', function UserFactory($http, API_URL, AuthTokenFactory, $q) {
     return {
         login: login,
@@ -66,6 +60,7 @@ cbmApp.factory('UserFactory', function UserFactory($http, API_URL, AuthTokenFact
     }
 });
 
+
 cbmApp.factory('AuthTokenFactory', function AuthTokenFactory($window) {
     var store = $window.localStorage;
     var key = 'auth-token';
@@ -88,6 +83,7 @@ cbmApp.factory('AuthTokenFactory', function AuthTokenFactory($window) {
     }
 });
 
+
 cbmApp.factory('AuthInterceptor', function AuthInterceptor(AuthTokenFactory) {
     return {
         request: addToken
@@ -104,7 +100,7 @@ cbmApp.factory('AuthInterceptor', function AuthInterceptor(AuthTokenFactory) {
 
 });
 
-},{"./..\\..\\bower_components\\angular-route\\angular-route.js":14,"./..\\..\\bower_components\\angular\\angular":15,"./controllers/cbm-admin-controller":2,"./controllers/cbm-login-controller":3,"./controllers/cbm-main-controller":4,"./controllers/cbm-recipe-controller":5,"./directives/admin-edit-meal-form":7,"./directives/main-meal-details":8,"./directives/main-meal-list":9,"./directives/ng-file-select":10,"./routes/cbm-routes":11,"./services/file-reader":12,"./services/meals-server":13}],2:[function(require,module,exports){
+},{"./..\\..\\bower_components\\angular-route\\angular-route.js":13,"./..\\..\\bower_components\\angular\\angular":14,"./controllers/cbm-admin-controller":2,"./controllers/cbm-login-controller":3,"./controllers/cbm-main-controller":4,"./controllers/cbm-recipe-controller":5,"./directives/admin-edit-meal-form":6,"./directives/main-meal-details":7,"./directives/main-meal-list":8,"./directives/ng-file-select":9,"./routes/cbm-routes":10,"./services/file-reader":11,"./services/meals-server":12}],2:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -358,57 +354,6 @@ module.exports = function(app) {
 	});
 };
 },{}],6:[function(require,module,exports){
-'use strict'
-
-module.exports = function(app) {
-  	app.controller('usersController', function($scope, $http, $cookies, $base64, $location) {
-
-		if($location.path() === '/logout') $cookies.jwt = null;
-		
-		if(!$cookies.jwt || $cookies.jwt.length >= 10) return $location.path('/admin');
-
-		if($location.path() === '/signup') $scope.newuser = true;
-
-		$scope.signin = function() {
-	      	$http.defaults.headers.common['Authorization'] = 'Basic ' + $base64.encode($scope.user.email + ':' + $scope.user.password);
-	      	$http({
-	        	method: 'GET',
-	        	url: '/db/users'
-	      	})
-	      	.success(function(data) {
-	        	$cookies.jwt = data.jwt;
-	        	$location.path('/admin');
-	      	})
-	      	.error(function(data) {
-	       		console.log('error');
-	        	console.log(data);
-	      	});
-	    };
-
-	    $scope.validatePassword = function() {
-	      	return $scope.user.password === $scope.user.passwordConfirmation;
-	    };
-
-	    $scope.createNewUser = function() {
-	      	console.log('clicked');
-	      	$http({
-	        	method: 'POST',
-	        	url: '/db/users',
-	        	data: $scope.user
-	      	})
-	      	.success(function(data) {
-	        	$cookies.jwt = data.jwt;
-	        	$location.path('/admin');
-	      	})
-	      	.error(function(data) {
-	        	console.log('error');
-	        	console.log(data);
-	      	});
-	    };
-
-	});
-};
-},{}],7:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -421,7 +366,7 @@ module.exports = function(app) {
 		return direc;
 	});
 };
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -434,7 +379,7 @@ module.exports = function(app) {
 		return direc;
 	});
 };
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -447,7 +392,7 @@ module.exports = function(app) {
 		return direc;
 	});
 };
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -463,7 +408,7 @@ module.exports = function(app) {
 	  }
 	});
 };
-},{}],11:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -514,64 +459,62 @@ module.exports = function(app) {
 		});
 	});
 };
-},{}],12:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
 	app.factory('fileReader', function($http,$q,$log) {
 
 		//File reading methods
-		//var fileReader = function ($q, $log) {
-		  	var onLoad = function(reader, deferred, scope) {
-		    	return function () {
-		      		scope.$apply(function () {
-		        		deferred.resolve(reader.result);
-		      		});
-		    	};
-		  	};
+	  	var onLoad = function(reader, deferred, scope) {
+	    	return function () {
+	      		scope.$apply(function () {
+	        		deferred.resolve(reader.result);
+	      		});
+	    	};
+	  	};
 
-		  	var onError = function (reader, deferred, scope) {
-			    return function () {
-	      			scope.$apply(function () {
-			        	deferred.reject(reader.result);
-			      	});
-			    };
-		  	};
+	  	var onError = function (reader, deferred, scope) {
+		    return function () {
+      			scope.$apply(function () {
+		        	deferred.reject(reader.result);
+		      	});
+		    };
+	  	};
 
-	  		var onProgress = function(reader, scope) {
-			    return function (event) {
-			      	scope.$broadcast("fileProgress",
-			        {
-			          total: event.total,
-			          loaded: event.loaded
-			        });
-			    };
-		  	};
+  		var onProgress = function(reader, scope) {
+		    return function (event) {
+		      	scope.$broadcast("fileProgress",
+		        {
+		          total: event.total,
+		          loaded: event.loaded
+		        });
+		    };
+	  	};
 
-		  	var getReader = function(deferred, scope) {
-		    	var reader = new FileReader();
-			    reader.onload = onLoad(reader, deferred, scope);
-			    reader.onerror = onError(reader, deferred, scope);
-			    reader.onprogress = onProgress(reader, scope);
-			    return reader;
-		  	};
+	  	var getReader = function(deferred, scope) {
+	    	var reader = new FileReader();
+		    reader.onload = onLoad(reader, deferred, scope);
+		    reader.onerror = onError(reader, deferred, scope);
+		    reader.onprogress = onProgress(reader, scope);
+		    return reader;
+	  	};
 
-		  	var readAsDataURL = function (file, scope) {
-			    var deferred = $q.defer();
-			    var reader = getReader(deferred, scope);
-			    reader.readAsDataURL(file);
+	  	var readAsDataURL = function (file, scope) {
+		    var deferred = $q.defer();
+		    var reader = getReader(deferred, scope);
+		    reader.readAsDataURL(file);
 
-			    return deferred.promise;
-		  	};
+		    return deferred.promise;
+	  	};
 
-		  	return {
-			    readAsDataUrl: readAsDataURL
-		  	};
-		//};
+	  	return {
+		    readAsDataUrl: readAsDataURL
+	  	};
 	});
 };
 
-},{}],13:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -631,7 +574,7 @@ module.exports = function(app) {
 
 	});
 };
-},{}],14:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /**
  * @license AngularJS v1.2.26
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -1554,7 +1497,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],15:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * @license AngularJS v1.2.26
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -23585,4 +23528,4 @@ var styleDirective = valueFn({
 })(window, document);
 
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>');
-},{}]},{},[1,2,3,4,5,6,7,8,9,10,11,12,13]);
+},{}]},{},[1,2,3,4,5,6,7,8,9,10,11,12]);
