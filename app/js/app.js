@@ -29,6 +29,3 @@ require('./directives/ng-file-select')(cbmApp);
 //routes
 require('./routes/cbm-routes')(cbmApp);
 
-cbmApp.constant('API_URL', 'http://localhost:3000');
-
-
