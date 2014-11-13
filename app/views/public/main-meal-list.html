@@ -3,7 +3,7 @@
         <!-- create meals grid -->
         <li
             data-ng-click="viewRecipe(meal)"
-            data-ng-repeat="meal in meals | filter: filterMeals"
+            data-ng-repeat="meal in meals | filter: query | filter: filterMeals"
             data-ng-class="{selectedMeal:meal.selected}"
             class="mealPreviewButton"
             >
