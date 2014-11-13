@@ -14,5 +14,5 @@ Chicken Breast Meals is a recipe website I designed and developed using AngularJ
 
 **Screenshots:**
 
-![alt text](screenshots/cbm_app_screenshot_11_6_2014.jpg "Chicken Breast Meals main view as of 11/6/2014")
-![alt text](screenshots/cbm_app_screenshot_11_4_2014.jpg "Chicken Breast Meals recipe view as of 11/4/2014")
+![alt text](screenshots/cbm_app_screenshot_11_12_2014.jpg "Chicken Breast Meals main view as of 11/12/2014")
+![alt text](screenshots/cbm_app_screenshot_11_12_2014_recipe.jpg "Chicken Breast Meals recipe view as of 11/12/2014")
