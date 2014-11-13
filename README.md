@@ -4,6 +4,9 @@ ChickenBreastMeals.com
 
 Chicken Breast Meals is a recipe website I designed and developed using AngularJS, Node, Express, MongoDB, and other web technologies. 
 
+**TRY IT LIVE**
+[Chicken Breast Meals on Heroku](http://chickenbreastmeals.herokuapp.com)
+
 **To use:**
 
 1. Clone the repo to your local environment
