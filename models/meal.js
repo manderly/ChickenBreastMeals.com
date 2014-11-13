@@ -21,7 +21,9 @@ var mealSchema = mongoose.Schema({
 	kCalPerServing: Number,
 	kCalTotal: Number,
 	published: Boolean,
-	rating:Number
+	rating:Number,
+	creditName:String,
+	creditURL:String
 });
 
 module.exports = mongoose.model('Meal', mealSchema);
