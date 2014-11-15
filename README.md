@@ -9,11 +9,11 @@ Chicken Breast Meals is a recipe website I designed and developed using AngularJ
 
 **To use:**
 
-1. Clone the repo to your local environment
-2. Run *npm install*
-3. Run *bower install*
-4. Type *grunt default*
-5. Open *http://localhost:3000*
+1. Clone this repo to your local environment
+2. *npm install*
+3. *bower install*
+4. *grunt default*
+5. *http://localhost:3000*
 
 **Screenshots:**
 
