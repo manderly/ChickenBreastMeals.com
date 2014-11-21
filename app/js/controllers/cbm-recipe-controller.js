@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = function(app) {
-	app.controller('cbmRecipeController', ['$scope', '$http', '$routeParams', 'marked', function($scope, $http, $routeParams, marked) {
+module.exports = function(app, marked) {
+	app.controller('cbmRecipeController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 		$scope.params = $routeParams;
 
 		$scope.getPrepTimeTotal = function(meal) {
@@ -14,6 +14,7 @@ module.exports = function(app) {
 				$scope.recipe = data;
 				$scope.totalTime = $scope.getPrepTimeTotal($scope.recipe);
 				$scope.recipe.description = marked($scope.recipe.description);
+				console.log(marked('Recipe is using __markdown__.'));
 			})
 			.error(function(data) {
 				console.log("getMeals Error: " + data);

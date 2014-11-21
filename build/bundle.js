@@ -3,26 +3,31 @@
 
 require("./..\\..\\bower_components\\angular\\angular");
 require("./..\\..\\bower_components\\angular-route\\angular-route.js");
-require("./..\\..\\bower_components\\marked\\lib\\marked"); //marked/lib/marked
-require("./..\\..\\bower_components\\angular-marked\\angular-marked.js");
-//require('marked');
 
-var cbmApp = angular.module('cbmApp',['ngRoute','hc.marked'])
+var cbmApp = angular.module('cbmApp',['ngRoute'])
     .config(function($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
-    })
+    });
 
-    .config(['markedProvider', function(markedProvider) {
-        markedProvider.setOptions({
-            gfm: true,
-            tables: true,
-        });
-    }]);
+var marked = require("./..\\..\\bower_components\\marked\\lib\\marked");
+
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
+});
+
+console.log(marked('I am using __markdown__.'));
 
 //controllers
 require('./controllers/cbm-main-controller')(cbmApp);
 require('./controllers/cbm-admin-controller')(cbmApp);
-require('./controllers/cbm-recipe-controller')(cbmApp);
+require('./controllers/cbm-recipe-controller')(cbmApp, marked);
 require('./controllers/cbm-login-controller')(cbmApp);
 
 //services
@@ -43,7 +48,7 @@ require('./routes/cbm-routes')(cbmApp);
 
 
 
-},{"./..\\..\\bower_components\\angular-marked\\angular-marked.js":16,"./..\\..\\bower_components\\angular-route\\angular-route.js":17,"./..\\..\\bower_components\\angular\\angular":18,"./..\\..\\bower_components\\marked\\lib\\marked":19,"./controllers/cbm-admin-controller":2,"./controllers/cbm-login-controller":3,"./controllers/cbm-main-controller":4,"./controllers/cbm-recipe-controller":5,"./directives/admin-edit-meal-form":6,"./directives/main-meal-details":7,"./directives/main-meal-list":8,"./directives/ng-file-select":9,"./routes/cbm-routes":10,"./services/auth-interceptor":11,"./services/auth-token-factory":12,"./services/file-reader":13,"./services/meals-server":14,"./services/user-factory":15}],2:[function(require,module,exports){
+},{"./..\\..\\bower_components\\angular-route\\angular-route.js":16,"./..\\..\\bower_components\\angular\\angular":17,"./..\\..\\bower_components\\marked\\lib\\marked":18,"./controllers/cbm-admin-controller":2,"./controllers/cbm-login-controller":3,"./controllers/cbm-main-controller":4,"./controllers/cbm-recipe-controller":5,"./directives/admin-edit-meal-form":6,"./directives/main-meal-details":7,"./directives/main-meal-list":8,"./directives/ng-file-select":9,"./routes/cbm-routes":10,"./services/auth-interceptor":11,"./services/auth-token-factory":12,"./services/file-reader":13,"./services/meals-server":14,"./services/user-factory":15}],2:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -274,8 +279,8 @@ module.exports = function(app) {
 },{}],5:[function(require,module,exports){
 'use strict';
 
-module.exports = function(app) {
-	app.controller('cbmRecipeController', ['$scope', '$http', '$routeParams', 'marked', function($scope, $http, $routeParams, marked) {
+module.exports = function(app, marked) {
+	app.controller('cbmRecipeController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 		$scope.params = $routeParams;
 
 		$scope.getPrepTimeTotal = function(meal) {
@@ -288,6 +293,7 @@ module.exports = function(app) {
 				$scope.recipe = data;
 				$scope.totalTime = $scope.getPrepTimeTotal($scope.recipe);
 				$scope.recipe.description = marked($scope.recipe.description);
+				console.log(marked('Recipe is using __markdown__.'));
 			})
 			.error(function(data) {
 				console.log("getMeals Error: " + data);
@@ -600,71 +606,6 @@ module.exports = function(app) {
 	});
 };
 },{}],16:[function(require,module,exports){
-/*
- * angular-marked
- * (c) 2014 J. Harshbarger
- * Licensed MIT
- */
-
-/* jshint undef: true, unused: true */
-/* global angular:true */
-
-(function () {
-	'use strict';
-
-  var app = angular.module('hc.marked', []);
-
-  //app.constant('marked', window.marked);
-
-  app.provider('marked', function () {
-
-    var self = this;
-
-    self.setOptions = function(opts) {  // Store options for later
-      this.defaults = opts;
-    };
-
-    self.$get = ['$window',function ($window) { 
-      var m = $window.marked;
-
-      self.setOptions = m.setOptions;
-      m.setOptions(self.defaults);
-
-      return m;
-    }];
-
-  });
-
-  // TODO: filter tests */
-  //app.filter('marked', ['marked', function(marked) {
-	//  return marked;
-	//}]);
-
-  app.directive('marked', ['marked', function (marked) {
-    return {
-      restrict: 'AE',
-      replace: true,
-      scope: {
-        opts: '=',
-        marked: '='
-      },
-      link: function (scope, element, attrs) {
-        set(scope.marked || element.text() || '');
-
-        function set(val) {
-        	element.html(marked(val || '', scope.opts || null));
-        }
-        
-        if (attrs.marked) {
-          scope.$watch('marked', set);        	
-        }
-
-      }
-    };
-  }]);
-
-}());
-},{}],17:[function(require,module,exports){
 /**
  * @license AngularJS v1.2.26
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -1587,7 +1528,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * @license AngularJS v1.2.26
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -23618,7 +23559,7 @@ var styleDirective = valueFn({
 })(window, document);
 
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>');
-},{}],19:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 (function (global){
 /**
  * marked - a markdown parser
