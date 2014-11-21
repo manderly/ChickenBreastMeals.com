@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-	app.controller('cbmRecipeController', function($scope, $http, $routeParams) {
+	app.controller('cbmRecipeController', ['$scope', '$http', '$routeParams', 'marked', function($scope, $http, $routeParams, marked) {
 		$scope.params = $routeParams;
 
 		$scope.getPrepTimeTotal = function(meal) {
@@ -13,6 +13,7 @@ module.exports = function(app) {
 			.success(function(data) {
 				$scope.recipe = data;
 				$scope.totalTime = $scope.getPrepTimeTotal($scope.recipe);
+				$scope.recipe.description = marked($scope.recipe.description);
 			})
 			.error(function(data) {
 				console.log("getMeals Error: " + data);
@@ -20,5 +21,5 @@ module.exports = function(app) {
 		};
 
 		$scope.getRecipe();
-	});
+	}]);
 };

@@ -2,10 +2,21 @@
 
 require('angular/angular');
 require('angular-route');
+require('marked/lib/marked'); //marked/lib/marked
+require('angular-marked');
+//require('marked');
 
-var cbmApp = angular.module('cbmApp',['ngRoute'], function config($httpProvider) {
-    $httpProvider.interceptors.push('authInterceptor');
-});
+var cbmApp = angular.module('cbmApp',['ngRoute','hc.marked'])
+    .config(function($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptor');
+    })
+
+    .config(['markedProvider', function(markedProvider) {
+        markedProvider.setOptions({
+            gfm: true,
+            tables: true,
+        });
+    }]);
 
 //controllers
 require('./controllers/cbm-main-controller')(cbmApp);
@@ -28,4 +39,5 @@ require('./directives/ng-file-select')(cbmApp);
 
 //routes
 require('./routes/cbm-routes')(cbmApp);
+
 
