@@ -27,7 +27,8 @@ body, textarea {
 }
 
 strong {
-  font-weight:bold;
+  font-weight:bolder;
+  color:#ed783b;
 }
 
 a {
@@ -45,6 +46,8 @@ h1, h2, h2 {
 
 h1 {
   font-size:1.3em;
+  font-weight:bold;
+  line-height:1.3em;
 }
 
 h2, h3 {
@@ -292,10 +295,6 @@ img {
     text-align:left;
 }
 
-.mealGridTextArea h3,p {
-    line-height:1em;
-}
-
 .mealGridTitleArea {
   background-color:#383838;
   color:white;
@@ -381,13 +380,14 @@ img {
 .recipe-name-and-description {
   border-bottom:3px dotted orange;
   margin-bottom:20px;
-  font-weight:bold;
+  line-height:1.6em;
 }
 
 .recipe-description-text {
   color:#c9b8a7;
   float:right;
   line-height:1.5em;
+  font-size:1.2em;
   vertical-align:top;
 }
 
