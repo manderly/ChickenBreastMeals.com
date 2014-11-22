@@ -4,7 +4,20 @@
 require("./..\\..\\bower_components\\angular\\angular");
 require("./..\\..\\bower_components\\angular-route\\angular-route.js");
 
-var cbmApp = angular.module('cbmApp',['ngRoute'])
+var cbmApp = angular.module('cbmApp',['ngRoute'], function($compileProvider) {
+  $compileProvider.directive("compile",function($compile) {
+    return function(scope, element, attrs) {
+      scope.$watch(
+        function(scope) {
+          return scope.$eval(attrs.compile);
+        },
+        function(value) {
+          element.html(value);
+          $compile(element.contents())(scope);
+        });
+    }
+  });
+})
     .config(function($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     });

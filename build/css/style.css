@@ -19,10 +19,15 @@ html {
 body {
   padding:0;
   margin:0;
+  font-weight:normal;
 }
 
 body, textarea {
   font-family: 'Raleway', sans-serif;
+}
+
+strong {
+  font-weight:bold;
 }
 
 a {
