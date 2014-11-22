@@ -292,7 +292,7 @@ module.exports = function(app, marked) {
 			.success(function(data) {
 				$scope.recipe = data;
 				$scope.totalTime = $scope.getPrepTimeTotal($scope.recipe);
-				$scope.recipe.description = marked($scope.recipe.description);
+				$scope.markedDescription = marked($scope.recipe.description);
 				console.log(marked('Recipe is using __markdown__.'));
 			})
 			.error(function(data) {
