@@ -56,6 +56,7 @@
     "grunt-cli": "^0.1.13",
     "jsonwebtoken": "^1.1.2",
     "jwt-simple": "latest",
+    "marked": "^0.3.2",
     "moment": "^2.8.3",
     "mongoose": "^3.8.16",
     "passport": "^0.2.1",

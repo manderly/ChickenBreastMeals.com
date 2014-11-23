@@ -6,8 +6,7 @@
     <!-- Title and description -->
     <div class="recipe-name-and-description">
 
-        <div class="recipe-description-text half-width">
-            <p>{{recipe.description}}</p>
+        <div class="recipe-description-text half-width" compile="markedDescription">
         </div>
 
 
@@ -76,18 +75,19 @@
     <div class="ingredients-container">
     <h2 class="in-title">INGREDIENTS</h2>
         <ul class="mealIngredientsList">
-        <li data-ng-repeat="ingredient in recipe.ingredients" class="mealIngredient">
-        {{ingredient.name}}
-        </li>
+            <li data-ng-repeat="ingredient in recipe.ingredients" 
+                class="mealIngredient" 
+                compile="ingredient.name">
+            </li>
         </ul>
     </div>
 
     <div class="instructions-container">
     <h2 class="in-title">INSTRUCTIONS</h2>
         <ol class="mealInstructionsList">
-        <li data-ng-repeat="step in recipe.steps">
-            {{step.name}}
-        </li>
+            <li data-ng-repeat="step in recipe.steps" 
+                compile="step.name">
+            </li>
         </ol>
     </div>
 

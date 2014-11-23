@@ -3,7 +3,7 @@
 module.exports = function(app) {
 
 	app.controller('cbmAdminController', function($scope, $http, mealsServer, fileReader) {
-		//removal candidate
+
 		$scope.dirtyIngredient = false;
 
 		$scope.getAllMeals = function() {

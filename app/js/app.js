@@ -3,9 +3,23 @@
 require('angular/angular');
 require('angular-route');
 
-var cbmApp = angular.module('cbmApp',['ngRoute'], function config($httpProvider) {
-    $httpProvider.interceptors.push('authInterceptor');
-});
+var cbmApp = angular.module('cbmApp',['ngRoute'], function($compileProvider) {
+  $compileProvider.directive("compile",function($compile) {
+    return function(scope, element, attrs) {
+      scope.$watch(
+        function(scope) {
+          return scope.$eval(attrs.compile);
+        },
+        function(value) {
+          element.html(value);
+          $compile(element.contents())(scope);
+        });
+    }
+  });
+})
+    .config(function($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptor');
+    });
 
 //controllers
 require('./controllers/cbm-main-controller')(cbmApp);
@@ -28,4 +42,5 @@ require('./directives/ng-file-select')(cbmApp);
 
 //routes
 require('./routes/cbm-routes')(cbmApp);
+
 
