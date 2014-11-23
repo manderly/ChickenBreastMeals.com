@@ -21,25 +21,10 @@ var cbmApp = angular.module('cbmApp',['ngRoute'], function($compileProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     });
 
-var marked = require('marked/lib/marked');
-
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: true,
-  smartLists: true,
-  smartypants: false
-});
-
-console.log(marked('I am using __markdown__.'));
-
 //controllers
 require('./controllers/cbm-main-controller')(cbmApp);
 require('./controllers/cbm-admin-controller')(cbmApp);
-require('./controllers/cbm-recipe-controller')(cbmApp, marked);
+require('./controllers/cbm-recipe-controller')(cbmApp);
 require('./controllers/cbm-login-controller')(cbmApp);
 
 //services

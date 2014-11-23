@@ -22,25 +22,10 @@ var cbmApp = angular.module('cbmApp',['ngRoute'], function($compileProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     });
 
-var marked = require("./..\\..\\bower_components\\marked\\lib\\marked");
-
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: true,
-  smartLists: true,
-  smartypants: false
-});
-
-console.log(marked('I am using __markdown__.'));
-
 //controllers
 require('./controllers/cbm-main-controller')(cbmApp);
 require('./controllers/cbm-admin-controller')(cbmApp);
-require('./controllers/cbm-recipe-controller')(cbmApp, marked);
+require('./controllers/cbm-recipe-controller')(cbmApp);
 require('./controllers/cbm-login-controller')(cbmApp);
 
 //services
@@ -61,7 +46,7 @@ require('./routes/cbm-routes')(cbmApp);
 
 
 
-},{"./..\\..\\bower_components\\angular-route\\angular-route.js":16,"./..\\..\\bower_components\\angular\\angular":17,"./..\\..\\bower_components\\marked\\lib\\marked":18,"./controllers/cbm-admin-controller":2,"./controllers/cbm-login-controller":3,"./controllers/cbm-main-controller":4,"./controllers/cbm-recipe-controller":5,"./directives/admin-edit-meal-form":6,"./directives/main-meal-details":7,"./directives/main-meal-list":8,"./directives/ng-file-select":9,"./routes/cbm-routes":10,"./services/auth-interceptor":11,"./services/auth-token-factory":12,"./services/file-reader":13,"./services/meals-server":14,"./services/user-factory":15}],2:[function(require,module,exports){
+},{"./..\\..\\bower_components\\angular-route\\angular-route.js":16,"./..\\..\\bower_components\\angular\\angular":17,"./controllers/cbm-admin-controller":2,"./controllers/cbm-login-controller":3,"./controllers/cbm-main-controller":4,"./controllers/cbm-recipe-controller":5,"./directives/admin-edit-meal-form":6,"./directives/main-meal-details":7,"./directives/main-meal-list":8,"./directives/ng-file-select":9,"./routes/cbm-routes":10,"./services/auth-interceptor":11,"./services/auth-token-factory":12,"./services/file-reader":13,"./services/meals-server":14,"./services/user-factory":15}],2:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
@@ -292,7 +277,21 @@ module.exports = function(app) {
 },{}],5:[function(require,module,exports){
 'use strict';
 
-module.exports = function(app, marked) {
+/* Todo: Refactor into recipe controller */
+var marked = require("./..\\..\\..\\bower_components\\marked\\lib\\marked");
+
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
+});
+
+module.exports = function(app) {
 	app.controller('cbmRecipeController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 		$scope.params = $routeParams;
 
@@ -306,7 +305,14 @@ module.exports = function(app, marked) {
 				$scope.recipe = data;
 				$scope.totalTime = $scope.getPrepTimeTotal($scope.recipe);
 				$scope.markedDescription = marked($scope.recipe.description);
-				console.log(marked('Recipe is using __markdown__.'));
+				//compile the ingredient names so markdown becomes html
+				for (var i = 0; i < $scope.recipe.ingredients.length - 1; i ++) {
+					$scope.recipe.ingredients[i].name = marked($scope.recipe.ingredients[i].name);
+				}
+				//compile the step names so markdown becomes html
+				for (var j = 0; j < $scope.recipe.steps.length - 1; j ++) {
+					$scope.recipe.steps[j].name = marked($scope.recipe.steps[j].name);
+				}
 			})
 			.error(function(data) {
 				console.log("getMeals Error: " + data);
@@ -316,7 +322,7 @@ module.exports = function(app, marked) {
 		$scope.getRecipe();
 	}]);
 };
-},{}],6:[function(require,module,exports){
+},{"./..\\..\\..\\bower_components\\marked\\lib\\marked":18}],6:[function(require,module,exports){
 'use strict';
 
 module.exports = function(app) {
