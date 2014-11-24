@@ -8,10 +8,9 @@ module.exports = function(app) {
     	});
 
 		$scope.login = function(username, password) {
-			$rootScope.loggedInUser = true; 
-
 	    	userFactory.login(username, password).then(function success(response) {
-	    		$scope.user = response.data.user;
+					$rootScope.loggedInUser = true;
+					$scope.user = response.data.user;
 	    		$location.path('/admin');
 	      		}, $scope.handleError);
 	    }
