@@ -184,6 +184,11 @@ img {
     margin-top:8px;
 }
 
+.mealsScrollList {
+  margin:0 auto;
+  max-width:80%;
+}
+
 /*********************
 /* mealOptions Filters
 /*********************/
@@ -788,6 +793,12 @@ ADMMIN CMS
 
 /* 1048 */
 @media (max-width: 1048px) {
+
+  .mealsScrollList {
+    margin:0 auto;
+    max-width:100%;
+  }
+
   .hero-tagline {
     font-size:2em;
   }
