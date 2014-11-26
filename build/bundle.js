@@ -103,6 +103,13 @@ module.exports = function(app) {
 			}
 		}
 
+		$scope.hasError = function(e,d){ // e = $error, d = $dirty
+    		if(angular.isDefined(e))
+        		return e && d;
+
+    		return false;
+		} 		
+
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
 			console.log("SAVING FORM CONTENTS -- $scope.file is " + JSON.stringify($scope.file));

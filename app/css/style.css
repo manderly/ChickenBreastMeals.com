@@ -530,6 +530,10 @@ img {
     overflow-x:hidden;
 }
 
+.mealIngredient::first-letter {
+  text-transform:capitalize;
+}
+
 .first-word {
   color:red;
 }
@@ -540,6 +544,10 @@ img {
     padding-left:10px;
     line-height:1.4em;
     color:#666;
+}
+
+.mealInstructionsList li::first-letter {
+    text-transform:capitalize;
 }
 
 .mealInstructionsList li {
