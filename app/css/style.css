@@ -726,11 +726,10 @@ ADMMIN CMS
 .preview-image-frame {
   height:250px;
   width:250px;
-  margin:0 auto;
   border:6px solid #f5f5f5;
 }
 
-.preview-image-frame input {
+.image-input input {
   background-color:transparent;
 }
 
