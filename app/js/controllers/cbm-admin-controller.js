@@ -155,6 +155,7 @@ module.exports = function(app) {
 				};
 			$scope.formMeal.ingredients = [''];
 			$scope.formMeal.steps = [''];
+			$scope.formMeal.plural = 'Servings';
 			$scope.updatePreviewImage();
 		};
 		
