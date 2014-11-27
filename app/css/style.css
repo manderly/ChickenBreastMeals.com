@@ -723,7 +723,7 @@ ADMMIN CMS
     color:#383838;
 }
 
-.cms-recipeEdit input.ng-invalid, .cms-recipeEdit textarea.ng-invalid {
+.cms-recipeEdit input.ng-invalid.ng-dirty, .cms-recipeEdit textarea.ng-invalid.ng-dirty {
   border:1px solid red;
 }
 
