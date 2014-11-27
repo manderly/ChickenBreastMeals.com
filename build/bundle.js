@@ -114,7 +114,14 @@ module.exports = function(app) {
         		return e && d;
 
     		return false;
-		} 		
+		}
+
+		$scope.isEmptyArray = function(arr) {
+			for (var index in arr) {
+				console.log("index found!: " + index);
+				//return false;
+			}
+		}
 
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {

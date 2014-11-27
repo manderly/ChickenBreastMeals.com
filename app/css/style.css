@@ -723,28 +723,47 @@ ADMMIN CMS
     color:#383838;
 }
 
-.cms-recipeEdit input.ng-invalid.ng-dirty, .cms-recipeEdit textarea.ng-invalid.ng-dirty {
-  border:1px solid red;
+.cms-required {
+  color:red;
 }
 
+.required-text-container {
+  display:inline-block;
+  height:1.5em;
+}
+
+/*
+.cms-recipeEdit input.ng-invalid, .cms-recipeEdit textarea.ng-invalid {
+  background-color:#a1d668;
+}
+
+.cms-recipeEdit input.ng-invalid.ng-dirty, .cms-recipeEdit textarea.ng-invalid.ng-dirty {
+  background-color:#f13249;
+}
+*/
+
 .admin-input-paragraph {
-    width:90%;
+    width:70%;
     height:80px;
+    display:inline-block;
 }
 
 .admin-input-short {
     width:200px;
     height:30px;
+    display:inline-block;
 }
 
 .admin-input-oneline {
-    width:90%;
+    width:70%;
     height:30px;
+    display:inline-block;
 }
 
 .admin-wide-entry-bar {
-  width:90%;
+  width:70%;
   background-color:#f5f5f5;
+  display:inline-block;
 }
 
 .cms-recipeEdit h2 {

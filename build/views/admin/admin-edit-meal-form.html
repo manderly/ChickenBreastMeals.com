@@ -37,6 +37,9 @@
                 data-ng-blur="createURL(formMeal.name)" 
                 placeholder="Give your meal a unique name."
                 class="admin-input-oneline">
+        <span class="required-text-container">
+            <span class="cms-required" ng-show="!formMeal.name">*Required*</span>
+        </span>
 
     <h2>URL</h2>
         {{formMeal.url}}
@@ -47,6 +50,9 @@
                 data-ng-model="formMeal.description" 
                 placeholder="Tell us about this recipe, where it came from, why it's special. Be creative!"
                 class="admin-input-paragraph"></textarea>
+        <span class="required-text-container">
+            <span class="cms-required" ng-show="!formMeal.description">*Required*</span>
+        </span>
 
     <h2>Difficulty Level</h2>
         <select required 
@@ -110,6 +116,9 @@
                             <img src="/assets/delete.png"/></a>
             </li>
         </ol>
+        <span class="required-text-container">
+            <span class="cms-required" ng-show="formMeal.ingredients[0] === ''">*Required*</span>
+        </span>
 
 
     <h2>Recipe Steps</h2>
@@ -154,6 +163,9 @@
 
                 <a href="" data-ng-click="formMeal.steps.splice($index,1)"><img src="/assets/bin.png"/></a>
             </li>
+            <span class="required-text-container">
+                <span class="cms-required" ng-show="formMeal.steps.$touched && formMeal.steps.$invalid">*Required*</span>
+            </span>
 
         </ol>
 
@@ -161,7 +173,8 @@
         <b>Name of person or website this recipe is from:</b>
         <textarea   data-ng-model="formMeal.creditName"
                     placeholder="Name or website..."
-                    class="admin-input-oneline"></textarea></br>
+                    class="admin-input-oneline"></textarea>
+            </br>
         <b>Link to the recipe:</b>
         <textarea   data-ng-model="formMeal.creditURL"
                     placeholder="http://"
