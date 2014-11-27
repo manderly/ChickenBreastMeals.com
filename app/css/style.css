@@ -723,6 +723,10 @@ ADMMIN CMS
     vertical-align:middle;
 }
 
+.cms-recipeEdit input.ng-invalid.ng-dirty, .cms-recipeEdit textarea.ng-invalid.ng-dirty {
+  background-color:#f13249;
+}
+
 .preview-image-frame {
   height:250px;
   width:250px;
