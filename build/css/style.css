@@ -40,8 +40,12 @@ a:hover{
   color:#f1bd4d;
 }
 
-h1, h2, h2 {
+h1, h2, h3 {
   color:#351414;
+}
+
+h1::first-letter, h2::first-letter, h3::first-letter {
+  text-transform:capitalize;
 }
 
 h1 {
@@ -312,6 +316,10 @@ img {
   color:white;
   font-size:16px;
   font-weight:normal;  
+}
+
+.mealGridTitleArea::first-letter {
+  text-transform:capitalize;
 }
 
 .mealGridDetailArea {
