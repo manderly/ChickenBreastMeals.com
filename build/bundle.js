@@ -92,7 +92,9 @@ module.exports = function(app) {
 		};
 
 		$scope.createURL = function(recipeName) {
-			$scope.formMeal.url = recipeName.replace(/\s+/g,'-').replace(/[^a-zA-Z0-9-]/g,'').toLowerCase();
+			if (recipeName) {
+				$scope.formMeal.url = recipeName.replace(/\s+/g,'-').replace(/[^a-zA-Z0-9-]/g,'').toLowerCase();
+			}
 		};
 
 		$scope.changeIngredient = function(index) {
