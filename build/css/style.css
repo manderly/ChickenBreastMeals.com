@@ -742,6 +742,11 @@ ADMMIN CMS
   color:red;
 }
 
+.single-star {
+  display:inline-block;
+  width:2px;
+}
+
 .required-text-container {
   display:inline-block;
   height:1.5em;

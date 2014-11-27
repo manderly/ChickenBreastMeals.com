@@ -119,7 +119,7 @@
             </li>
         </ol>
         <span class="required-text-container">
-            <span class="cms-required" ng-show="formMeal.ingredients[0] === ''">*Required*</span>
+            <span class="cms-required" ng-show="formMeal.ingredients[0] === ''">*At least one ingredient is required*</span>
         </span>
 
 
@@ -127,29 +127,52 @@
     <div class="cms-inputs">
         <ul>
             <li><b>PREP TIME</b>
+                <div class="single-star">
+                        <span   class="cms-required" 
+                                ng-show="!formMeal.prepTime">
+                                *</span></div>
                 <input  
                         required
                         data-ng-model="formMeal.prepTime"
                         class="cms-input-short">
+                        
             </li>
 
             <li><b>COOK TIME</b>
+                <div class="single-star">
+                        <span   class="cms-required" 
+                                ng-show="!formMeal.cookTime">
+                                *</span></div>
+
                 <input  required
                         data-ng-model="formMeal.cookTime"
                         class="cms-input-short">
-            </li>
 
+            </li>
+        </ul>
+    </br>
+        <ul>
             <li><b>YIELD</b>
+                <div class="single-star">
+                        <span   class="cms-required" 
+                                ng-show="!formMeal.yield">
+                                *</span></div>
                 <input  required
                         data-ng-model="formMeal.yield"
                         class="cms-input-short">
+                        
             </li>
 
             <li><b>PLURAL</b>
+                <div class="single-star">
+                        <span   class="cms-required" 
+                                ng-show="!formMeal.plural">
+                                *</span></div>
                 <input  required
                         data-ng-model="formMeal.plural" 
-                        placeholder='"Cookies"'
+                        placeholder='Cookies'
                         class="cms-input-plural">
+                        
             </li>
         </ul>
     </div>
@@ -169,7 +192,7 @@
                             <img class="trash-can" src="/assets/bin.png"/></a>
             </li>
             <span class="required-text-container">
-                <span class="cms-required" ng-show="formMeal.steps[0] === ''">*Required*</span>
+                <span class="cms-required" ng-show="formMeal.steps[0] === ''">*At least one step is required*</span>
             </span>
 
         </ol>
