@@ -14,7 +14,7 @@
             <h1>{{recipe.name}}</h1>
         </div>
 
-        <div class="giveCredit">
+        <div class="giveCredit" ng-hide="!recipe.creditName"><!-- hide Credit if none exists -->
             <b>Recipe credit: </b><a href="{{recipe.creditURL}}">{{recipe.creditName}}</a>
         </div>
 
