@@ -13,6 +13,10 @@ module.exports = function(app) {
 			});
 		};
 
+		$scope.isUnchanged = function(form) {
+			return JSON.stringify(form) === JSON.stringify($scope.selectedMealSnapshot); //false
+		};
+
 		$scope.getFile = function () {
 		    $scope.progress = 0;
 		    fileReader.readAsDataUrl($scope.file, $scope)
@@ -63,7 +67,7 @@ module.exports = function(app) {
 
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {
-			console.log("SAVING FORM CONTENTS -- $scope.file is " + JSON.stringify($scope.file));
+			console.log("SAVING FORM CONTENTS");
 			
 			//PUT - updating an old meal
 			if ($scope.creatingNewMeal === false) { 
@@ -83,10 +87,12 @@ module.exports = function(app) {
 				});
 			}
 			$scope.updatePreviewImage();
+			$scope.selectedMealSnapshot = JSON.parse(JSON.stringify(mealFromForm));
 		};
 
 		$scope.adminSelectMealViewDetails = function(meal) {
 			//set the form contents to match the meal object's contents
+			console.log("selecting a meal!");
 			$scope.formMeal = meal;
 
 			//add an empty ingredient and prep step if not present at end
@@ -111,6 +117,11 @@ module.exports = function(app) {
 			//set image and dropdown contents
 			$scope.imageSrc = null;
 			$scope.updatePreviewImage();
+
+			//create a "snapshot" of the meal as it was before editing
+			//this allows for comparison of the saved meal against what's in the form
+			//and the save to db button can grey itself out accordingly
+			$scope.selectedMealSnapshot = JSON.parse(JSON.stringify(meal));
 		};
 
 		$scope.createNewMeal = function() {
