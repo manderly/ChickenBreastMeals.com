@@ -60,21 +60,25 @@ module.exports = function(app) {
 			if (index == $scope.formMeal.steps.length -1) {
 				$scope.formMeal.steps.push('');
 			}
-		}
+		};
+
+		$scope.removeIfEmptyField = function(index, array) {
+			//make sure this index is not the very last one
+			if (index != $scope.formMeal[array].length -1) {
+				
+				//remove field if empty
+				if (!$scope.formMeal[array][index].name) {
+					$scope.formMeal[array].splice(index,1);
+				}
+			}
+		};
 
 		$scope.hasError = function(e,d){ // e = $error, d = $dirty
     		if(angular.isDefined(e))
         		return e && d;
 
     		return false;
-		}
-
-		$scope.isEmptyArray = function(arr) {
-			for (var index in arr) {
-				console.log("index found!: " + index);
-				//return false;
-			}
-		}
+		};
 
 		//saves a new meal or updates an existing meal
 		$scope.saveFormContents = function(mealFromForm) {

@@ -109,8 +109,9 @@
                 <textarea   name="ingredientLines"
                             type="text"
                             data-ng-model="formMeal.ingredients[$index].name"
-                            placeholder="Add ingredient"
                             data-ng-change="changeIngredient($index)"
+                            data-ng-blur="removeIfEmptyField($index,'ingredients')"
+                            placeholder="Add ingredient"
                             ></textarea>
                 <!-- trash can button -->
                 <a href=""  data-ng-show="ingredient" 
@@ -184,6 +185,7 @@
                 <textarea   data-ng-model="formMeal.steps[$index].name" 
                             class="admin-input-paragraph"
                             placeholder="Add a preparation step"
+                            data-ng-blur="removeIfEmptyField($index,'steps')"
                             data-ng-change="changePreparationStep($index)">
                 </textarea>
                 <!-- trash can button -->
