@@ -11,24 +11,21 @@
             Published<br>
             
     <h2>Recipe Photo</h2>
-        
         <form name="editMealForm">
-            <div class="admin-wide-entry-bar">
+            <i ng-hide="previewImage">Choose an image</i>
 
+            <div class="preview-image-frame">
+                <img class="previewImage" ng-show="previewImage" ng-src="{{previewImage}}">
                 <input  type="file" 
                         name="thumbnail"
                         data-ng-file-select="onFileSelect($files)"
                         data-ng-change="updatePreviewImage()"
-                        data-ng-model="formMeal.image">
-                  
-                    Preview:
-                    <i ng-hide="previewImage">Choose an image</i>
-                    <img class="previewImage" ng-show="previewImage" ng-src="{{previewImage}}">
-
+                        data-ng-model="formMeal.image"
+                        data-ng-show="!previewImage">
+            </div><!-- closes preview-image-frame -->
+            
             <!-- if an image exists on this meal, offer trash can icon -->
             <a href="" ng-show="formMeal.image" ng-click="formMeal.image = ''"><img src="/assets/bin.png"/></a>
-            
-            </div>
     
     <h2>Recipe Name</h2>
         <input  type="text" 

@@ -637,11 +637,6 @@ ADMMIN CMS
   clear:both;
 }
 
-.previewImage {
-  height:50px;
-  padding-top:10px;
-}
-
 /* always-on admin bar across top */
 #admin-bar-left {
     display:block;
@@ -728,6 +723,22 @@ ADMMIN CMS
     vertical-align:middle;
 }
 
+.preview-image-frame {
+  height:250px;
+  width:250px;
+  margin:0 auto;
+  border:6px solid #f5f5f5;
+}
+
+.preview-image-frame input {
+  background-color:transparent;
+}
+
+.previewImage {
+  height:100%;
+  width:100%;
+}
+
 .cms-required {
   color:red;
 }
@@ -736,16 +747,6 @@ ADMMIN CMS
   display:inline-block;
   height:1.5em;
 }
-
-/*
-.cms-recipeEdit input.ng-invalid, .cms-recipeEdit textarea.ng-invalid {
-  background-color:#a1d668;
-}
-
-.cms-recipeEdit input.ng-invalid.ng-dirty, .cms-recipeEdit textarea.ng-invalid.ng-dirty {
-  background-color:#f13249;
-}
-*/
 
 .admin-input-paragraph {
     width:70%;
