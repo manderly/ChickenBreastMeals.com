@@ -723,6 +723,10 @@ ADMMIN CMS
     color:#383838;
 }
 
+.cms-recipeEdit input.ng-invalid, .cms-recipeEdit textarea.ng-invalid {
+  border:1px solid red;
+}
+
 .admin-input-paragraph {
     width:90%;
     height:80px;
