@@ -159,9 +159,12 @@
                 <textarea   data-ng-model="formMeal.steps[$index].name" 
                             class="admin-input-paragraph"
                             placeholder="Add a preparation step"
-                            data-ng-change="changePreparationStep($index)"></textarea>
-
-                <a href="" data-ng-click="formMeal.steps.splice($index,1)"><img src="/assets/bin.png"/></a>
+                            data-ng-change="changePreparationStep($index)">
+                </textarea>
+                <!-- trash can button -->
+                <a href=""  data-ng-show="step"
+                            data-ng-click="formMeal.steps.splice($index,1)">
+                            <img src="/assets/bin.png"/></a>
             </li>
             <span class="required-text-container">
                 <span class="cms-required" ng-show="formMeal.steps.$touched && formMeal.steps.$invalid">*Required*</span>
