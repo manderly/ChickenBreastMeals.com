@@ -45,6 +45,8 @@ module.exports = function(app) {
 		$scope.createURL = function(recipeName) {
 			if (recipeName) {
 				$scope.formMeal.url = recipeName.replace(/\s+/g,'-').replace(/[^a-zA-Z0-9-]/g,'').toLowerCase();
+			} else {
+				$scope.formMeal.url = 'Enter a recipe name';
 			}
 		};
 
@@ -138,6 +140,7 @@ module.exports = function(app) {
 			$scope.creatingNewMeal = true;
 			
 			//must initialize all these meal components for a new meal
+			$scope.createURL();
 			$scope.formMeal.tags = [];
 
 			//default skillLevel to Easy and show it in the dropdown

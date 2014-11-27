@@ -3,22 +3,23 @@
     Meal database ID:</br>
     {{formMeal._id}}
 
+    <form name="editMealForm">
+
     <h2>Published</h2>
         <input  type="checkbox" 
-            name="publishedBoolean" 
-            value="published" 
-            data-ng-model="formMeal.published">
-            Published<br>
+                name="publishedBoolean" 
+                value="published" 
+                data-ng-model="formMeal.published">
+                Published<br>
             
     <h2>Recipe Photo</h2>
-    <form name="editMealForm">
-            
+    
             <div class="preview-image-frame">
                 <i ng-hide="previewImage">Choose an image</i>
                 <!-- image -->
                 <img    class="previewImage" 
-                        ng-show="previewImage" 
-                        ng-src="{{previewImage}}">
+                        data-ng-show="previewImage" 
+                        data-ng-src="{{previewImage}}">
             </div><!-- closes preview-image-frame -->
             
             <!-- input form -->
