@@ -169,18 +169,18 @@
                             <img class="trash-can" src="/assets/bin.png"/></a>
             </li>
             <span class="required-text-container">
-                <span class="cms-required" ng-show="formMeal.steps.$touched && formMeal.steps.$invalid">*Required*</span>
+                <span class="cms-required" ng-show="formMeal.steps[0] === ''">*Required*</span>
             </span>
 
         </ol>
 
         <h2>Recipe credit</h2>
-        <b>Name of person or website this recipe is from:</b>
+        <b>Name of person or website this recipe is from:</b></br>
         <textarea   data-ng-model="formMeal.creditName"
                     placeholder="Name or website..."
                     class="admin-input-oneline"></textarea>
-            </br>
-        <b>Link to the recipe:</b>
+        </br>
+        <b>Link to the recipe:</b></br>
         <textarea   data-ng-model="formMeal.creditURL"
                     placeholder="http://"
                     class="admin-input-oneline"></textarea>
