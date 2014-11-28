@@ -3,7 +3,6 @@ var chai = require('chai');
 var request = require('request');
 
 var expect = chai.expect;
-chai.request.addPromises(global.Promise);
 
 var id;
 var fakeMeal = {
