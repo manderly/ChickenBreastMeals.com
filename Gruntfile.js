@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 					transform: ['debowerify'],
 					debug: true
 				},
-			src: ['test/**/*.js'],
+			src: ['test/mocha/unit-client/*.js'],
 			dest: 'test/angular-testbundle.js'
 			}
 		},
@@ -46,14 +46,8 @@ module.exports = function(grunt) {
 	      }
 	    },
 
-		karma: {
-		  unit: {
-				configFile: 'karma.conf.js',
-		  }
-		},
-
 		watch: {
-		  	angulartest: {
+		  	angulartest: { 
 				files: ['app/js/**/*.js', 'app/index.html', 'app/views/**/*.html'],
 				tasks: ['browserify:angulartest'],
 				options: {
@@ -67,12 +61,18 @@ module.exports = function(grunt) {
 			  		spawn: false
 				}
 			  },
-			test: {
-			  	files: ['test/**/*.js'],
+			servertest: { 
+			  	files: ['app/routes/**/*.js', 'test/mocha/server-tests/*.js'],
 			  	tasks: ['mochaTest'],
 			  	
 			  }
 			},
+
+		karma: {
+			unit: {
+				configFile: 'karma.conf.js'
+			}
+		},
 
 	    mochaTest: {
 	    	test: {
@@ -85,7 +85,7 @@ module.exports = function(grunt) {
 
 		concurrent: {
 	     	start: {
-	        	tasks: ['nodemon:dev', 'watch:express','watch:test'],
+	        	tasks: ['nodemon:dev', 'watch:express','watch:servertest','watch:angulartest'],
         		options: {
 	          		logConcurrentOutput: true
 	        	}
@@ -93,7 +93,7 @@ module.exports = function(grunt) {
 	    },
 	});
 
-	grunt.registerTask('test',['mochaTest']);
+	grunt.registerTask('test',['browserify:angulartest', 'karma:unit']);
 	grunt.registerTask('build',['clean:dev','browserify:dev', 'copy:dev']);
 	grunt.registerTask('default', ['build','concurrent:start']); 
 };
