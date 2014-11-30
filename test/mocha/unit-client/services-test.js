@@ -89,6 +89,22 @@ describe('Service tests', function() {
 			$httpBackend.flush();
 			expect(succeeded).to.be.true;
 		}));
+
+		it('fails to log in when login name is incorrect', inject(function(userFactory, $httpBackend) {
+
+			$httpBackend
+				//send a 401 because log in info is wrong
+				.expectPOST('/login')
+				.respond(401, 'Username or password incorrect')
+
+			var succeeded = false;
+			userFactory.login('blargus', 'p') //try to log in with wrong name
+			.then(function(response) {
+				succeeded = true;
+			});
+			$httpBackend.flush();
+			expect(succeeded).to.be.false;
+		}));
 	});
 
 	describe('fileReader tests', function() { 
