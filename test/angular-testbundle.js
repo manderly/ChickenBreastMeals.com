@@ -31155,44 +31155,6 @@ if (typeof exports === 'object') {
 require('../../../app/js/app.js');
 require("./..\\..\\..\\bower_components\\angular-mocks\\angular-mocks.js");
 
-describe('Integration/E2E Testing (integration-test.js)', function() {
-
-	beforeEach(function() {
-		browser().navigateTo('/');
-	});
-
-	it('should stay on the / path when / is accessed', function() {
-		browser().navigateTo("#/");
-		expect(browser().location().path()).toBe("#/");
-	});
-
-	it('ensures the admin can log in', function() {
-		browser().navigateTo('#/login');
-		expect(browser().location().path()).toBe("/login");
-
-		//input matches the element's ng-model
-		input('username').enter('cbmadmin');
-		input('password').enter('p');
-		element('submit').click();
-		expect(browser().location().path()).toBe("/admin");
-	});
-
-	it('keeps invalid logins on the login page', function() {
-		browser().navigateTo('#/login');
-		expect(browser().location().path()).toBe("/login");
-
-		input('username').enter('blargus');
-		input('password').enter('p');
-		element('submit').click();
-		expect(browser().location().path()).toBe("/login");
-	});
-});
-},{"../../../app/js/app.js":1,"./..\\..\\..\\bower_components\\angular-mocks\\angular-mocks.js":16}],21:[function(require,module,exports){
-'use strict';
-
-require('../../../app/js/app.js');
-require("./..\\..\\..\\bower_components\\angular-mocks\\angular-mocks.js");
-
 describe('Unit test (services-test.js)', function() {
 
 	beforeEach(angular.mock.module('cbmApp'));
@@ -31305,4 +31267,4 @@ describe('Unit test (services-test.js)', function() {
 
 });
 
-},{"../../../app/js/app.js":1,"./..\\..\\..\\bower_components\\angular-mocks\\angular-mocks.js":16}]},{},[21,20]);
+},{"../../../app/js/app.js":1,"./..\\..\\..\\bower_components\\angular-mocks\\angular-mocks.js":16}]},{},[20]);
