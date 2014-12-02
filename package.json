@@ -40,6 +40,7 @@
     "grunt-protractor-runner": "^1.1.4",
     "grunt-protractor-webdriver": "^0.1.9",
     "grunt-simple-mocha": "^0.4.0",
+    "jasmine-node": "^1.14.5",
     "karma": "^0.12.23",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.4",
