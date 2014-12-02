@@ -3,7 +3,7 @@
 require('../../../app/js/app.js');
 require('angular-mocks');
 
-describe('Service tests', function() {
+describe('Unit test (services-test.js)', function() {
 
 	beforeEach(angular.mock.module('cbmApp'));
 

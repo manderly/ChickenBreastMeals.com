@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 					transform: ['debowerify'],
 					debug: true
 				},
-			src: ['test/mocha/unit-client/*.js'],
+			src: ['test/mocha/unit-client/*.js','test/mocha/e2e/*.js'],
 			dest: 'test/angular-testbundle.js'
 			}
 		},

@@ -48,6 +48,7 @@
     "karma-safari-launcher": "^0.1.1",
     "load-grunt-tasks": "^1.0.0",
     "mocha": "^2.0.1",
+    "protractor": "^1.4.0",
     "request": "^2.47.0"
   },
   "dependencies": {
