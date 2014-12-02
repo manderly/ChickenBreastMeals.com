@@ -4,7 +4,8 @@
   "description": "Chicken recipes, plain and simple.",
   "scripts": {
     "test": "grunt test",
-    "start": "node server.js"
+    "start": "node server.js",
+    "install": "node node_modules/protractor/bin/webdriver-manager update"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,8 @@
     "grunt-mocha": "^0.4.11",
     "grunt-mocha-test": "^0.12.2",
     "grunt-nodemon": "^0.3.0",
+    "grunt-protractor-runner": "^1.1.4",
+    "grunt-protractor-webdriver": "^0.1.9",
     "grunt-simple-mocha": "^0.4.0",
     "karma": "^0.12.23",
     "karma-chai": "^0.1.0",

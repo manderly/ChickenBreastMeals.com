@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 					transform: ['debowerify'],
 					debug: true
 				},
-			src: ['test/mocha/unit-client/*.js','test/mocha/e2e/*.js'],
+			src: ['test/mocha/unit-client/*.js'],
 			dest: 'test/angular-testbundle.js'
 			}
 		},
@@ -74,6 +74,31 @@ module.exports = function(grunt) {
 			}
 		},
 
+		protractor: {
+			options: {
+				configFile: "node_modules/protractor/referenceConf.js", //node_modules/protractor/referenceConf.js"
+				keepAlive: true,
+				noColor: false,
+				args: {
+					//args passed to the command if any
+				}
+			},
+			run: {
+				options: {
+					configFile: 'e2e.conf.js',
+					args: {}
+				}
+			}
+		},
+
+		protractor_webdriver: {
+			options: {
+				path: 'node_modules/protractor/bin/webdriver-manager',
+				command: 'webdriver-manager start'
+			},
+			run: {},
+		},
+
 	    mochaTest: {
 	    	test: {
 	    		options: {
@@ -93,7 +118,7 @@ module.exports = function(grunt) {
 	    },
 	});
 
-	grunt.registerTask('test',['browserify:angulartest', 'karma:unit']);
+	grunt.registerTask('test',['browserify:angulartest', 'karma:unit','protractor:run']);
 	grunt.registerTask('build',['clean:dev','browserify:dev', 'copy:dev']);
 	grunt.registerTask('default', ['build','concurrent:start']); 
 };
