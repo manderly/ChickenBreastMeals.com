@@ -23,7 +23,7 @@ describe('E2E: admin (e2e-admin-test.js)', function() {
 	});
 
 /*
-	it('keeps invalid logins on the login page', function() {
+	it('keeps invalid username login on the login page', function() {
 		browser().navigateTo('#/login');
 		expect(browser().location().path()).toBe("/login");
 
@@ -31,6 +31,18 @@ describe('E2E: admin (e2e-admin-test.js)', function() {
 		input('password').enter('p');
 		element('submit').click();
 		expect(browser().location().path()).toBe("/login");
+	});
+
+	it('keeps invalid password on the login page', function() {
+	
+	});
+
+	it('doesn't allow access to /admin route when not logged in', function() {
+	
+	});
+
+	it('has a list of meals when logged in', function() {
+	
 	});
 */
 });
