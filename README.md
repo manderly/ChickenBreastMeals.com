@@ -11,6 +11,7 @@ Chicken Breast Meals is a recipe website I designed and developed using AngularJ
 
 1. Clone this repo to your local environment
 2. *npm install*
+3. (may be optional: *npm install -g bower*)
 3. *bower install*
 4. *grunt default*
 5. *http://localhost:3000*
