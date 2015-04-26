@@ -11,10 +11,14 @@ Chicken Breast Meals is a recipe website I designed and developed using AngularJ
 
 1. Clone this repo to your local environment
 2. *npm install*
-3. (may be optional: *npm install -g bower*)
-3. *bower install*
-4. *grunt default*
-5. *http://localhost:3000*
+3. *npm install -g bower*
+4. *npm install -g protractor*
+5. *bower install*
+6. In a separate terminal window: *mongo*
+7. In a separate terminal window: *webdriver-manager start* (for e2e tests)
+
+Run app in browser: *http://localhost:3000*
+Run e2e tests: *protractor e2e.conf.js*
 
 **Screenshots:**
 
