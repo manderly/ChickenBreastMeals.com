@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 	    },
 
 		watch: {
-		  	angulartest: { 
+		  	angulartest: {
 				files: ['app/js/**/*.js', 'app/index.html', 'app/views/**/*.html'],
 				tasks: ['browserify:angulartest'],
 				options: {
@@ -61,10 +61,10 @@ module.exports = function(grunt) {
 			  		spawn: false
 				}
 			  },
-			servertest: { 
+			servertest: {
 			  	files: ['app/routes/**/*.js', 'test/mocha/server-tests/*.js'],
 			  	tasks: ['mochaTest'],
-			  	
+
 			  }
 			},
 
@@ -85,7 +85,7 @@ module.exports = function(grunt) {
 			},
 			run: {
 				options: {
-					configFile: 'e2e.conf.js',
+					configFile: 'protractor.conf.js',
 					args: {}
 				}
 			}
@@ -120,5 +120,5 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('test',['browserify:angulartest', 'karma:unit','protractor:run']);
 	grunt.registerTask('build',['clean:dev','browserify:dev', 'copy:dev']);
-	grunt.registerTask('default', ['build','concurrent:start']); 
+	grunt.registerTask('default', ['build','concurrent:start']);
 };
