@@ -3,11 +3,11 @@
         <div id="admin-bar-left">
             <h1>Edit Meal Recipe Data</h1>
         </div>
-    
+
         <div id="admin-bar-right">
-            <button data-ng-disabled="editMealForm.$invalid || isUnchanged(formMeal)" 
+            <button data-ng-disabled="editMealForm.$invalid || isUnchanged(formMeal)"
                     data-ng-click="saveFormContents(formMeal)"
-                    class="save-button">
+                    id="save-button">
                     SAVE TO DATABASE
             </button>
         </div>
@@ -18,7 +18,7 @@
         <div class="cms-recipeTitleList">
             <p>Total meals in data: {{meals.length}}</p>
 
-            <a href="" 
+            <a href=""
                 data-ng-click="createNewMeal()"
                 id="new-meal-button">
                 [Create new meal]</a>
@@ -33,15 +33,15 @@
                     <a href="" data-ng-click="deleteMeal(meal)">
                     <span id="delete-button">[Delete]</span></a>
                 </li>
-                
+
             </ul>
         </div><!-- closes cms-recipeTitleList"-->
 
 
         <div class="cms-recipeEditContainer">
-            
+
             <div data-admin-edit-meal-form></div><!-- custom directive holds the new meal form -->
-        
+
         </div><!-- closes cms-recipeEditContainer-->
     </div><!--closes cms-wrapper-->
 </div>

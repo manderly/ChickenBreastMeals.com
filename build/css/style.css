@@ -1,5 +1,5 @@
 /* Colors */
-/* 
+/*
 
 tan:                    #c9b8a7
 header orange:          #ff9b2e
@@ -11,7 +11,7 @@ header brown:           #351414
 
 */
 
-html { 
+html {
     background-color:#fff;
     color:#383838;
 }
@@ -58,7 +58,7 @@ h2, h3 {
   font-size:1.1em;
 }
 
-header { 
+header {
   height:70px;
   background-color:white;
   border-bottom:1px #ddd solid;
@@ -162,7 +162,7 @@ img {
 }
 
 .wrapper {
-  display: flex; 
+  display: flex;
   justify-content: space-around;
 }
 
@@ -220,7 +220,7 @@ img {
     float:right;
 }
 
-.navMenu li a { 
+.navMenu li a {
     padding:4px;
     border-radius:4px;
     position:relative;
@@ -315,7 +315,7 @@ img {
 .mealGridTitleArea a {
   color:white;
   font-size:16px;
-  font-weight:normal;  
+  font-weight:normal;
 }
 
 .mealGridTitleArea::first-letter {
@@ -355,7 +355,7 @@ img {
 .selectedMeal .mealTitle:after {
     content: " »";
 }
-.snippet { 
+.snippet {
   width:91%;
   max-width:91%;
 }
@@ -513,7 +513,7 @@ img {
   font-family:'Raleway',sans-serif;
 }
 
-.in-title { 
+.in-title {
   font-size:2em;
   line-height:2em;
   border-bottom:3px dotted orange;
@@ -640,7 +640,7 @@ About Page
 ADMMIN CMS
 ************/
 .cms-wrapper {
-  display: flex; 
+  display: flex;
   justify-content: space-around;
   clear:both;
 }
@@ -661,7 +661,7 @@ ADMMIN CMS
 }
 
 /* Giant save button at top */
-.save-button {
+#save-button {
     height:50px;
     width:245px;
     font-size:16px;
@@ -675,7 +675,7 @@ ADMMIN CMS
     margin:10px auto;
 }
 
-.save-button:disabled {
+#save-button:disabled {
     background-color:gray;
 }
 
@@ -713,14 +713,14 @@ ADMMIN CMS
     margin:0 auto;
 }
 
-.cms-recipeEdit { 
+.cms-recipeEdit {
     display:block;
     width:640px;
     position:relative;
     margin:10px auto;
 }
 
-.cms-recipeEdit input, .cms-recipeEdit textarea { 
+.cms-recipeEdit input, .cms-recipeEdit textarea {
     background-color:#f5f5f5;
     font-size:14px;
     line-height:20px;
@@ -806,7 +806,7 @@ ADMMIN CMS
   width:90px;
 }
 
-.cms-checkboxes input { 
+.cms-checkboxes input {
   width:30px;
 }
 
@@ -947,7 +947,7 @@ ADMMIN CMS
 @media  (max-width: 480px) {
   .hero-tagline {
     font-size:1.2em;
-  } 
+  }
 
   .search-input {
     width:320px;

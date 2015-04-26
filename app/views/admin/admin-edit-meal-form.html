@@ -7,6 +7,7 @@
 
     <h2>Published</h2>
         <input  type="checkbox"
+                id="form-publishedCheckbox"
                 name="publishedBoolean"
                 value="published"
                 data-ng-model="formMeal.published">
@@ -34,6 +35,7 @@
 
     <h2>Recipe Name</h2>
         <input  type="text"
+                id="form-recipeName"
                 required
                 data-ng-model="formMeal.name"
                 data-ng-blur="createURL(formMeal.name)"
@@ -48,6 +50,7 @@
 
     <h2>Description</h2>
         <textarea  type="text"
+                id="form-description"
                 required
                 data-ng-model="formMeal.description"
                 placeholder="Tell us about this recipe, where it came from, why it's special. Be creative!"
@@ -58,6 +61,7 @@
 
     <h2>Difficulty Level</h2>
         <select required
+                id="form-difficulty"
                 data-ng-model="formMeal.skillLevel"
                 data-ng-options="difficultyLevel for difficultyLevel in difficultyLevels">
                 </select>
@@ -107,6 +111,7 @@
             <!-- loop through and display existing ingredients -->
             <li data-ng-repeat="ingredient in formMeal.ingredients track by $index">
                 <textarea   name="ingredientLines"
+                            id="form-ingredient{{$index}}"
                             type="text"
                             data-ng-model="formMeal.ingredients[$index].name"
                             data-ng-change="changeIngredient($index)"
@@ -134,6 +139,7 @@
                                 *</span></div>
                 <input
                         required
+                        id="form-prepTime"
                         data-ng-model="formMeal.prepTime"
                         class="cms-input-short">
 
@@ -146,6 +152,7 @@
                                 *</span></div>
 
                 <input  required
+                        id="form-cookTime"
                         data-ng-model="formMeal.cookTime"
                         class="cms-input-short">
 
@@ -159,6 +166,7 @@
                                 ng-show="!formMeal.yield">
                                 *</span></div>
                 <input  required
+                        id="form-yield"
                         data-ng-model="formMeal.yield"
                         class="cms-input-short">
 
@@ -170,6 +178,7 @@
                                 ng-show="!formMeal.plural">
                                 *</span></div>
                 <input  required
+                        id="form-plural"
                         data-ng-model="formMeal.plural"
                         placeholder='Cookies'
                         class="cms-input-plural">
@@ -183,6 +192,7 @@
             <li data-ng-repeat="step in formMeal.steps track by $index">
 
                 <textarea   data-ng-model="formMeal.steps[$index].name"
+                            id="form-step{{$index}}"
                             class="admin-input-paragraph"
                             placeholder="Add a preparation step"
                             data-ng-blur="removeIfEmptyField($index,'steps')"
@@ -202,11 +212,13 @@
         <h2>Recipe credit</h2>
         <b>Name of person or website this recipe is from:</b></br>
         <textarea   data-ng-model="formMeal.creditName"
+                    id="form-creditName"
                     placeholder="Name or website..."
                     class="admin-input-oneline"></textarea>
         </br>
         <b>Link to the recipe:</b></br>
         <textarea   data-ng-model="formMeal.creditURL"
+                    id="form-creditURL"
                     placeholder="http://"
                     class="admin-input-oneline"></textarea>
 
