@@ -1,4 +1,5 @@
 'use strict';
+var webdriver = require('selenium-webdriver');
 
 describe('E2E: admin login (e2e-admin-test.js)', function() {
 
@@ -13,26 +14,32 @@ describe('E2E: admin login (e2e-admin-test.js)', function() {
 	it('allows the admin to log in', function() {
 		element(by.model('username')).sendKeys('cbmadmin');
 		element(by.model('password')).sendKeys('p');
+
 		element(by.id('btn-login')).click();
 
 		expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/#/admin");
 		expect(element(by.id('cbm-admin')).isPresent()).toBe(true);
 	});
 
+	it('keeps invalid username and correct password on the login page', function() {
+    element(by.model('username')).sendKeys('blargus');
+    element(by.model('password')).sendKeys('p');
+
+    element(by.id('btn-login')).click();
+    //dismiss wrong credentials alert
+    browser.driver.sleep(2000);
+
+    browser.switchTo().alert().accept().then(null, function(e) {
+      if (e.code !== webdriver.ErrorCode.NO_SUCH_ALERT) {
+      throw e;
+      }
+    });
+
+		expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/#/login");
+    expect(element(by.id('cbm-admin')).isPresent()).toBe(false);
+	});
+
 /*
-	it('keeps invalid username login on the login page', function() {
-		browser().navigateTo('#/login');
-		expect(browser().location().path()).toBe("/login");
-
-		input('username').enter('blargus');
-		input('password').enter('p');
-		element('submit').click();
-		expect(browser().location().path()).toBe("/login");
-	});
-
-	it('keeps invalid password on the login page', function() {
-
-	});
 
 	it('doesn't allow access to /admin route when not logged in', function() {
 
