@@ -1,25 +1,22 @@
 'use strict';
 
-describe('E2E: admin (e2e-admin-test.js)', function() {
+describe('E2E: admin login (e2e-admin-test.js)', function() {
 
 	beforeEach(function() {
-		browser.get('http://localhost:3000/#/admin');
+		browser.get('/#/admin');
 	});
 
-	it('go to the login path when accessing /admin route', function() {
-		//browser navigateTo and confirming url don't work
+	it('goes to the login page when the user is not authenticated', function() {
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#/login');
 	});
 
-	it('ensures the admin can log in', function() {
-		//input matches the element's ng-model
-		/*
-		input('username').enter('cbmadmin');
-		input('password').enter('p');
-		element('submit').click();
-		//expect(browser.location().path()).toBe("/admin");
-		var ele = by.id('cbm-admin');
-		expect(browser.isElementPresent(ele)).toBe(true);
-		*/
+	it('allows the admin to log in', function() {
+		element(by.model('username')).sendKeys('cbmadmin');
+		element(by.model('password')).sendKeys('p');
+		element(by.id('btn-login')).click();
+
+		expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/#/admin");
+		expect(element(by.id('cbm-admin')).isPresent()).toBe(true);
 	});
 
 /*
@@ -34,15 +31,15 @@ describe('E2E: admin (e2e-admin-test.js)', function() {
 	});
 
 	it('keeps invalid password on the login page', function() {
-	
+
 	});
 
 	it('doesn't allow access to /admin route when not logged in', function() {
-	
+
 	});
 
 	it('has a list of meals when logged in', function() {
-	
+
 	});
 */
 });
