@@ -7,17 +7,23 @@ Chicken Breast Meals is a recipe website I designed and developed using AngularJ
 **TRY IT LIVE**
 [Chicken Breast Meals on Heroku](http://chickenbreastmeals.herokuapp.com)
 
-**To use:**
+**Installation**
 
 1. Clone this repo to your local environment
 2. *npm install*
 3. *npm install -g bower*
 4. *npm install -g protractor*
 5. *bower install*
-6. In a separate terminal window: *mongo*
+6. In a separate terminal window: *mongod*
 7. In a separate terminal window: *webdriver-manager start* (for e2e tests)
+8. In a separate terminal window: *grunt default*
 
-Run app in browser: *http://localhost:3000*
+
+**Use**
+
+Now you should be able to see the app in browser: *http://localhost:3000*
+
+Run karma tests: *grunt default*
 Run e2e tests: *protractor e2e.conf.js*
 
 **Screenshots:**
