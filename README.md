@@ -23,8 +23,8 @@ Chicken Breast Meals is a recipe website I designed and developed using AngularJ
 
 Now you should be able to see the app in browser: *http://localhost:3000*
 
-Run karma tests: *grunt default*
-Run e2e tests: *protractor e2e.conf.js*
+* Run karma tests: *grunt default*
+* Run e2e tests: *protractor protractor.conf.js*
 
 **Screenshots:**
 
