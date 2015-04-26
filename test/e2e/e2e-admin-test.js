@@ -28,7 +28,6 @@ describe('E2E: admin login (e2e-admin-test.js)', function() {
     element(by.id('btn-login')).click();
     //dismiss wrong credentials alert
     browser.driver.sleep(2000);
-
     browser.switchTo().alert().accept().then(null, function(e) {
       if (e.code !== webdriver.ErrorCode.NO_SUCH_ALERT) {
       throw e;
@@ -39,14 +38,4 @@ describe('E2E: admin login (e2e-admin-test.js)', function() {
     expect(element(by.id('cbm-admin')).isPresent()).toBe(false);
 	});
 
-/*
-
-	it('doesn't allow access to /admin route when not logged in', function() {
-
-	});
-
-	it('has a list of meals when logged in', function() {
-
-	});
-*/
 });
