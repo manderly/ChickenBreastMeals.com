@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Chicken recipes, plain and simple.",
   "scripts": {
+    "test": "./node_modules/.bin/protractor protractor.conf.js",
     "start": "node server.js"
   },
   "repository": {
