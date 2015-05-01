@@ -77,7 +77,7 @@ module.exports = function(grunt) {
     protractor: {
      options: {
          keepAlive: false,
-         configFile: "test/protractor.conf.js"
+         configFile: "protractor.conf.js"
      },
 
      saucelabs: {
@@ -96,13 +96,13 @@ module.exports = function(grunt) {
       }
     },
 
-		protractor_webdriver: {
-			options: {
-				path: 'node_modules/protractor/bin/webdriver-manager',
-				command: 'webdriver-manager start'
-			},
-			run: {},
-		},
+	// protractor_webdriver: {
+	// 	options: {
+	// 		path: 'node_modules/protractor/bin/webdriver-manager',
+	// 		command: 'webdriver-manager start'
+	// 	},
+	// 	run: {},
+	// },
 
     mochaTest: {
     	test: {
@@ -124,7 +124,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('test',['browserify:angulartest', 'karma:unit','protractor:run']);
-    grunt.registerTask('travis',['bower:install','test:unit','shell:protractor_update','protractor:saucelabs']);
+    grunt.registerTask('travis',['bower:install','karma:unit','shell:protractor_update','protractor:saucelabs']);
 	grunt.registerTask('build',['clean:dev','browserify:dev', 'copy:dev']);
 	grunt.registerTask('default', ['build','concurrent:start']);
 
