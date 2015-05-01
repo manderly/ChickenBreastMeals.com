@@ -1,12 +1,16 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
+env:
+  global:
+  - secure: "MsY6ZQm0sqf9bCBlkkyZJxBlrnbN7cHT+0ugJUgRwW/uW8CYzcWxlhr9Fd6P1sJg3zP+Y6ZTJZwOgypd7xcGSX43blzPn43xH4PDPR+zScq7N6ngUVmK5HLi8tulG5cYC0urVF0tUOnKxDWH+VjSA0Pyg5SatYOEwBjo8x/AGqo="
+  - secure: "oFs8GLc4+TreJQrTBL8qKbbv0FojMxH9Q79IY3QN9OYI36SU3yYVF5V8qDkWNV75Mr1R71vBUTKLP+ioO30LFQCOQNyHuRjqg59mpkieCihfJz/57+vyeDhqEjim8je93vnQopn9PS3mcruOI3bMTeS9QQ1jGA0gJdEgc6CrAgc="
 services:
-  - mongodb
+- mongodb
 before_install:
-  - npm install -g grunt-cli
-  - npm install -g bower
-  - bower install
+- npm install -g grunt-cli
+- npm install -g bower
+- bower install
 install:
-  - npm install
+- npm install
 before_script: grunt build

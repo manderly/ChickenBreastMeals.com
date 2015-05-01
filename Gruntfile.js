@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 		},
 
 		//automatically restarts the app if nodemon detects changes to files
-	    nodemon: {
+        nodemon: {
 	      dev: {
 	        script: 'server.js',
 	        options: {
@@ -74,22 +74,27 @@ module.exports = function(grunt) {
 			}
 		},
 
-		protractor: {
-			options: {
-				configFile: "node_modules/protractor/referenceConf.js", //node_modules/protractor/referenceConf.js"
-				keepAlive: true,
-				noColor: false,
-				args: {
-					//args passed to the command if any
-				}
-			},
-			run: {
-				options: {
-					configFile: 'protractor.conf.js',
-					args: {}
-				}
-			}
-		},
+    protractor: {
+     options: {
+         keepAlive: false,
+         configFile: "test/protractor.conf.js"
+     },
+
+     saucelabs: {
+        options: {
+          args: {
+            sauceUser: process.env.SAUCE_USERNAME,
+            sauceKey: process.env.SAUCE_ACCESS_KEY
+          }
+        }
+      }
+    },
+
+    shell: {
+      protractor_update: {
+        command: 'node_modules/protractor/bin/webdriver-manager update'
+      }
+    },
 
 		protractor_webdriver: {
 			options: {
@@ -99,14 +104,14 @@ module.exports = function(grunt) {
 			run: {},
 		},
 
-	    mochaTest: {
-	    	test: {
-	    		options: {
-	    			reporter: 'spec',
-	    		},
-	    	src: ['test/**/*.js']
-	    	}
-	    },
+    mochaTest: {
+    	test: {
+    		options: {
+    			reporter: 'spec',
+    		},
+    	src: ['test/**/*.js']
+    	}
+    },
 
 		concurrent: {
 	     	start: {
@@ -119,6 +124,8 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('test',['browserify:angulartest', 'karma:unit','protractor:run']);
+    grunt.registerTask('travis',['bower:install','test:unit','shell:protractor_update','protractor:saucelabs']);
 	grunt.registerTask('build',['clean:dev','browserify:dev', 'copy:dev']);
 	grunt.registerTask('default', ['build','concurrent:start']);
+
 };
