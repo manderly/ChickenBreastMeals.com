@@ -75,10 +75,12 @@ module.exports = function(grunt) {
 		},
 
     protractor: {
-     options: {
-         keepAlive: false,
-         configFile: "protractor.conf.js"
-     },
+        options: {
+            keepAlive: false,
+            configFile: "protractor.conf.js"
+        },
+        run: {}
+    },
 
      saucelabs: {
         options: {
@@ -87,7 +89,6 @@ module.exports = function(grunt) {
             sauceKey: process.env.SAUCE_ACCESS_KEY
           }
         }
-      }
     },
 
     shell: {

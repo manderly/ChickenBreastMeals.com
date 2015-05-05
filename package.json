@@ -4,7 +4,7 @@
   "description": "Chicken recipes, plain and simple.",
   "scripts": {
     "test": "grunt test",
-    "install": "npm install",
+    "install": "node_modules/protractor/bin/webdriver-manager update",
     "start": "node server.js"
   },
   "repository": {
