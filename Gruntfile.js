@@ -96,14 +96,6 @@ module.exports = function(grunt) {
       }
     },
 
-	// protractor_webdriver: {
-	// 	options: {
-	// 		path: 'node_modules/protractor/bin/webdriver-manager',
-	// 		command: 'webdriver-manager start'
-	// 	},
-	// 	run: {},
-	// },
-
     mochaTest: {
     	test: {
     		options: {
