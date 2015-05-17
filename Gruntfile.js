@@ -46,33 +46,42 @@ module.exports = function(grunt) {
 	      }
 	    },
 
-		watch: {
-		  	angulartest: {
-				files: ['app/js/**/*.js', 'app/index.html', 'app/views/**/*.html'],
-				tasks: ['browserify:angulartest'],
-				options: {
-			  		spawn:false
-				}
-		  	},
-			express: {
-				files: ['app/js/**/*.js', 'models/*.*', 'app/index.html', 'app/views/**/*.html', 'app/css/*.css', 'app/views/**/*.html', 'server.js', 'models/*.js'],
-				tasks: ['build'],
-				options: {
-			  		spawn: false
-				}
-			  },
-			servertest: {
-			  	files: ['app/routes/**/*.js', 'test/mocha/server-tests/*.js'],
-			  	tasks: ['mochaTest'],
-
-			  }
-			},
-
-		karma: {
-			unit: {
-				configFile: 'karma.conf.js'
+	watch: {
+	  	angulartest: {
+			files: ['app/js/**/*.js', 'app/index.html', 'app/views/**/*.html'],
+			tasks: ['browserify:angulartest'],
+			options: {
+		  		spawn:false
 			}
+	  	},
+		express: {
+			files: ['app/js/**/*.js', 'models/*.*', 'app/index.html', 'app/views/**/*.html', 'app/css/*.css', 'app/views/**/*.html', 'server.js', 'models/*.js'],
+			tasks: ['build'],
+			options: {
+		  		spawn: false
+			}
+		  },
+		servertest: {
+		  	files: ['app/routes/**/*.js', 'test/mocha/server-tests/*.js'],
+		  	tasks: ['mochaTest'],
+
+		  }
 		},
+
+	karma: {
+		unit: {
+			configFile: 'karma.conf.js'
+		}
+	},
+
+    protractor_webdriver: {
+        options: {
+
+        },
+        your_target: {
+
+        },
+    },
 
     protractor: {
         options: {
@@ -116,7 +125,7 @@ module.exports = function(grunt) {
 	    },
 	});
 
-	grunt.registerTask('test',['browserify:angulartest', 'karma:unit','protractor:run']);
+	grunt.registerTask('test',['browserify:angulartest', 'karma:unit', 'protractor_webdriver', 'protractor:run']);
     grunt.registerTask('travis',['bower:install','karma:unit','shell:protractor_update','protractor:saucelabs']);
 	grunt.registerTask('build',['clean:dev','browserify:dev', 'copy:dev']);
 	grunt.registerTask('default', ['build','concurrent:start']);
