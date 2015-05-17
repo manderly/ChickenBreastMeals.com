@@ -1,6 +1,6 @@
 'use strict';
 var webdriver = require('selenium-webdriver');
-
+//tests the admin actions
 describe('E2E: admin actions (e2e-admin-page-test.js)', function() {
 
   beforeEach(function() {
