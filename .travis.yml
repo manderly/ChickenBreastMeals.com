@@ -10,7 +10,6 @@ services:
 before_install:
 - gem install bundler
 install:
-- bundle
 - npm install -g bower grunt-cli
 - npm install
 - bower install
