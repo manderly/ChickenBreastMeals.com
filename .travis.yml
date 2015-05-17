@@ -7,6 +7,8 @@ env:
   - secure: "oFs8GLc4+TreJQrTBL8qKbbv0FojMxH9Q79IY3QN9OYI36SU3yYVF5V8qDkWNV75Mr1R71vBUTKLP+ioO30LFQCOQNyHuRjqg59mpkieCihfJz/57+vyeDhqEjim8je93vnQopn9PS3mcruOI3bMTeS9QQ1jGA0gJdEgc6CrAgc="
 services:
 - mongodb
+before_install:
+- gem install bundler
 install:
 - bundle
 - npm install -g bower grunt-cli
