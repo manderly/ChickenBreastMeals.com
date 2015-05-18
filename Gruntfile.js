@@ -126,7 +126,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('test',['browserify:angulartest', 'karma:unit', 'protractor_webdriver', 'protractor:run']);
-    grunt.registerTask('travis',['bower:install','karma:unit','shell:protractor_update','protractor:saucelabs']);
+    grunt.registerTask('travis',['bower:install', 'shell:protractor_update','protractor:saucelabs','test']);
 	grunt.registerTask('build',['clean:dev','browserify:dev', 'copy:dev']);
 	grunt.registerTask('default', ['build','concurrent:start']);
 

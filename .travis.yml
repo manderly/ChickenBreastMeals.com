@@ -15,7 +15,6 @@ install:
 - bower install
 - ./node_modules/protractor/bin/webdriver-manager update
 script:
-- grunt test
 - grunt travis
 - grunt build
 addons:
