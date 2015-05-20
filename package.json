@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Chicken recipes, plain and simple.",
   "scripts": {
-    "test": "grunt test",
+    "test": "grunt localTest",
     "install": "node_modules/protractor/bin/webdriver-manager update",
     "start": "node server.js"
   },
